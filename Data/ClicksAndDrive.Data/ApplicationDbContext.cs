@@ -24,7 +24,19 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
+        public DbSet<Setting> Settings { get; set; } 
+
+        public DbSet<Bicycle> Bicycles { get; set; } 
+
+        public DbSet<Car> Cars { get; set; } 
+
+        public DbSet<Motorcycle> Motorcycles { get; set; } 
+
+        public DbSet<ElectricScooter> ElectricScooters { get; set; } 
+
+        public DbSet<Image> Images { get; set; } 
+
+        public DbSet<Order> Orders { get; set; } 
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -72,6 +84,19 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<Image>(entity =>
+            {
+                entity.HasOne(i => i.User)
+                .WithMany(u => u.Images)
+                .HasForeignKey(i => i.UserId);
+            });
+            builder.Entity<Order>(entity =>
+            {
+                entity.HasOne(o => o.User)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.UserId);
+            });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
