@@ -9,6 +9,7 @@
         [Required]
         public string  Make { get; set; }
 
+        [Required]
         public int MaximumSpeed { get; set; }
 
         [Required]
@@ -19,6 +20,7 @@
         [Required]
         public decimal PriceForHour { get; set; }
 
+        [Required]
         public string ImageUrl { get; set; }
 
         [MaxLength(250)]

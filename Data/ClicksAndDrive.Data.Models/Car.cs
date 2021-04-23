@@ -23,8 +23,10 @@
         [Required]
         public TransmissionType Transmission { get; set; }
 
+        [Required]
         public double FuelConsumption { get; set; }
 
+        [Required]
         public string Places { get; set; }
 
         public bool IsAvailable { get; set; }
@@ -32,6 +34,7 @@
         [Required]
         public decimal PriceForHour { get; set; }
 
+        [Required]
         public string ImageUrl { get; set; }
 
         [MaxLength(250)]
