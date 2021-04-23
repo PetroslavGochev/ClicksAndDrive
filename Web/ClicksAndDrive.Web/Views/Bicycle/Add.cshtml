@@ -1,0 +1,52 @@
+﻿@using ClicksAndDrive.Data.Models.Enums
+@using ClicksAndDrive.Web.ViewModels.Bicycles
+@model AddBycicleViewModel
+<h1>Add Bicycle</h1>
+
+<form method="post" class="col-md-6" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Type"></label>
+        <select asp-for="Type" class="form-control" 
+                asp-items="@Html.GetEnumSelectList<BicycleType>()">
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Made"></label>
+        <input asp-for="Made" class="form-control" />
+        <span asp-validation-for="Made" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Speeds"></label>
+        <input asp-for="Speeds" class="form-control" />
+        <span asp-validation-for="Speeds" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Size"></label>
+        <select asp-for="Size" class="form-control"
+                asp-items="@Html.GetEnumSelectList<BicycleSize>()">
+        </select>
+        <span asp-validation-for="Size" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SizeOfTires"></label>
+        <input asp-for="SizeOfTires" class="form-control" />
+        <span asp-validation-for="SizeOfTires" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PriceForHour"></label>
+        <input asp-for="PriceForHour" class="form-control" />
+        <span asp-validation-for="PriceForHour" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image"></label>
+        <input asp-for="Image" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea cols="10" asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn-primary" />
+</form>
