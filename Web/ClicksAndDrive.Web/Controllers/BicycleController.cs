@@ -14,6 +14,10 @@
         [HttpPost]
         public IActionResult Add(AddBycicleViewModel input)
         {
+            if(!input.Image.FileName.EndsWith(".jpg") || input.Image.FileName.EndsWith(".png"))
+            {
+                this.ModelState.AddModelError("Image", "Invalid type");
+            }
             if (!ModelState.IsValid)
             {
                 return this.View();

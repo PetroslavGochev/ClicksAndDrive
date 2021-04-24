@@ -28,7 +28,7 @@
         [Required]
         public decimal PriceForHour { get; set; }
 
-        [ImageAttribute]
+        //[RegularExpression(@"([^\s]+(\.(?i)(jpg|png|gif|bmp))$)", ErrorMessage ="Invalid type")]
         public IFormFile Image { get; set; }
 
         [MaxLength(250)]
