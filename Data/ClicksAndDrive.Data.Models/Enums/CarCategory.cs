@@ -5,5 +5,6 @@
         Sedan = 1,
         Van = 2,
         HatchBack = 3,
+        Sport = 4,
     }
 }
