@@ -10,6 +10,7 @@
             return this.View();
         }
 
+        [HttpPost]
         public IActionResult Add(AddCarViewModel input)
         {
             if (!this.ModelState.IsValid)

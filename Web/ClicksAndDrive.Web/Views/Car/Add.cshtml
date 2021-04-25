@@ -1,2 +1,70 @@
-﻿<h1>Add Car!</h1>
+﻿@using ClicksAndDrive.Data.Models.Enums
+@using ClicksAndDrive.Web.ViewModels.Cars
+@model AddCarViewModel
+<h1>Add Car!</h1>
 
+<form method="post" class="col-md-6">
+    <div class="form-group">
+        <label asp-for="Made"></label>
+        <input asp-for="Made" class="form-control" />
+        <span asp-validation-for="Made" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Model"></label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Made"></label>
+        <input asp-for="Made" class="form-control" />
+        <span asp-validation-for="Made" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FuelType"></label>
+        <select asp-for="FuelType" class="form-control"
+                asp-items="@Html.GetEnumSelectList<FuelType>()">
+        </select>
+        <span asp-validation-for="FuelType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Category"></label>
+        <select asp-for="Category" class="form-control"
+                asp-items="@Html.GetEnumSelectList<CarCategory>()">
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Transmission"></label>
+        <select asp-for="Transmission" class="form-control"
+                asp-items="@Html.GetEnumSelectList<TransmissionType>()">
+        </select>
+        <span asp-validation-for="Transmission" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FuelConsumption"></label>
+        <input asp-for="FuelConsumption" class="form-control" />
+        <span asp-validation-for="FuelConsumption" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Places"></label>
+        <select asp-for="Places" class="form-control"
+                asp-items="@Html.GetEnumSelectList<CarPlaces>()">
+        </select>
+        <span asp-validation-for="Places" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PriceForHour"></label>
+        <input asp-for="PriceForHour" class="form-control" />
+        <span asp-validation-for="PriceForHour" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageUrl"></label>
+        <input asp-for="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea cols="10" asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+</form>
