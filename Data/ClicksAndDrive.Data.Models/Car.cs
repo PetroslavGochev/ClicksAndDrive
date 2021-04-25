@@ -27,7 +27,7 @@
         public double FuelConsumption { get; set; }
 
         [Required]
-        public string Places { get; set; }
+        public CarPlaces Places { get; set; }
 
         public bool IsAvailable { get; set; }
 
