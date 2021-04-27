@@ -1,25 +1,22 @@
-﻿@using ClicksAndDrive.Data.Models.Enums
-@using ClicksAndDrive.Web.ViewModels
-@model AddMotorcycleViewModel
-<h1>Add motorcycle!</h1>
+﻿@using ClicksAndDrive.Web.ViewModels.ElectricScooter
+@model AddElectricScooterViewModel
+<h1>Add ElectricScooter!</h1>
 
 <form>
-    <div class="form-group">
-        <label asp-for="Type"></label>
-        <select asp-for="Type" class="form-control"
-                asp-items="@Html.GetEnumSelectList<MotorcycleType>()">
-        </select>
-        <span asp-validation-for="Type" class="text-danger"></span>
-    </div>
     <div class="form-group">
         <label asp-for="Made">Made *</label>
         <input asp-for="Made" class="form-control" />
         <span asp-validation-for="Made" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Transmission"></label>
-        <select asp-for="Transmission" class="form-control"
-                asp-items="@Html.GetEnumSelectList<TransmissionType>()"></select>
+        <label asp-for="MaximumSpeed">MaximumSpeed *</label>
+        <input asp-for="MaximumSpeed" class="form-control" />
+        <span asp-validation-for="MaximumSpeed" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mileage">Mileage *</label>
+        <input asp-for="Mileage" class="form-control" />
+        <span asp-validation-for="Mileage" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="PriceForHour">PriceForHour *</label>
@@ -27,7 +24,7 @@
         <span asp-validation-for="PriceForHour" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="ImageUrl">ImageUrl*</label>
+        <label asp-for="ImageUrl">ImageUrl *</label>
         <input asp-for="ImageUrl" class="form-control" />
         <span asp-validation-for="ImageUrl" class="text-danger"></span>
     </div>
