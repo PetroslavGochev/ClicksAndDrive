@@ -7,7 +7,7 @@
         public int Id { get; set; }
 
         [Required]
-        public string  Make { get; set; }
+        public string  Made { get; set; }
 
         [Required]
         public int MaximumSpeed { get; set; }
