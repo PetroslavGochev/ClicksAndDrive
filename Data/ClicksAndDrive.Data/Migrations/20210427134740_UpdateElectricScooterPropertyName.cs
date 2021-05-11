@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace ClicksAndDrive.Data.Migrations
+﻿namespace ClicksAndDrive.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class UpdateElectricScooterPropertyName : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

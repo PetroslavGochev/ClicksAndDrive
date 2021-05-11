@@ -2,6 +2,7 @@
 {
     using ClicksAndDrive.Data.Models.Enums;
     using Microsoft.AspNetCore.Http;
+
     using System.ComponentModel.DataAnnotations;
 
     public class AddCarViewModel

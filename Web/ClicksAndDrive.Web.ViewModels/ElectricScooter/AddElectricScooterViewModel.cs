@@ -1,7 +1,8 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.ElectricScooter
 {
-    using Microsoft.AspNetCore.Http;
     using System.ComponentModel.DataAnnotations;
+
+    using Microsoft.AspNetCore.Http;
 
     public class AddElectricScooterViewModel
     {
@@ -10,7 +11,7 @@
         public string Made { get; set; }
 
         [Required]
-        [Range(5,35)] 
+        [Range(5, 35)]
         public int MaximumSpeed { get; set; }
 
         [Required]
@@ -25,6 +26,6 @@
         public IFormFile ImageUrl { get; set; }
 
         [MaxLength(250)]
-        public string? Description { get; set; }
+        public string Description { get; set; }
     }
 }

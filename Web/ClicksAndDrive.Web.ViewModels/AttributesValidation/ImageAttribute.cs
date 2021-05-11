@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace ClicksAndDrive.Web.ViewModels.AttributesValidation

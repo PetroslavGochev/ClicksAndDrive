@@ -3,6 +3,7 @@
     using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Http;
+
     using System.ComponentModel.DataAnnotations;
 
     public class AddBycicleViewModel

@@ -1,8 +1,9 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels
 {
+    using System.ComponentModel.DataAnnotations;
+
     using ClicksAndDrive.Data.Models.Enums;
     using Microsoft.AspNetCore.Http;
-    using System.ComponentModel.DataAnnotations;
 
     public class AddMotorcycleViewModel
     {
@@ -21,12 +22,10 @@
         [Required]
         public decimal PriceForHour { get; set; }
 
-
         [Required]
         public IFormFile ImageUrl { get; set; }
 
-
         [MaxLength(250)]
-        public string? Description { get; set; }
+        public string Description { get; set; }
     }
 }

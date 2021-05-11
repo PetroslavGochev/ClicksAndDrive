@@ -1,7 +1,8 @@
 ﻿namespace ClicksAndDrive.Data.Models
 {
-    using ClicksAndDrive.Data.Models.Enums;
     using System.ComponentModel.DataAnnotations;
+
+    using ClicksAndDrive.Data.Models.Enums;
 
     public class Motorcycle
     {
@@ -25,6 +26,6 @@
         public string ImageUrl { get; set; }
 
         [MaxLength(250)]
-        public string? Description { get; set; }
+        public string Description { get; set; }
     }
 }

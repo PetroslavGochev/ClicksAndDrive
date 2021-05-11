@@ -1,18 +1,18 @@
 ﻿namespace ClicksAndDrive.Data.Models
 {
-    using ClicksAndDrive.Data.Models.Enums;
     using System.ComponentModel.DataAnnotations;
+
+    using ClicksAndDrive.Data.Models.Enums;
 
     public class Car
     {
-
         public int Id { get; set; }
 
         [Required]
-        public string  Made { get; set; }
+        public string Made { get; set; }
 
         [Required]
-        public string  Model { get; set; }
+        public string Model { get; set; }
 
         [Required]
         public FuelType FuelType { get; set; }
@@ -38,6 +38,6 @@
         public string ImageUrl { get; set; }
 
         [MaxLength(250)]
-        public string? Description { get; set; }
+        public string Description { get; set; }
     }
 }

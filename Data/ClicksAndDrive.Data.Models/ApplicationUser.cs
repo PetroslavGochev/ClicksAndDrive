@@ -4,6 +4,7 @@ namespace ClicksAndDrive.Data.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using ClicksAndDrive.Data.Common.Models;
 
     using Microsoft.AspNetCore.Identity;
@@ -20,7 +21,6 @@ namespace ClicksAndDrive.Data.Models
             this.Images = new HashSet<Image>();
         }
 
-        
         [Required]
         [MinLength(3)]
         public string FirstName { get; set; }
