@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ClicksAndDrive.Data.Models.Enums
+﻿namespace ClicksAndDrive.Data.Models.Enums
 {
+    using System.ComponentModel.DataAnnotations;
+
     public enum CarPlaces
     {
         [Display(Name = "2+1")]

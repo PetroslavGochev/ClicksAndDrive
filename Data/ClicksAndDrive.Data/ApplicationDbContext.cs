@@ -24,19 +24,19 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; } 
+        public DbSet<Setting> Settings { get; set; }
 
-        public DbSet<Bicycle> Bicycles { get; set; } 
+        public DbSet<Bicycle> Bicycles { get; set; }
 
-        public DbSet<Car> Cars { get; set; } 
+        public DbSet<Car> Cars { get; set; }
 
-        public DbSet<Motorcycle> Motorcycles { get; set; } 
+        public DbSet<Motorcycle> Motorcycles { get; set; }
 
-        public DbSet<ElectricScooter> ElectricScooters { get; set; } 
+        public DbSet<ElectricScooter> ElectricScooters { get; set; }
 
-        public DbSet<Image> Images { get; set; } 
+        public DbSet<Image> Images { get; set; }
 
-        public DbSet<Order> Orders { get; set; } 
+        public DbSet<Order> Orders { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
