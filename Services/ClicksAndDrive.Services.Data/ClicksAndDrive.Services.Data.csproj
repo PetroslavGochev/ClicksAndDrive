@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -21,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ClicksAndDrive.Data.Common\ClicksAndDrive.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\ClicksAndDrive.Data.Models\ClicksAndDrive.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\ClicksAndDrive.Data\ClicksAndDrive.Data.csproj" />
+    <ProjectReference Include="..\..\Web\ClicksAndDrive.Web.ViewModels\ClicksAndDrive.Web.ViewModels.csproj" />
     <ProjectReference Include="..\ClicksAndDrive.Services.Mapping\ClicksAndDrive.Services.Mapping.csproj" />
   </ItemGroup>
 
