@@ -9,6 +9,7 @@
     using ClicksAndDrive.Data.Repositories;
     using ClicksAndDrive.Data.Seeding;
     using ClicksAndDrive.Services.Data;
+    using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Services.Messaging;
     using ClicksAndDrive.Web.ViewModels;
@@ -65,6 +66,10 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICarService, CarService>();
+            services.AddTransient<IBicycleService, BicycleService>();
+            services.AddTransient<IElectricScooterService, ElectricScooterService>();
+            services.AddTransient<IMotorcycleService, MotorcycleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

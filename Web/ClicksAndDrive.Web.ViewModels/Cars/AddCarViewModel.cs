@@ -1,9 +1,9 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.Cars
 {
+    using System.ComponentModel.DataAnnotations;
+
     using ClicksAndDrive.Data.Models.Enums;
     using Microsoft.AspNetCore.Http;
-
-    using System.ComponentModel.DataAnnotations;
 
     public class AddCarViewModel
     {
@@ -37,6 +37,6 @@
         public IFormFile ImageUrl { get; set; }
 
         [MaxLength(250)]
-        public string? Description { get; set; }
+        public string Description { get; set; }
     }
-}  
+}

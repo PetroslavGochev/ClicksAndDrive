@@ -1,0 +1,29 @@
+﻿@using ClicksAndDrive.Web.ViewModels.ElectricScooter
+@model IEnumerable<ElectricScooterViewModel>
+@{
+    ViewData["Title"] = "Ел.Тротинетки";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Електрически тротинетки</h1>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Made</th>
+            <th scope="col">Price For Hour</th>
+            <th scope="col">Image</th>
+        </tr>
+    </thead>
+    <tr>
+        @foreach (var bicycle in this.Model)
+        {
+        <tr>
+            <td> @bicycle.Made</td>
+            <td> @bicycle.PriceForHour.ToString("0.00")€</td>
+            <td> @bicycle.ImageUrl</td>
+        </tr>
+    }
+        <tr />
+    </table>
