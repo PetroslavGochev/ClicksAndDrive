@@ -35,5 +35,12 @@
 
             return this.View(cars);
         }
+
+        public IActionResult Details(int id)
+        {
+            var car = this.carService.Details(id);
+
+            return this.View(car);
+        }
     }
 }

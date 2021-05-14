@@ -35,5 +35,12 @@
 
             return this.View(motorcycles);
         }
+
+        public IActionResult Details(int id)
+        {
+            var motorcycle = this.motorcycleService.Details(id);
+
+            return this.View(motorcycle);
+        }
     }
 }

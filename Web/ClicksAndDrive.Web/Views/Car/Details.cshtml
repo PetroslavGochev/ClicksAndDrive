@@ -1,0 +1,19 @@
+﻿@model ClicksAndDrive.Data.Models.Car
+@{
+    ViewData["Title"] = "Автомобил: " + Model.Made;
+}
+
+<div class="bicycle mb-3">
+    <img src="" class="bicycle-img-top" alt="">
+    <div class="bicycle-body">
+        <h5 class="bicycle-title text-center">@Model.Made</h5>
+        <p class="bicycle-text">Модел: @Model.Model</p>
+        <p class="bicycle-text">Места: @Model.Places</p>
+        <p class="bicycle-text">Разход на гориво: @Model.FuelConsumption</p>
+        <p class="bicycle-text">Двигател: @Model.FuelType</p>
+        <p class="bicycle-text">Скоростна кутия: @Model.Transmission</p>
+        <p class="bicycle-text">Категория: @Model.Category</p>
+        <p class="bicycle-text">Цена на час: @Model.PriceForHour</p>
+        <p class="bicycle-text">Описание: @Model.Description</p>
+    </div>
+</div>

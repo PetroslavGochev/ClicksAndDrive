@@ -45,5 +45,12 @@
 
             return this.View(bicycles);
         }
+
+        public IActionResult Details(int id)
+        {
+            var bicycle = this.bicycleService.Details(id);
+
+            return this.View(bicycle);
+        }
     }
 }

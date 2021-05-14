@@ -8,25 +8,22 @@
     <h1 class="display-4">Автомобили</h1>
 </div>
 
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Made</th>
-            <th scope="col">Model</th>
-            <th scope="col">Price For Hour</th>
-            <th scope="col">Image</th>
-        </tr>
-    </thead>
-    <tr>
         @foreach (var car in this.Model)
         {
-        <tr>
-            <td> @car.Made</td>
-            <td> @car.Model</td>
-            <td> @car.PriceForHour.ToString("0.00")€</td>
-            <td> @car.ImageUrl</td>
-        </tr>
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="..." class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@car.Made</h5>
+                        <p class="card-text">Price For Hour: @car.PriceForHour.ToString("0.00")€</p>
+                        <a asp-action="Details" asp-route-id="@car.Id">Детайли</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
         <tr />
-    </table>
 

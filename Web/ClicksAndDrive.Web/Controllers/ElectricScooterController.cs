@@ -35,5 +35,12 @@
 
             return this.View(electricScooters);
         }
+
+        public IActionResult Details(int id)
+        {
+            var electricScooter = this.electricScooterService.Details(id);
+
+            return this.View(electricScooter);
+        }
     }
 }
