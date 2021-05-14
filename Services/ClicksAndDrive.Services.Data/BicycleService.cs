@@ -4,6 +4,7 @@
     using System.Linq;
 
     using ClicksAndDrive.Data;
+    using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Web.ViewModels.Bicycles;
 
     public class BicycleService : IBicycleService
@@ -18,6 +19,7 @@
         public IEnumerable<BicycleViewModel> GetAll()
         {
             return this.db.Bicycles
+                .Where(b => b.IsAvailable)
                 .Select(b => new BicycleViewModel()
                 {
                     Id = b.Id,
@@ -26,6 +28,11 @@
                     ImageUrl = b.ImageUrl,
                 })
                 .ToArray();
+        }
+
+        public Bicycle Details(int id)
+        {
+            return this.db.Bicycles.FirstOrDefault(b => b.Id == id);
         }
     }
 }

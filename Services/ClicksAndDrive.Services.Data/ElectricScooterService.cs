@@ -4,6 +4,7 @@
     using System.Linq;
 
     using ClicksAndDrive.Data;
+    using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.ViewModels.ElectricScooter;
 
@@ -16,9 +17,15 @@
             this.db = db;
         }
 
+        public ElectricScooter Details(int id)
+        {
+            return this.db.ElectricScooters.FirstOrDefault(es => es.Id == id);
+        }
+
         public IEnumerable<ElectricScooterViewModel> GetAll()
         {
             return this.db.ElectricScooters
+                .Where(ec => ec.IsAvailable)
                 .Select(ec => new ElectricScooterViewModel()
                 {
                     Id = ec.Id,
