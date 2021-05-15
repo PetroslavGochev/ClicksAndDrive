@@ -1,8 +1,6 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.Bicycles
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using ClicksAndDrive.Data.Models.Enums;
 
     public class BicycleViewModel
     {
@@ -13,5 +11,11 @@
         public decimal PriceForHour { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public BicycleType Type { get; set; }
+
+        public BicycleSize Size { get; set; }
+
+        public FilterBicycleViewModel Filters { get; set; }
     }
 }
