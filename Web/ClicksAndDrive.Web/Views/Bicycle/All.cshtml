@@ -55,15 +55,15 @@
 @if (this.Model.Any(x => x.Filters != null))
 {
     IEnumerable<BicycleViewModel> bicycleViewModels;
-    if (this.Model.Any(x => x.Filters.SizeOfBicycle.Length != 0) || this.Model.Any(x => x.Filters.TypeOfBicycle.Length != 0))
+    if (this.Model.Any(x => x.Filters.SizeOfBicycle.Length == 0) || this.Model.Any(x => x.Filters.TypeOfBicycle.Length == 0))
     {
         bicycleViewModels = this.Model.Where(b => b.Filters.SizeOfBicycle.Any(f => f == b.Size.ToString())
-                      && b.Filters.TypeOfBicycle.Any(f => f == b.Type.ToString())).ToArray();
+                      || b.Filters.TypeOfBicycle.Any(f => f == b.Type.ToString())).ToArray();
     }
     else
     {
         bicycleViewModels = this.Model.Where(b => b.Filters.SizeOfBicycle.Any(f => f == b.Size.ToString())
-                                           || b.Filters.TypeOfBicycle.Any(f => f == b.Type.ToString())).ToArray();
+                                           && b.Filters.TypeOfBicycle.Any(f => f == b.Type.ToString())).ToArray();
     }
     @foreach (var bicycle in bicycleViewModels)
     {
