@@ -16,7 +16,7 @@
             this.db = db;
         }
 
-        public IEnumerable<BicycleViewModel> GetAll(string size,string type)
+        public IEnumerable<BicycleViewModel> GetAll(string[] size, string[] type)
         {
             var bicycles = this.db.Bicycles
                 .Where(b => b.IsAvailable)
@@ -28,7 +28,7 @@
                     ImageUrl = b.ImageUrl,
                     Type = b.Type,
                     Size = b.Size,
-                    Filters = size == null && type == null ? null : new FilterBicycleViewModel()
+                    Filters = size.Length == 0 && type.Length == 0 ? null : new FilterBicycleViewModel()
                     {
                         SizeOfBicycle = size,
                         TypeOfBicycle = type,

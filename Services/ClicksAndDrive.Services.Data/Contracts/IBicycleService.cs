@@ -7,7 +7,7 @@
 
     public interface IBicycleService
     {
-        IEnumerable<BicycleViewModel> GetAll(string size,string type);
+        IEnumerable<BicycleViewModel> GetAll(string[] size,string[] type);
 
         Bicycle Details(int id);
     }
