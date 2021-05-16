@@ -39,7 +39,7 @@
             return this.View();
         }
 
-        public IActionResult All(string? size, string? type)
+        public IActionResult All(string[] size, string[] type)
         {
             var bicycles = this.bicycleService.GetAll(size, type);
 

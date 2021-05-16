@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Велосипеди";
 }
-
 <form class="col-md-6" enctype="multipart/form-data">
     <div class="text-center">
         <h1 class="display-4">Велосипеди</h1>
@@ -12,60 +11,97 @@
         <header class="card-header">
             <h6 class="title">Размер на велосипеда</h6>
         </header>
-        @foreach (var size in this.Model.Select(x => x.Size).Distinct().ToArray())
-        {
-            <div class="filter-content">
-                <div class="card-body">
-                    <div class="custom-control custom-checkbox">
-                        <span class="float-right badge badge-light round">@this.Model.Where(x => x.Size == size).Count()</span>
-                        <input type="checkbox" class="custom-control-input" name="size" value="@size" id="Check1">
-                        <label class="custom-control-label" for="Check1">@size</label>
-                    </div> <!-- form-check.// -->
-                </div> <!-- card-body.// -->
-            </div>
+        @{
+            int counter = 1;
+            @foreach (var size in this.Model.Select(x => x.Size).Distinct().ToArray())
+            {
+                <div class="filter-content">
+                    <div class="card-body">
+                        <div class="custom-control custom-checkbox">
+                            <span class="float-right badge badge-light round">@this.Model.Where(x => x.Size == size).Count()</span>
+                            <input type="checkbox" class="custom-control-input" name="size" value="@size" id="CheckSize + @counter">
+                            <label class="custom-control-label" for="CheckSize + @counter">@size</label>
+                        </div> <!-- form-check.// -->
+                    </div> <!-- card-body.// -->
+                </div>
+                counter++;
+            }
         }
+
     </article>
     <article class="card-group-item">
         <header class="card-header">
             <h6 class="title">Стил на колоездене</h6>
         </header>
-        @foreach (var type in this.Model.Select(x => x.Type).Distinct().ToArray())
-        {
-            <div class="filter-content">
-                <div class="card-body">
-                    <div class="custom-control custom-checkbox">
-                        <span class="float-right badge badge-light round">@this.Model.Where(x => x.Type == type).Count()</span>
-                        <input type="checkbox" class="custom-control-input" name="type" value="@type" id="Check2">
-                        <label class="custom-control-label" for="Check2">@type</label>
-                    </div> <!-- form-check.// -->
-                </div> <!-- card-body.// -->
-            </div>
+        @{
+            int counterType = 1;
+            @foreach (var type in this.Model.Select(x => x.Type).Distinct().ToArray())
+            {
+                <div class="filter-content">
+                    <div class="card-body">
+                        <div class="custom-control custom-checkbox">
+                            <span class="float-right badge badge-light round">@this.Model.Where(x => x.Type == type).Count()</span>
+                            <input type="checkbox" class="custom-control-input" name="type" value="@type" id="CheckType + @counterType">
+                            <label class="custom-control-label" for="CheckType + @counterType">@type</label>
+                        </div> <!-- form-check.// -->
+                    </div> <!-- card-body.// -->
+                </div>
+                counterType++;
+            }
         }
     </article>
     <button type="submit" asp-action="All" class="btn btn-primary col-md-4">Филтрирай</button>
 </form>
-@foreach (var bicycle in this.Model)
+@if (this.Model.Any(x => x.Filters != null))
 {
-    @if (bicycle.Filters != null && bicycle.Size.ToString() != bicycle.Filters.SizeOfBicycle
-    && bicycle.Type.ToString() != bicycle.Filters.TypeOfBicycle) 
+    IEnumerable<BicycleViewModel> bicycleViewModels;
+    if (this.Model.Any(x => x.Filters.SizeOfBicycle.Length != 0) || this.Model.Any(x => x.Filters.TypeOfBicycle.Length != 0))
     {
-        continue;
+        bicycleViewModels = this.Model.Where(b => b.Filters.SizeOfBicycle.Any(f => f == b.Size.ToString())
+                      && b.Filters.TypeOfBicycle.Any(f => f == b.Type.ToString())).ToArray();
     }
-
-<div class="card mb-3" style="max-width: 540px;" id="cars">
-    <div class="row">
-        <div class="col-md-5">
-            <img src="..." class="card-img" alt="...">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">@bicycle.Made</h5>
-                <p class="card-text">Price For Hour: @bicycle.PriceForHour.ToString("0.00")€</p>
-                <a asp-action="Details" asp-route-id="@bicycle.Id">Детайли</a>
+    else
+    {
+        bicycleViewModels = this.Model.Where(b => b.Filters.SizeOfBicycle.Any(f => f == b.Size.ToString())
+                                           || b.Filters.TypeOfBicycle.Any(f => f == b.Type.ToString())).ToArray();
+    }
+    @foreach (var bicycle in bicycleViewModels)
+    {
+        <div class="card mb-3" style="max-width: 540px;" id="cars">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="..." class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@bicycle.Made</h5>
+                        <p class="card-text">Price For Hour: @bicycle.PriceForHour.ToString("0.00")€</p>
+                        <a asp-action="Details" asp-route-id="@bicycle.Id">Детайли</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
     }
+}
+else
+{
+    @foreach (var bicycle in this.Model)
+    {
+        <div class="card mb-3" style="max-width: 540px;" id="cars">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="..." class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@bicycle.Made</h5>
+                        <p class="card-text">Price For Hour: @bicycle.PriceForHour.ToString("0.00")€</p>
+                        <a asp-action="Details" asp-route-id="@bicycle.Id">Детайли</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
 <tr />
 
