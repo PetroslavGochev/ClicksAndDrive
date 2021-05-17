@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Велосипеди";
 }
-<form class="col-md-6" enctype="multipart/form-data">
+<form class="col-md-4" enctype="multipart/form-data">
     <div class="text-center">
         <h1 class="display-4">Велосипеди</h1>
     </div>
@@ -21,8 +21,8 @@
                             <span class="float-right badge badge-light round">@this.Model.Where(x => x.Size == size).Count()</span>
                             <input type="checkbox" class="custom-control-input" name="size" value="@size" id="CheckSize + @counter">
                             <label class="custom-control-label" for="CheckSize + @counter">@size</label>
-                        </div> <!-- form-check.// -->
-                    </div> <!-- card-body.// -->
+                        </div>
+                    </div>
                 </div>
                 counter++;
             }
@@ -43,8 +43,8 @@
                             <span class="float-right badge badge-light round">@this.Model.Where(x => x.Type == type).Count()</span>
                             <input type="checkbox" class="custom-control-input" name="type" value="@type" id="CheckType + @counterType">
                             <label class="custom-control-label" for="CheckType + @counterType">@type</label>
-                        </div> <!-- form-check.// -->
-                    </div> <!-- card-body.// -->
+                        </div>
+                    </div>
                 </div>
                 counterType++;
             }
@@ -87,16 +87,16 @@ else
 {
     @foreach (var bicycle in this.Model)
     {
-        <div class="card mb-3" style="max-width: 540px;" id="cars">
+        <div class="card mb-3" style="max-width: 540px;" id="bicycle">
             <div class="row">
                 <div class="col-md-5">
-                    <img src="..." class="card-img" alt="...">
+                    <img src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1561385328-zero_slr_cv_e3.jpg" class="card-img" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">@bicycle.Made</h5>
                         <p class="card-text">Price For Hour: @bicycle.PriceForHour.ToString("0.00")€</p>
-                        <a asp-action="Details" asp-route-id="@bicycle.Id">Детайли</a>
+                        <a asp-action="Details" asp-route-id="@bicycle.Id" class="btn btn-info">Детайли</a>
                     </div>
                 </div>
             </div>
