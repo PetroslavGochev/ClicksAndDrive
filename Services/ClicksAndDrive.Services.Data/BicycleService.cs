@@ -43,5 +43,25 @@
         {
             return this.db.Bicycles.FirstOrDefault(b => b.Id == id);
         }
+
+        public Bicycle Edit(int id)
+        {
+            return this.db.Bicycles.FirstOrDefault(b => b.Id == id);
+        }
+
+        public void DoEdit(EditBicycleViewModel input)
+        {
+            var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == input.Id);
+
+            bicycle.Made = input.Made;
+            bicycle.Type = input.Type;
+            bicycle.Speeds = input.Speeds;
+            bicycle.PriceForHour = input.PriceForHour;
+            bicycle.Size = input.Size;
+            bicycle.SizeOfTires = input.SizeOfTires;
+            bicycle.Description = input.Description;
+
+            this.db.SaveChanges();
+        }
     }
 }
