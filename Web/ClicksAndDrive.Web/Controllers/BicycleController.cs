@@ -85,5 +85,12 @@
 
             return this.Redirect($"/Bicycle/Details/{input.Id}");
         }
+
+        public IActionResult Delete(int id)
+        {
+            this.bicycleService.Delete(id);
+
+            return this.Redirect($"/Bicycle/All");
+        }
     }
 }

@@ -21,7 +21,7 @@
         public BicycleSize Size { get; set; }
 
         [Required]
-        public byte SizeOfTires { get; set; }
+        public double SizeOfTires { get; set; }
 
         public bool IsAvailable { get; set; }
 

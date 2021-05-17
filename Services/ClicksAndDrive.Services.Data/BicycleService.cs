@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Data;
     using ClicksAndDrive.Data.Models;
@@ -53,15 +54,30 @@
         {
             var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == input.Id);
 
-            bicycle.Made = input.Made;
-            bicycle.Type = input.Type;
-            bicycle.Speeds = input.Speeds;
-            bicycle.PriceForHour = input.PriceForHour;
-            bicycle.Size = input.Size;
-            bicycle.SizeOfTires = input.SizeOfTires;
-            bicycle.Description = input.Description;
+            if (bicycle != null)
+            {
+                bicycle.Made = input.Made;
+                bicycle.Type = input.Type;
+                bicycle.Speeds = input.Speeds;
+                bicycle.PriceForHour = input.PriceForHour;
+                bicycle.Size = input.Size;
+                bicycle.SizeOfTires = input.SizeOfTires;
+                bicycle.Description = input.Description;
 
-            this.db.SaveChanges();
+                this.db.SaveChanges();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == id);
+
+            if (bicycle != null)
+            {
+                this.db.Bicycles.Remove(bicycle);
+
+                this.db.SaveChanges();
+            }
         }
     }
 }

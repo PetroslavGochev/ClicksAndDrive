@@ -15,5 +15,7 @@
         Bicycle Edit(int id);
 
         void DoEdit(EditBicycleViewModel input);
+
+        void Delete(int id );
     }
 }
