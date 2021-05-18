@@ -34,7 +34,6 @@
         [Required]
         public decimal PriceForHour { get; set; }
 
-        [Required]
         public string ImageUrl { get; set; }
 
         [MaxLength(250)]

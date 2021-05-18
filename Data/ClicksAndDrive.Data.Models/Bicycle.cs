@@ -21,14 +21,13 @@
         public BicycleSize Size { get; set; }
 
         [Required]
-        public byte SizeOfTires { get; set; }
+        public double SizeOfTires { get; set; }
 
         public bool IsAvailable { get; set; }
 
         [Required]
         public decimal PriceForHour { get; set; }
 
-        [Required]
         public string ImageUrl { get; set; }
 
         [MaxLength(250)]
