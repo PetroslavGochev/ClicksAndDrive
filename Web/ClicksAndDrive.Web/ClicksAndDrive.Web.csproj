@@ -40,4 +40,8 @@
     <ProjectReference Include="..\ClicksAndDrive.Web.Infrastructure\ClicksAndDrive.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\ClicksAndDrive.Web.ViewModels\ClicksAndDrive.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Bicycles\" />
+  </ItemGroup>
 </Project>

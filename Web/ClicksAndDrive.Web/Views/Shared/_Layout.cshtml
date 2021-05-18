@@ -62,13 +62,21 @@
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
-    <script>
-        $(document).ready(function () {
-            $("#deleteBtn").on("click", function () {
-                alert('Your Message');
-            });
-
-        });
+    <script type="text/javascript">
+        function DeleteItem(text) {
+            if (confirm(`Сигурни ли сте, че искате да изтриете този ${text}?`)) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+    <script type="text/javascript">
+        function EditItem(text) {
+            if (confirm(`Сигурни ли сте, че искате да запазите новите промени?`)) {
+                return true;
+            }
+            return false;
+        }
     </script>
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>

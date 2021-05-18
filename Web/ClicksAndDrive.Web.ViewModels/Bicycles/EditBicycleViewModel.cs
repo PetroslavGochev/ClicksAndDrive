@@ -23,14 +23,13 @@
         public BicycleSize Size { get; set; }
 
         [Required]
-        public byte SizeOfTires { get; set; }
+        public double SizeOfTires { get; set; }
 
         public bool IsAvailable { get; set; }
 
         [Required]
         public decimal PriceForHour { get; set; }
 
-        //[RegularExpression(@"([^\s]+(\.(?i)(jpg|png|gif|bmp))$)", ErrorMessage ="Invalid type")]
         public string Image { get; set; }
 
         [MaxLength(250)]

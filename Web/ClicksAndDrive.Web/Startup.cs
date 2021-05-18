@@ -70,6 +70,7 @@
             services.AddTransient<IBicycleService, BicycleService>();
             services.AddTransient<IElectricScooterService, ElectricScooterService>();
             services.AddTransient<IMotorcycleService, MotorcycleService>();
+            services.AddTransient<IImageService, ImageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

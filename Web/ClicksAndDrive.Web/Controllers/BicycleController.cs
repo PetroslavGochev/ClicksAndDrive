@@ -1,6 +1,7 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
     using ClicksAndDrive.Services.Data;
+    using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.ViewModels.Bicycles;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -8,10 +9,12 @@
     public class BicycleController : Controller
     {
         private readonly IBicycleService bicycleService;
+        private readonly IImageService imageService;
 
-        public BicycleController(IBicycleService bicycleService)
+        public BicycleController(IBicycleService bicycleService,IImageService imageService)
         {
             this.bicycleService = bicycleService;
+            this.imageService = imageService;
         }
 
         public IActionResult Add()
@@ -30,6 +33,15 @@
             if (!this.ModelState.IsValid)
             {
                 return this.View();
+            }
+
+            var bicycleId = this.bicycleService.AddBicycle(input);
+
+            if (input.Image != null)
+            {
+                this.imageService.UploadImage(input.Image, string.Format("wwwroot/images/Bicycles/image{0}.jpg", bicycleId));
+
+                this.bicycleService.AddImageUrls(bicycleId, string.Format("wwwroot/images/Bicycles/image{0}.jpg", bicycleId));
             }
 
             return this.Redirect(nameof(this.ThankYou));
@@ -54,23 +66,28 @@
             return this.View(bicycle);
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id, string confirm)
         {
             var bicycle = this.bicycleService.Edit(id);
 
-            var model = new EditBicycleViewModel()
+            if (bicycle != null)
             {
-                Id = bicycle.Id,
-                Type = bicycle.Type,
-                Made = bicycle.Made,
-                Speeds = bicycle.Speeds,
-                Size = bicycle.Size,
-                SizeOfTires = bicycle.SizeOfTires,
-                PriceForHour = bicycle.PriceForHour,
-                Description = bicycle.Description,
-            };
+                var model = new EditBicycleViewModel()
+                {
+                    Id = bicycle.Id,
+                    Type = bicycle.Type,
+                    Made = bicycle.Made,
+                    Speeds = bicycle.Speeds,
+                    Size = bicycle.Size,
+                    SizeOfTires = bicycle.SizeOfTires,
+                    PriceForHour = bicycle.PriceForHour,
+                    Description = bicycle.Description,
+                };
 
-            return this.View(model);
+                return this.View(model);
+            }
+
+            return this.Redirect($"/Bicycle/All");
         }
 
         [HttpPost]
