@@ -8,7 +8,9 @@
 
     public interface IBicycleService
     {
-        IEnumerable<BicycleViewModel> GetAll(string[] size,string[] type);
+        int AddBicycle(AddBycicleViewModel input);
+
+        IEnumerable<BicycleViewModel> GetAll(string[] size, string[] type);
 
         Bicycle Details(int id);
 
@@ -16,6 +18,8 @@
 
         void DoEdit(EditBicycleViewModel input);
 
-        void Delete(int id );
+        void Delete(int id);
+
+        void AddImageUrls(int id, string imageUrls);
     }
 }

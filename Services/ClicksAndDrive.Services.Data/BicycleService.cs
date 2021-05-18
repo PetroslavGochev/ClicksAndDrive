@@ -79,5 +79,37 @@
                 this.db.SaveChanges();
             }
         }
+
+        public void AddImageUrls(int id, string imageUrls)
+        {
+            var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == id);
+
+            if (bicycle != null)
+            {
+                bicycle.ImageUrl = imageUrls;
+                this.db.SaveChanges();
+            }
+        }
+
+        public int AddBicycle(AddBycicleViewModel input)
+        {
+            var bicycle = new Bicycle()
+            {
+                Type = input.Type,
+                Made = input.Made,
+                Speeds = input.Speeds,
+                Size = input.Size,
+                SizeOfTires = input.SizeOfTires,
+                IsAvailable = true,
+                PriceForHour = input.PriceForHour,
+                Description = input.Description,
+            };
+
+            this.db.Bicycles.Add(bicycle);
+
+            this.db.SaveChanges();
+
+            return bicycle.Id;
+        }
     }
 }
