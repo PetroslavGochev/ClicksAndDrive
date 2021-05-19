@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Automatic" xml:space="preserve">
+    <value>Автоматична</value>
+  </data>
+  <data name="Bicycle" xml:space="preserve">
+    <value>Велосипед</value>
+  </data>
+  <data name="BicycleSize" xml:space="preserve">
+    <value>Размер на велосипеда</value>
+  </data>
+  <data name="BicycleType" xml:space="preserve">
+    <value>Тип на велосипеда</value>
+  </data>
+  <data name="Car" xml:space="preserve">
+    <value>Автобомобил</value>
+  </data>
+  <data name="CarCategory" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="CarPlace" xml:space="preserve">
+    <value>Места</value>
+  </data>
+  <data name="Cross" xml:space="preserve">
+    <value>Кросов</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="DESCRIPTION_LENGHT" xml:space="preserve">
+    <value>Описанието трябва да бъде не по-дълго от 250 символа.</value>
+  </data>
+  <data name="Diesel" xml:space="preserve">
+    <value>Дизел</value>
+  </data>
+  <data name="Electric" xml:space="preserve">
+    <value>Електрически</value>
+  </data>
+  <data name="ELectricScooter" xml:space="preserve">
+    <value>Електрически скутер</value>
+  </data>
+  <data name="FuelConsumtpion" xml:space="preserve">
+    <value>Разход на гориво</value>
+  </data>
+  <data name="FuelType" xml:space="preserve">
+    <value>Вид гориво</value>
+  </data>
+  <data name="Gas" xml:space="preserve">
+    <value>Газ</value>
+  </data>
+  <data name="Gasoline" xml:space="preserve">
+    <value>Бензин</value>
+  </data>
+  <data name="HatchBack" xml:space="preserve">
+    <value>Хечбек</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Снимка</value>
+  </data>
+  <data name="IMAGE_LARGE_FILE" xml:space="preserve">
+    <value>Избрали сте твърде голям файл.</value>
+  </data>
+  <data name="IMAGE_WRONG_FILE_NAME" xml:space="preserve">
+    <value>Избрали сте грешен файлов формат. Моля качете файл във формат (.jpg, .jpeg, .png , .gif).</value>
+  </data>
+  <data name="IsAvailable" xml:space="preserve">
+    <value>Наличност</value>
+  </data>
+  <data name="L" xml:space="preserve">
+    <value>Л</value>
+  </data>
+  <data name="M" xml:space="preserve">
+    <value>М</value>
+  </data>
+  <data name="Made" xml:space="preserve">
+    <value>Марка</value>
+  </data>
+  <data name="MADE_UPPER_LETTER" xml:space="preserve">
+    <value>Марката трябва да започва с главна буква.</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Ръчна</value>
+  </data>
+  <data name="MaximumSpeed" xml:space="preserve">
+    <value>Максимална скорост</value>
+  </data>
+  <data name="Mileage" xml:space="preserve">
+    <value>Пробег</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Модел</value>
+  </data>
+  <data name="Motorcycle" xml:space="preserve">
+    <value>Мотор</value>
+  </data>
+  <data name="MotorcycleType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Mountain" xml:space="preserve">
+    <value>Планински</value>
+  </data>
+  <data name="PRICE" xml:space="preserve">
+    <value>Моля, въведете положително число.</value>
+  </data>
+  <data name="PriceForHour" xml:space="preserve">
+    <value>Цена на час</value>
+  </data>
+  <data name="REQUIRED" xml:space="preserve">
+    <value>Полето е задължително.</value>
+  </data>
+  <data name="Road" xml:space="preserve">
+    <value>Шосеен</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value>С</value>
+  </data>
+  <data name="Scooter" xml:space="preserve">
+    <value>Скутер</value>
+  </data>
+  <data name="Sedan" xml:space="preserve">
+    <value>Седан</value>
+  </data>
+  <data name="SizeOfTires" xml:space="preserve">
+    <value>Размер на гумите</value>
+  </data>
+  <data name="Speeds" xml:space="preserve">
+    <value>Скорости</value>
+  </data>
+  <data name="SPEEDS_RANGE" xml:space="preserve">
+    <value>Скоростите трябва да са в интервала (0 - 30).</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>Спортен</value>
+  </data>
+  <data name="TIRE_SIZE_RANGE" xml:space="preserve">
+    <value>Размерът на гумите трябва да е в интервала (10 - 30).</value>
+  </data>
+  <data name="TransmissionType" xml:space="preserve">
+    <value>Скоростна кутия</value>
+  </data>
+  <data name="Trekking" xml:space="preserve">
+    <value>Градски</value>
+  </data>
+  <data name="Van" xml:space="preserve">
+    <value>Ван</value>
+  </data>
+  <data name="Vehicle" xml:space="preserve">
+    <value>Превозно средство</value>
+  </data>
+  <data name="XL" xml:space="preserve">
+    <value>ХЛ</value>
+  </data>
+  <data name="XS" xml:space="preserve">
+    <value>ХС</value>
+  </data>
+</root>
