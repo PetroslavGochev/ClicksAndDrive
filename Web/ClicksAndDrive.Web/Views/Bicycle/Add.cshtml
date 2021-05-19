@@ -6,7 +6,7 @@
 <form method="post" class="col-md-6" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Type"></label>
-        <select asp-for="Type" class="form-control" 
+        <select asp-for="Type" class="form-control"
                 asp-items="@Html.GetEnumSelectList<BicycleType>()">
         </select>
         <span asp-validation-for="Type" class="text-danger"></span>

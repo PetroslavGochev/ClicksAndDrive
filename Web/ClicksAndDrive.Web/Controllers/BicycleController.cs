@@ -3,7 +3,6 @@
     using ClicksAndDrive.Services.Data;
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.ViewModels.Bicycles;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     public class BicycleController : Controller
@@ -11,7 +10,7 @@
         private readonly IBicycleService bicycleService;
         private readonly IImageService imageService;
 
-        public BicycleController(IBicycleService bicycleService,IImageService imageService)
+        public BicycleController(IBicycleService bicycleService, IImageService imageService)
         {
             this.bicycleService = bicycleService;
             this.imageService = imageService;
@@ -25,11 +24,6 @@
         [HttpPost]
         public IActionResult Add(AddBycicleViewModel input)
         {
-            if (!input.Image.FileName.EndsWith(".jpg") || input.Image.FileName.EndsWith(".png"))
-            {
-                this.ModelState.AddModelError("Image", "Invalid type");
-            }
-
             if (!this.ModelState.IsValid)
             {
                 return this.View();
@@ -44,7 +38,8 @@
                 this.bicycleService.AddImageUrls(bicycleId, string.Format("wwwroot/images/Bicycles/image{0}.jpg", bicycleId));
             }
 
-            return this.Redirect(nameof(this.ThankYou));
+            this.Redirect(nameof(this.ThankYou));
+            return this.Redirect("/Bicycle/All");
         }
 
         public IActionResult ThankYou()

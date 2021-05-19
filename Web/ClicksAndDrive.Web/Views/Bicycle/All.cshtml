@@ -1,4 +1,5 @@
 ﻿@using ClicksAndDrive.Web.ViewModels.Bicycles
+@using ClicksAndDrive.Common 
 @model IEnumerable<BicycleViewModel>
 @{
     ViewData["Title"] = "Велосипеди";
@@ -74,7 +75,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">@bicycle.Made</h5>
-                        <p class="card-text">Price For Hour: @bicycle.PriceForHour.ToString("0.00")€</p>
+                        <p class="card-text">Цена на час: @bicycle.PriceForHour.ToString("0.00") BGN.</p>
                         <a asp-action="Details" asp-route-id="@bicycle.Id">Детайли</a>
                     </div>
                 </div>
@@ -94,7 +95,7 @@ else
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">@bicycle.Made</h5>
-                        <p class="card-text">Price For Hour: @bicycle.PriceForHour.ToString("0.00")€</p>
+                        <p class="card-text">Цена на час: @bicycle.PriceForHour.ToString("0.00") BGN.</p>
                         <a asp-action="Details" asp-route-id="@bicycle.Id" class="btn btn-info">Детайли</a>
                     </div>
                 </div>

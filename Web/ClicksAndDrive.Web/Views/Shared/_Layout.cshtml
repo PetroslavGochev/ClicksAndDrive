@@ -71,11 +71,30 @@
         }
     </script>
     <script type="text/javascript">
-        function EditItem(text) {
+        function EditItem() {
             if (confirm(`Сигурни ли сте, че искате да запазите новите промени?`)) {
                 return true;
             }
             return false;
+        }
+    </script>
+    <script type="text/javascript">
+        function Successfully(text) {
+            alert(`Вие успешно добавихте нов ${text}`);
+        }
+    </script>
+    <script type="text/javascript">
+        function GetExt() {
+            var str = document.getElementById('FileUpload1').value;
+            var ext = str.substring(str.length - 3, str.length).toString();
+            extext = ext.toLowerCase();
+            if (ext == "png" || ext == "jpeg" || ext == "jpg" || ext == "gif") {
+                alert("valid File")
+                return true;
+            }
+            else {
+                alert("Invalid File"); return false;
+            }
         }
     </script>
     @await this.RenderSectionAsync("Scripts", required: false)

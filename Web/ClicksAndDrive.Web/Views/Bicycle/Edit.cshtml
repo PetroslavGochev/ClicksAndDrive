@@ -5,7 +5,7 @@
     ViewData["Title"] = "Редактирайте велосипед: " + Model.Made;
 }
 
-<form  method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     <div class="form-group row">
         <label asp-for="Type" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-5">
@@ -50,6 +50,13 @@
         <div class="col-sm-5">
             <input asp-for="PriceForHour" class="form-control" placeholder="PriceForHour" />
             <span asp-validation-for="PriceForHour" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Image" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-5">
+            <input asp-for="Image" class="form-control" placeholder="Image" />
+            <span asp-validation-for="Image" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group row">
