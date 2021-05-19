@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ClicksAndDrive.Common\ClicksAndDrive.Common.csproj" />
     <ProjectReference Include="..\ClicksAndDrive.Data.Common\ClicksAndDrive.Data.Common.csproj" />
   </ItemGroup>
   
