@@ -74,6 +74,13 @@
 
             if (bicycle != null)
             {
+                string filePath = bicycle.ImageUrl;
+
+                if (filePath != null)
+                {
+                    System.IO.File.Delete(filePath);
+                }
+
                 this.db.Bicycles.Remove(bicycle);
 
                 this.db.SaveChanges();

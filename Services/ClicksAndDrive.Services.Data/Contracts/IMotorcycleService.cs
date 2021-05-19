@@ -1,6 +1,7 @@
 ﻿namespace ClicksAndDrive.Services.Data.Contracts
 {
     using System.Collections.Generic;
+
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Web.ViewModels.Motorcycles;
 
