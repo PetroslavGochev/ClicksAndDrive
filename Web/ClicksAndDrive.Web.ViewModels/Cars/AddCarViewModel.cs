@@ -3,40 +3,51 @@
     using System.ComponentModel.DataAnnotations;
 
     using ClicksAndDrive.Data.Models.Enums;
+    using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Http;
 
     public class AddCarViewModel
     {
-        [Required]
-        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Name should start with upper letter.")]
+        [Display(Name = "Марка")]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Марката трябва да започва с главна буква.")]
         public string Made { get; set; }
 
-        [Required]
-        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Name should start with upper letter.")]
+        [Display(Name = "Модел")]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Моделът трябва да започва с главна буква.")]
         public string Model { get; set; }
 
-        [Required]
+        [Display(Name = "Двигател")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         public FuelType FuelType { get; set; }
 
-        [Required]
+        [Display(Name = "Категория")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         public CarCategory Category { get; set; }
 
-        [Required]
+        [Display(Name = "Скоростна кутия")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         public TransmissionType Transmission { get; set; }
 
-        [Required]
+        [Display(Name = "Разход на гориво")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         public double FuelConsumption { get; set; }
 
-        [Required]
+        [Display(Name = "Места")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         public CarPlaces Places { get; set; }
 
-        [Required]
+        [Display(Name = "Цена на час")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         public decimal PriceForHour { get; set; }
 
-        [Required]
-        public IFormFile ImageUrl { get; set; }
+        [Display(Name = "Снимка")]
+        [ImageAttribute]
+        public IFormFile ImageTest { get; set; }
 
-        [MaxLength(250)]
+        [Display(Name = "Описание")]
+        [StringLength(250)]
         public string Description { get; set; }
     }
 }

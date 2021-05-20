@@ -37,9 +37,9 @@
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.BICYCLEPATH, bicycleId));
+                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, "Bicycles", bicycleId));
 
-                this.bicycleService.AddImageUrls(bicycleId, string.Format(GlobalConstants.BICYCLEPATH, bicycleId));
+                this.bicycleService.AddImageUrls(bicycleId, string.Format(GlobalConstants.IMAGEPATH, "Bicycles", bicycleId));
             }
 
             return this.Redirect(ALLPATH);
@@ -99,9 +99,9 @@
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.BICYCLEPATH, input.Id));
+                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, "Bicycles", input.Id));
 
-                this.bicycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.BICYCLEPATH, input.Id));
+                this.bicycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, "Bicycles", input.Id));
             }
 
             this.bicycleService.DoEdit(input);

@@ -2,6 +2,6 @@
 {
     public static class GlobalConstants
     {
-        public const string BICYCLEPATH = "wwwroot/images/Bicycles/image{0}.jpg";
+        public const string IMAGEPATH = "wwwroot/images/{0}/image{1}.jpg";
     }
 }
