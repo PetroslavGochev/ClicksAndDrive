@@ -61,6 +61,7 @@
                 bicycle.Speeds = input.Speeds;
                 bicycle.PriceForHour = input.PriceForHour;
                 bicycle.Size = input.Size;
+                bicycle.IsAvailable = input.IsAvailable;
                 bicycle.SizeOfTires = input.SizeOfTires;
                 bicycle.Description = input.Description;
 
@@ -74,12 +75,7 @@
 
             if (bicycle != null)
             {
-                string filePath = bicycle.ImageUrl;
-
-                if (filePath != null)
-                {
-                    System.IO.File.Delete(filePath);
-                }
+                this.DeleteImage(bicycle.ImageUrl);
 
                 this.db.Bicycles.Remove(bicycle);
 
@@ -117,6 +113,14 @@
             this.db.SaveChanges();
 
             return bicycle.Id;
+        }
+
+        private void DeleteImage(string imagePath)
+        {
+            if (imagePath != null)
+            {
+                System.IO.File.Delete(imagePath);
+            }
         }
     }
 }
