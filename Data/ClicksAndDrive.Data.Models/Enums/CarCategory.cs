@@ -6,13 +6,13 @@
 
     public enum CarCategory
     {
-        [Display(Name = "Sedan", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Седан")]
         Sedan = 1,
-        [Display(Name = "Van", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Ван")]
         Van = 2,
-        [Display(Name = "HatchBack", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Хечбек")]
         HatchBack = 3,
-        [Display(Name = "Sport", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Спорт")]
         Sport = 4,
     }
 }

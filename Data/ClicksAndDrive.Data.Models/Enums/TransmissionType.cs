@@ -6,9 +6,9 @@
 
     public enum TransmissionType
     {
-        [Display(Name = "Manual", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Ръчна")]
         Manual = 1,
-        [Display(Name = "Automatic", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Автоматична")]
         Automatic = 2,
     }
 }

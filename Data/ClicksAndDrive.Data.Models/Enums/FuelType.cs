@@ -6,13 +6,13 @@
 
     public enum FuelType
     {
-        [Display(Name = "Diesel", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Дизел")]
         Diesel = 1,
-        [Display(Name = "Gasoline", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Бензин")]
         Gasoline = 2,
-        [Display(Name = "Gas", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Газ")]
         Gas = 3,
-        [Display(Name = "Electric", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Електрически")]
         Electric = 4,
     }
 }
