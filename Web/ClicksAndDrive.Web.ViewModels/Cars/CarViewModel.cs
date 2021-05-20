@@ -1,15 +1,21 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.Cars
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class CarViewModel
     {
         public int Id { get; set; }
 
+        [Display(Name = "Марка")]
         public string Made { get; set; }
 
+        [Display(Name = "Модел")]
         public string Model { get; set; }
 
+        [Display(Name = "Цена на час")]
         public decimal PriceForHour { get; set; }
 
+        [Display(Name = "Снимка")]
         public string ImageUrl { get; set; }
     }
 }

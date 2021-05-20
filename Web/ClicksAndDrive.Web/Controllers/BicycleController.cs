@@ -2,11 +2,15 @@
 {
     using ClicksAndDrive.Services.Data;
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Web.Common;
     using ClicksAndDrive.Web.ViewModels.Bicycles;
     using Microsoft.AspNetCore.Mvc;
 
     public class BicycleController : Controller
     {
+        private const string ALLPATH = "/Bicycle/All";
+        private const string DETAILSPATH = "/Bicycle/Details/{0}";
+
         private readonly IBicycleService bicycleService;
         private readonly IImageService imageService;
 
@@ -33,13 +37,12 @@
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format("wwwroot/images/Bicycles/image{0}.jpg", bicycleId));
+                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.BICYCLEPATH, bicycleId));
 
-                this.bicycleService.AddImageUrls(bicycleId, string.Format("wwwroot/images/Bicycles/image{0}.jpg", bicycleId));
+                this.bicycleService.AddImageUrls(bicycleId, string.Format(GlobalConstants.BICYCLEPATH, bicycleId));
             }
 
-            this.Redirect(nameof(this.ThankYou));
-            return this.Redirect("/Bicycle/All");
+            return this.Redirect(ALLPATH);
         }
 
         public IActionResult ThankYou()
@@ -61,7 +64,7 @@
             return this.View(bicycle);
         }
 
-        public IActionResult Edit(int id, string confirm)
+        public IActionResult Edit(int id)
         {
             var bicycle = this.bicycleService.Edit(id);
 
@@ -74,6 +77,7 @@
                     Made = bicycle.Made,
                     Speeds = bicycle.Speeds,
                     Size = bicycle.Size,
+                    IsAvailable = bicycle.IsAvailable,
                     SizeOfTires = bicycle.SizeOfTires,
                     PriceForHour = bicycle.PriceForHour,
                     Description = bicycle.Description,
@@ -82,7 +86,7 @@
                 return this.View(model);
             }
 
-            return this.Redirect($"/Bicycle/All");
+            return this.Redirect(ALLPATH);
         }
 
         [HttpPost]
@@ -93,16 +97,23 @@
                 return this.View(input);
             }
 
+            if (input.Image != null)
+            {
+                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.BICYCLEPATH, input.Id));
+
+                this.bicycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.BICYCLEPATH, input.Id));
+            }
+
             this.bicycleService.DoEdit(input);
 
-            return this.Redirect($"/Bicycle/Details/{input.Id}");
+            return this.Redirect(string.Format(DETAILSPATH, input.Id));
         }
 
         public IActionResult Delete(int id)
         {
             this.bicycleService.Delete(id);
 
-            return this.Redirect($"/Bicycle/All");
+            return this.Redirect(ALLPATH);
         }
     }
 }

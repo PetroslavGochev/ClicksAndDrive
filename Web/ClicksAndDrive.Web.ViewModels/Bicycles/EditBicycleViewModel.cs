@@ -34,6 +34,8 @@
         [Range(10, 30, ErrorMessageResourceName = nameof(Resourse_BG_.SizeOfTires), ErrorMessageResourceType = typeof(Resourse_BG_))]
         public double SizeOfTires { get; set; }
 
+        [Required(ErrorMessage = "Това поле е задължително.")]
+        [Display(Name = "Наличност")]
         public bool IsAvailable { get; set; }
 
         [Required(ErrorMessageResourceName = nameof(Resourse_BG_.REQUIRED), ErrorMessageResourceType = typeof(Resourse_BG_))]
