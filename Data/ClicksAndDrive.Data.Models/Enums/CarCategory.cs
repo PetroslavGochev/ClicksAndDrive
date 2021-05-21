@@ -10,9 +10,5 @@
         Sedan = 1,
         [Display(Name = "Ван")]
         Van = 2,
-        [Display(Name = "Хечбек")]
-        HatchBack = 3,
-        [Display(Name = "Спорт")]
-        Sport = 4,
     }
 }

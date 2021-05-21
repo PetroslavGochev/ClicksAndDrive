@@ -6,13 +6,13 @@
 
     public enum BicycleType
     {
-        [Display(Name = "Mountain", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Планински")]
         Mountain = 1,
-        [Display(Name = "Road", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Шосейни")]
         Road = 2,
-        [Display(Name = "Electric", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Електрически")]
         Electric = 3,
-        [Display(Name = "Trekking", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Градски")]
         Trekking = 4,
     }
 }
