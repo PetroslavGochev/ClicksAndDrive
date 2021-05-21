@@ -1,5 +1,7 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
+    using System.Linq;
+
     using ClicksAndDrive.Services.Data;
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.Common;
@@ -8,6 +10,7 @@
 
     public class BicycleController : Controller
     {
+        private const string IMAGE = "Bicycles";
         private const string ALLPATH = "/Bicycle/All";
         private const string DETAILSPATH = "/Bicycle/Details/{0}";
 
@@ -37,22 +40,23 @@
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, "Bicycles", bicycleId));
+                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, bicycleId));
 
-                this.bicycleService.AddImageUrls(bicycleId, string.Format(GlobalConstants.IMAGEPATH, "Bicycles", bicycleId));
+                this.bicycleService.AddImageUrls(bicycleId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, bicycleId));
             }
 
-            return this.Redirect(ALLPATH);
+            return this.Redirect(string.Format(DETAILSPATH,bicycleId));
         }
 
-        public IActionResult ThankYou()
-        {
-            return this.View();
-        }
 
-        public IActionResult All(string[] size, string[] type)
+        public IActionResult All(string type)
         {
-            var bicycles = this.bicycleService.GetAll(size, type);
+            var bicycles = this.bicycleService.GetAll(type);
+
+            if (bicycles.ToArray().Length == 0)
+            {
+                return this.NotFound();
+            }
 
             return this.View(bicycles);
         }
@@ -99,9 +103,9 @@
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, "Bicycles", input.Id));
+                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
 
-                this.bicycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, "Bicycles", input.Id));
+                this.bicycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
             }
 
             this.bicycleService.DoEdit(input);

@@ -1,90 +1,11 @@
 ﻿@using ClicksAndDrive.Web.ViewModels.Bicycles
-@using ClicksAndDrive.Common
 @model IEnumerable<BicycleViewModel>
 @{
-    ViewData["Title"] = "Велосипеди";
+    ViewData["Title"] = "Велосипеди:" ;
 }
 <div class="text-center">
     <h1 class="display-4">Велосипеди</h1>
 </div>
-<form class="col-md-4" enctype="multipart/form-data">
-    <article class="card-group-item">
-        <header class="card-header">
-            <h6 class="title">Размер на велосипеда</h6>
-        </header>
-        @{
-            int counter = 1;
-            @foreach (var size in this.Model.Select(x => x.Size).Distinct().ToArray())
-            {
-                <div class="filter-content">
-                    <div class="card-body">
-                        <div class="custom-control custom-checkbox">
-                            <span class="float-right badge badge-light round">@this.Model.Where(x => x.Size == size).Count()</span>
-                            <input type="checkbox" class="custom-control-input" name="size" value="@size" id="CheckSize + @counter">
-                            <label class="custom-control-label" for="CheckSize + @counter">@size</label>
-                        </div>
-                    </div>
-                </div>
-                counter++;
-            }
-        }
-    </article>
-    <article class="card-group-item">
-        <header class="card-header">
-            <h6 class="title">Стил на колоездене</h6>
-        </header>
-        @{
-            int counterType = 1;
-            @foreach (var type in this.Model.Select(x => x.Type).Distinct().ToArray())
-            {
-                <div class="filter-content">
-                    <div class="card-body">
-                        <div class="custom-control custom-checkbox">
-                            <span class="float-right badge badge-light round">@this.Model.Where(x => x.Type == type).Count()</span>
-                            <input type="checkbox" class="custom-control-input" name="type" value="@type" id="CheckType + @counterType">
-                            <label class="custom-control-label" for="CheckType + @counterType">@type</label>
-                        </div>
-                    </div>
-                </div>
-                counterType++;
-            }
-        }
-    </article>
-    <button type="submit" asp-action="All" class="btn btn-primary col-md-4">Филтрирай</button>
-</form>
-@if (this.Model.Any(x => x.Filters != null))
-{
-    IEnumerable<BicycleViewModel> bicycleViewModels;
-    if (this.Model.Any(x => x.Filters.SizeOfBicycle.Length == 0) || this.Model.Any(x => x.Filters.TypeOfBicycle.Length == 0))
-    {
-        bicycleViewModels = this.Model.Where(b => b.Filters.SizeOfBicycle.Any(f => f == b.Size.ToString())
-                      || b.Filters.TypeOfBicycle.Any(f => f == b.Type.ToString())).ToArray();
-    }
-    else
-    {
-        bicycleViewModels = this.Model.Where(b => b.Filters.SizeOfBicycle.Any(f => f == b.Size.ToString())
-                                           && b.Filters.TypeOfBicycle.Any(f => f == b.Type.ToString())).ToArray();
-    }
-    @foreach (var bicycle in bicycleViewModels)
-    {
-        <div class="card mb-3" style="max-width: 540px;" id="bicycle">
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="~/@bicycle.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@bicycle.Made">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">@bicycle.Made</h5>
-                        <p class="card-text">Цена на час: @bicycle.PriceForHour.ToString("0.00") BGN.</p>
-                        <a asp-action="Details" asp-route-id="@bicycle.Id">Детайли</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-}
-else
-{
     @foreach (var bicycle in this.Model)
     {
         <div class="card mb-3" style="max-width: 540px;" id="bicycle">
@@ -102,6 +23,4 @@ else
             </div>
         </div>
     }
-}
-<tr />
 

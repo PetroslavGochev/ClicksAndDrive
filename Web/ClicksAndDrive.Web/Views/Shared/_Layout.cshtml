@@ -1,4 +1,5 @@
 ﻿@using ClicksAndDrive.Common
+@using ClicksAndDrive.Data.Models.Enums
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
 </head>
 <body>
     <header>
+
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
@@ -19,24 +21,57 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a href="@Url.Action("Index", "Home")" class="navbar-brand">
                                 <img src="~/images/ClickAndDrive_PNG_Color.png" title="core" alt="" width="150" height="40" />
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Bicycle" asp-action="All">Велосипеди</a>
+                        @*<li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Bicycle" asp-action="All">Велосипеди</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="All">Автомобили</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="ElectricScooter" asp-action="All">Ел.Тротинетки</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Motorcycle" asp-action="All">Мотори</a>
+        </li>*@
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Велосипеди
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item"  asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Mountain">Планински</a>
+                                <a class="dropdown-item"  asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Road">Шосейни</a>
+                                <a class="dropdown-item"  asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Trekking">Градски</a>
+                                <a class="dropdown-item"  asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Electric">Електрически</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Автомобили
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">Седан</a>
+                                <a class="dropdown-item">Ван</a>
+                                <a class="dropdown-item">Хечбек</a>
+                                <a class="dropdown-item">Спортни</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Мотори
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">Скутери</a>
+                                <a class="dropdown-item">Кросови</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="All">Автомобили</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ElectricScooter" asp-action="All">Ел.Тротинетки</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Motorcycle" asp-action="All">Мотори</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Bicycle" asp-action="All">Електрически скутери</a>
                         </li>
                     </ul>
                 </div>
@@ -81,20 +116,6 @@
     <script type="text/javascript">
         function Successfully(text) {
             alert(`Вие успешно добавихте нов ${text}`);
-        }
-    </script>
-    <script type="text/javascript">
-        function GetExt() {
-            var str = document.getElementById('FileUpload1').value;
-            var ext = str.substring(str.length - 3, str.length).toString();
-            extext = ext.toLowerCase();
-            if (ext == "png" || ext == "jpeg" || ext == "jpg" || ext == "gif") {
-                alert("valid File")
-                return true;
-            }
-            else {
-                alert("Invalid File"); return false;
-            }
         }
     </script>
     @await this.RenderSectionAsync("Scripts", required: false)

@@ -23,7 +23,5 @@
 
         [Display(Name = nameof(Resourse_BG_.BicycleSize), ResourceType = typeof(Resourse_BG_))]
         public BicycleSize Size { get; set; }
-
-        public FilterBicycleViewModel Filters { get; set; }
     }
 }

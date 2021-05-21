@@ -5,7 +5,7 @@
 
 <div class="car mb-3">
     <div class="row-cols-md-7">
-        <img src="https://car-images.bauersecure.com/pagefiles/82958/010_508.jpg" class="card-img" alt="...">
+        <img src="~/@Model.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="...">
     </div>
     <div class="bicycle-body">
         <h5 class="car-title text-center">@Model.Made</h5>
@@ -18,4 +18,7 @@
         <p class="car-text">Цена на час: @Model.PriceForHour</p>
         <p class="car-text">Описание: @Model.Description</p>
     </div>
+    <a asp-action="" asp-route-id="@this.Model.Id" class="btn btn-primary">Наеми</a>
+    <a asp-controller="Car" asp-action="Edit" asp-route-id="@this.Model.Id" class="btn btn-primary">Редактирай</a>
+    <a asp-action="Delete" asp-route-id="@this.Model.Id" onclick="return DeleteItem('автомобил')" class="btn btn-danger">Изтрий</a>
 </div>
