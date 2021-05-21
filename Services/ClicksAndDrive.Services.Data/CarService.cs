@@ -52,7 +52,16 @@
 
         public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var car = this.db.Cars.FirstOrDefault(b => b.Id == id);
+
+            if (car != null)
+            {
+                this.DeleteImage(car.ImageUrl);
+
+                this.db.Cars.Remove(car);
+
+                this.db.SaveChanges();
+            }
         }
 
         public Car Details(int id)
@@ -62,12 +71,28 @@
 
         public void DoEdit(EditCarViewModel input)
         {
-            throw new System.NotImplementedException();
+            var car = this.db.Cars.FirstOrDefault(b => b.Id == input.Id);
+
+            if (car != null)
+            {
+                car.Model = input.Model;
+                car.Made = input.Made;
+                car.Transmission = input.Transmission;
+                car.FuelConsumption = input.FuelConsumption;
+                car.FuelType = input.FuelType;
+                car.Category = input.Category;
+                car.Places = input.Places;
+                car.IsAvailable = input.IsAvailable;
+                car.PriceForHour = input.PriceForHour;
+                car.Description = input.Description;
+
+                this.db.SaveChanges();
+            }
         }
 
         public Car Edit(int id)
         {
-            throw new System.NotImplementedException();
+            return this.db.Cars.FirstOrDefault(c => c.Id == id);
         }
 
         public IEnumerable<CarViewModel> GetAll(string[] category, string[] places, string[] transmissions, string[] fuelType)
@@ -89,14 +114,22 @@
                                 places.Length == 0 &&
                                 transmissions.Length == 0 &&
                                 fuelType.Length == 0 ? null : new FilterCarViewModel()
-                    {
-                        Category = category,
-                        Places = places,
-                        Transmission = transmissions,
-                        FuelType = fuelType,
-                    },
+                                {
+                                    Category = category,
+                                    Places = places,
+                                    Transmission = transmissions,
+                                    FuelType = fuelType,
+                                },
                 })
                 .ToArray();
+        }
+
+        private void DeleteImage(string imagePath)
+        {
+            if (imagePath != null)
+            {
+                System.IO.File.Delete(imagePath);
+            }
         }
     }
 }

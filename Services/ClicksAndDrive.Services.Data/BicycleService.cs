@@ -1,11 +1,13 @@
 ﻿namespace ClicksAndDrive.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using ClicksAndDrive.Data;
     using ClicksAndDrive.Data.Models;
+    using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Web.ViewModels.Bicycles;
 
     public class BicycleService : IBicycleService
@@ -17,10 +19,13 @@
             this.db = db;
         }
 
-        public IEnumerable<BicycleViewModel> GetAll(string[] size, string[] type)
+        public IEnumerable<BicycleViewModel> GetAll(string type)
         {
+            BicycleType bicycleType;
+            Enum.TryParse<BicycleType>(type, out bicycleType);
+
             var bicycles = this.db.Bicycles
-                .Where(b => b.IsAvailable)
+                .Where(b => b.IsAvailable && b.Type == bicycleType)
                 .Select(b => new BicycleViewModel()
                 {
                     Id = b.Id,
@@ -29,11 +34,6 @@
                     ImageUrl = b.ImageUrl,
                     Type = b.Type,
                     Size = b.Size,
-                    Filters = size.Length == 0 && type.Length == 0 ? null : new FilterBicycleViewModel()
-                    {
-                        SizeOfBicycle = size,
-                        TypeOfBicycle = type,
-                    },
                 })
                 .ToArray();
 

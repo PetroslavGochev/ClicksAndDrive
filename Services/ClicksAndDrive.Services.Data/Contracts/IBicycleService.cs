@@ -10,7 +10,7 @@
     {
         int AddBicycle(AddBycicleViewModel input);
 
-        IEnumerable<BicycleViewModel> GetAll(string[] size, string[] types);
+        IEnumerable<BicycleViewModel> GetAll(string type);
 
         Bicycle Details(int id);
 
