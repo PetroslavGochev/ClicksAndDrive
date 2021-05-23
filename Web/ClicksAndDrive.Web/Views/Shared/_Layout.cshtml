@@ -28,26 +28,26 @@
                             </a>
                         </li>
                         @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Bicycle" asp-action="All">Велосипеди</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="All">Автомобили</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="ElectricScooter" asp-action="All">Ел.Тротинетки</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Motorcycle" asp-action="All">Мотори</a>
-        </li>*@
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Bicycle" asp-action="All">Велосипеди</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="All">Автомобили</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ElectricScooter" asp-action="All">Ел.Тротинетки</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Motorcycle" asp-action="All">Мотори</a>
+                            </li>*@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Велосипеди
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"  asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Mountain">Планински</a>
-                                <a class="dropdown-item"  asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Road">Шосейни</a>
-                                <a class="dropdown-item"  asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Trekking">Градски</a>
-                                <a class="dropdown-item"  asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Electric">Електрически</a>
+                                <a class="dropdown-item" asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Mountain">Планински</a>
+                                <a class="dropdown-item" asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Road">Шосейни</a>
+                                <a class="dropdown-item" asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Trekking">Градски</a>
+                                <a class="dropdown-item" asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Electric">Електрически</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -71,7 +71,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Bicycle" asp-action="All">Електрически скутери</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Bicycle" asp-action="All">Електрически скутери</a>
                         </li>
                     </ul>
                 </div>
@@ -117,6 +117,16 @@
         function Successfully(text) {
             alert(`Вие успешно добавихте нов ${text}`);
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $(".dropdown-menu li").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
     </script>
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>

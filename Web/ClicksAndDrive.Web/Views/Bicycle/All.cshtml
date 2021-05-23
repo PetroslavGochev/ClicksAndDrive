@@ -1,26 +1,46 @@
 ﻿@using ClicksAndDrive.Web.ViewModels.Bicycles
 @model IEnumerable<BicycleViewModel>
 @{
-    ViewData["Title"] = "Велосипеди:" ;
+    ViewData["Title"] = "Велосипеди:";
 }
+
+<img src="https://www.bikecenter.bg/media/catalog/category/planinski-velosipedi_1.jpg" class="center" alt="Responsive image">
+
 <div class="text-center">
     <h1 class="display-4">Велосипеди</h1>
 </div>
-    @foreach (var bicycle in this.Model)
-    {
-        <div class="card mb-3" style="max-width: 540px;" id="bicycle">
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="~/@bicycle.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@bicycle.Made">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">@bicycle.Made</h5>
-                        <p class="card-text">Цена на час: @bicycle.PriceForHour.ToString("0.00") BGN.</p>
-                        <a asp-action="Details" asp-route-id="@bicycle.Id" class="btn btn-info">Детайли</a>
-                    </div>
+<div class="container">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Dropdown Example
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">HTML</a></li>
+              <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">jQuery</a></li>
+            <li><a href="#">Bootstrap</a></li>
+            <li><a href="#">Angular</a></li>
+        </ul>
+    </div>
+</div>
+ 
+@foreach (var bicycle in this.Model)
+{
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"  >
+        <div class="col-md-8">
+            <div class="card" style="width: 20rem;">
+                <img src="~/@bicycle.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="@bicycle.Made">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title">@bicycle.Made</h5>
+                    <p class="card-text">Цена на час: @bicycle.PriceForHour.ToString("0.00") BGN.</p>
+                    <a asp-action="Details" asp-route-id="@bicycle.Id" class="btn btn-info">Детайли</a>
                 </div>
             </div>
         </div>
-    }
+    </div>
+}
 
