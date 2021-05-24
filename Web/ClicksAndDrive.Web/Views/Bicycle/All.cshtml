@@ -9,26 +9,21 @@
 <div class="text-center">
     <h1 class="display-4">Велосипеди</h1>
 </div>
-<div class="container">
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Dropdown Example
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li><a href="#">HTML</a></li>
-              <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-            <li><a href="#">jQuery</a></li>
-            <li><a href="#">Bootstrap</a></li>
-            <li><a href="#">Angular</a></li>
-        </ul>
+
+<div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Dropdown button
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Link 1</a>
+        <a class="dropdown-item" href="#">Link 2</a>
+        <a class="dropdown-item" href="#">Link 3</a>
     </div>
 </div>
- 
+
 @foreach (var bicycle in this.Model)
 {
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"  >
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
         <div class="col-md-8">
             <div class="card" style="width: 20rem;">
                 <img src="~/@bicycle.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="@bicycle.Made">

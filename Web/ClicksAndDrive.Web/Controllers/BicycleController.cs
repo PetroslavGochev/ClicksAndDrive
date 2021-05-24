@@ -55,7 +55,7 @@
 
             if (bicycles.ToArray().Length == 0)
             {
-                return this.NotFound();
+                return this.View("Information");
             }
 
             return this.View(bicycles);

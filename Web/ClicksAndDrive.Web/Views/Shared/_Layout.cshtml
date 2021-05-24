@@ -27,20 +27,8 @@
                                 <img src="~/images/ClickAndDrive_PNG_Color.png" title="core" alt="" width="150" height="40" />
                             </a>
                         </li>
-                        @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Bicycle" asp-action="All">Велосипеди</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="All">Автомобили</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ElectricScooter" asp-action="All">Ел.Тротинетки</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Motorcycle" asp-action="All">Мотори</a>
-                            </li>*@
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Велосипеди
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -51,18 +39,16 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Автомобили
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item">Седан</a>
-                                <a class="dropdown-item">Ван</a>
-                                <a class="dropdown-item">Хечбек</a>
-                                <a class="dropdown-item">Спортни</a>
+                                <a class="dropdown-item" asp-controller="Car" asp-action="All" asp-route-type="@CarCategory.Sedan">Седан</a>
+                                <a class="dropdown-item" asp-controller="Car" asp-action="All" asp-route-type="@CarCategory.Van">Ван</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Мотори
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -71,7 +57,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Bicycle" asp-action="All">Електрически скутери</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Електрически скутери</a>
                         </li>
                     </ul>
                 </div>
@@ -96,6 +82,8 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
     <script type="text/javascript">
         function DeleteItem(text) {
@@ -117,16 +105,6 @@
         function Successfully(text) {
             alert(`Вие успешно добавихте нов ${text}`);
         }
-    </script>
-    <script>
-        $(document).ready(function () {
-            $("#myInput").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $(".dropdown-menu li").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
     </script>
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>

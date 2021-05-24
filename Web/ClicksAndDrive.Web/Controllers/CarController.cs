@@ -1,5 +1,7 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
+    using System.Linq;
+
     using ClicksAndDrive.Services.Data;
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.Common;
@@ -93,9 +95,14 @@
             return this.Redirect(string.Format(DETAILSPATH, input.Id));
         }
 
-        public IActionResult All(string[] category, string[] places, string[] transmissions, string[] fuelType)
+        public IActionResult All(string type)
         {
-            var cars = this.carService.GetAll(category, places, transmissions, fuelType);
+            var cars = this.carService.GetAll(type);
+
+            if (cars.ToArray().Length == 0)
+            {
+                return this.View("Information");
+            }
 
             return this.View(cars);
         }

@@ -6,149 +6,21 @@
 <div class="text-center">
     <h1 class="display-4">Автомобили</h1>
 </div>
-<form class="col-md-4" enctype="multipart/form-data">
-    <article class="card-group-item">
-        <header class="card-header">
-            <h6 class="title">Двигател</h6>
-        </header>
-        @{
-            int counterFuel = 1;
-            @foreach (var fuel in this.Model.Select(x => x.FuelType).Distinct().ToArray())
-            {
-                <div class="filter-content">
-                    <div class="card-body">
-                        <div class="custom-control custom-checkbox">
-                            <span class="float-right badge badge-light round">@this.Model.Where(x => x.FuelType == fuel).Count()</span>
-                            <input type="checkbox" class="custom-control-input" name="fuelType" value="@fuel" id="CkeckFuel + @counterFuel">
-                            <label class="custom-control-label" for="CkeckFuel + @counterFuel">@fuel</label>
-                        </div>
-                    </div>
-                </div>
-                counterFuel++;
-            }
-        }
-    </article>
-    <article class="card-group-item">
-        <header class="card-header">
-            <h6 class="title">Скоростна кутия</h6>
-        </header>
-        @{
-            int counterTransm = 1;
-            @foreach (var transmission in this.Model.Select(x => x.Transmission).Distinct().ToArray())
-            {
-                <div class="filter-content">
-                    <div class="card-body">
-                        <div class="custom-control custom-checkbox">
-                            <span class="float-right badge badge-light round">@this.Model.Where(x => x.Transmission == transmission).Count()</span>
-                            <input type="checkbox" class="custom-control-input" name="transmissions" value="@transmission" id="CheckTransmission + @counterTransm">
-                            <label class="custom-control-label" for="CheckTransmission + @counterTransm">@transmission</label>
-                        </div>
-                    </div>
-                </div>
-                counterTransm++;
-            }
-        }
-    </article>
-    <article class="card-group-item">
-        <header class="card-header">
-            <h6 class="title">Места</h6>
-        </header>
-        @{
-            int counterPlace = 1;
-            @foreach (var place in this.Model.Select(x => x.Places).Distinct().ToArray())
-            {
-                <div class="filter-content">
-                    <div class="card-body">
-                        <div class="custom-control custom-checkbox">
-                            <span class="float-right badge badge-light round">@this.Model.Where(x => x.Places == place).Count()</span>
-                            <input type="checkbox" class="custom-control-input" name="places" value="@place" id="CheckPlace + @counterPlace">
-                            <label class="custom-control-label" for="CheckPlace + @counterPlace">@place</label>
-                        </div>
-                    </div>
-                </div>
-                counterPlace++;
-            }
-        }
-    </article>
-    <article class="card-group-item">
-        <header class="card-header">
-            <h6 class="title">Категория</h6>
-        </header>
-        @{
-            int counterCategory = 1;
-            @foreach (var category in this.Model.Select(x => x.Category).Distinct().ToArray())
-            {
-                <div class="filter-content">
-                    <div class="card-body">
-                        <div class="custom-control custom-checkbox">
-                            <span class="float-right badge badge-light round">@this.Model.Where(x => x.Category == category).Count()</span>
-                            <input type="checkbox" class="custom-control-input" name="category" value="@category" id="CheckCategory + @counterCategory">
-                            <label class="custom-control-label" for="CheckCategory + @counterCategory">@category</label>
-                        </div>
-                    </div>
-                </div>
-                counterCategory++;
-            }
-        }
-    </article>
-    <button type="submit" asp-action="All" class="btn btn-primary col-md-4">Филтрирай</button>
-</form>
-@if (this.Model.Any(x => x.Filters != null))
+
+@foreach (var car in this.Model)
 {
-    IEnumerable<CarViewModel> carViewModel;
-    if (this.Model.Any(x => x.Filters.Category.Length == 0) ||
-        this.Model.Any(x => x.Filters.Transmission.Length == 0) ||
-        this.Model.Any(x => x.Filters.Places.Length == 0) ||
-        this.Model.Any(x => x.Filters.FuelType.Length == 0))
-    {
-        carViewModel = this.Model.Where(b => b.Filters.Category.Any(f => f == b.Category.ToString())
-                      || b.Filters.Transmission.Any(f => f == b.Transmission.ToString())
-                      || b.Filters.Places.Any(f => f == b.Places.ToString())
-                      || b.Filters.FuelType.Any(f => f == b.FuelType.ToString())).ToArray();
-    }
-    else
-    {
-        carViewModel = this.Model.Where(b => b.Filters.Category.Any(f => f == b.Category.ToString())
-                      && b.Filters.Transmission.Any(f => f == b.Transmission.ToString())
-                      && b.Filters.Places.Any(f => f == b.Places.ToString())
-                      && b.Filters.FuelType.Any(f => f == b.FuelType.ToString())).ToArray();
-    }
-    @foreach (var car in carViewModel)
-    {
-        <div class="card mb-3" style="max-width: 540px;" id="bicycle">
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="~/@car.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@car.Made">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">@car.Made</h5>
-                        <p class="card-text">Цена на час: @car.PriceForHour.ToString("0.00") BGN.</p>
-                        <a asp-action="Details" asp-route-id="@car.Id">Детайли</a>
-                    </div>
+    <div class="card mb-3" style="max-width: 540px;" id="bicycle">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="~/@car.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@car.Made">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@car.Made</h5>
+                    <p class="card-text">Цена на час: @car.PriceForHour.ToString("0.00") BGN.</p>
+                    <a asp-action="Details" asp-route-id="@car.Id" class="btn btn-info">Детайли</a>
                 </div>
             </div>
         </div>
-    }
+    </div>
 }
-else
-{
-    @foreach (var car in this.Model)
-    {
-        <div class="card mb-3" style="max-width: 540px;" id="bicycle">
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="~/@car.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@car.Made">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">@car.Made</h5>
-                        <p class="card-text">Цена на час: @car.PriceForHour.ToString("0.00") BGN.</p>
-                        <a asp-action="Details" asp-route-id="@car.Id" class="btn btn-info">Детайли</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-}
-<tr />
