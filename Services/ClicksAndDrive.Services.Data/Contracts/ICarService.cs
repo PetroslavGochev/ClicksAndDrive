@@ -9,7 +9,7 @@
     {
         int AddCar(AddCarViewModel input);
 
-        IEnumerable<CarViewModel> GetAll(string[] category, string[] places, string[] transmissions, string[] fuelType);
+        IEnumerable<CarViewModel> GetAll(string type);
 
         Car Details(int id);
 

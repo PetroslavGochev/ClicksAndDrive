@@ -95,7 +95,7 @@
             return this.db.Cars.FirstOrDefault(c => c.Id == id);
         }
 
-        public IEnumerable<CarViewModel> GetAll(string[] category, string[] places, string[] transmissions, string[] fuelType)
+        public IEnumerable<CarViewModel> GetAll(string type)
         {
             return this.db.Cars
                 .Where(c => c.IsAvailable)
@@ -110,16 +110,6 @@
                     FuelType = c.FuelType,
                     PriceForHour = c.PriceForHour,
                     ImageUrl = c.ImageUrl,
-                    Filters = category.Length == 0 &&
-                                places.Length == 0 &&
-                                transmissions.Length == 0 &&
-                                fuelType.Length == 0 ? null : new FilterCarViewModel()
-                                {
-                                    Category = category,
-                                    Places = places,
-                                    Transmission = transmissions,
-                                    FuelType = fuelType,
-                                },
                 })
                 .ToArray();
         }
