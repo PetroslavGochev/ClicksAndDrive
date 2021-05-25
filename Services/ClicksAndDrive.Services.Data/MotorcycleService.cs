@@ -1,20 +1,44 @@
 ﻿namespace ClicksAndDrive.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using ClicksAndDrive.Data;
     using ClicksAndDrive.Data.Models;
+    using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Web.ViewModels;
     using ClicksAndDrive.Web.ViewModels.Motorcycles;
 
     public class MotorcycleService : IMotorcycleService
     {
         private readonly ApplicationDbContext db;
+        private readonly IImageService imageService;
 
-        public MotorcycleService(ApplicationDbContext db)
+        public MotorcycleService(ApplicationDbContext db, IImageService imageService)
         {
             this.db = db;
+            this.imageService = imageService;
+        }
+
+        public IEnumerable<MotorcycleViewModel> GetAll(string type)
+        {
+            MotorcycleType motorcycleType;
+            Enum.TryParse<MotorcycleType>(type, out motorcycleType);
+
+            return this.db.Motorcycles
+                .Where(m => m.IsAvailable && m.Type == motorcycleType)
+                .Select(m => new MotorcycleViewModel()
+                {
+                    Id = m.Id,
+                    Type = m.Type,
+                    Made = m.Made,
+                    PriceForHour = m.PriceForHour,
+                    ImageUrl = m.ImageUrl,
+                })
+                .OrderBy(m => m.PriceForHour)
+                .ToArray();
         }
 
         public Motorcycle Details(int id)
@@ -22,18 +46,69 @@
             return this.db.Motorcycles.FirstOrDefault(m => m.Id == id);
         }
 
-        public IEnumerable<MotorcycleViewModel> GetAll()
+        public int AddMotorcycle(AddMotorcycleViewModel input)
         {
-            return this.db.Motorcycles
-                .Where(m => m.IsAvailable)
-                .Select(m => new MotorcycleViewModel()
-                {
-                    Id = m.Id,
-                    Made = m.Made,
-                    PriceForHour = m.PriceForHour,
-                    ImageUrl = m.ImageUrl,
-                })
-                .ToArray();
+            var motorcycle = new Motorcycle()
+            {
+                Type = input.Type,
+                Made = input.Made,
+                IsAvailable = true,
+                Transmission = input.Transmission,
+                PriceForHour = input.PriceForHour,
+                Description = input.Description,
+            };
+
+            this.db.Motorcycles.Add(motorcycle);
+
+            this.db.SaveChanges();
+
+            return motorcycle.Id;
+        }
+
+        public Motorcycle Edit(int id)
+        {
+            return this.db.Motorcycles.FirstOrDefault(b => b.Id == id);
+        }
+
+        public void DoEdit(EditMotorcycleViewModel input)
+        {
+            var motorcycle = this.db.Motorcycles.FirstOrDefault(b => b.Id == input.Id);
+
+            if (motorcycle != null)
+            {
+                motorcycle.Type = input.Type;
+                motorcycle.Made = input.Made;
+                motorcycle.PriceForHour = input.PriceForHour;
+                motorcycle.IsAvailable = input.IsAvailable;
+                motorcycle.Description = input.Description;
+
+                this.db.SaveChanges();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            var motorcycle = this.db.Motorcycles.FirstOrDefault(b => b.Id == id);
+
+            if (motorcycle != null)
+            {
+                this.imageService.DeleteImage(motorcycle.ImageUrl);
+
+                this.db.Motorcycles.Remove(motorcycle);
+
+                this.db.SaveChanges();
+            }
+        }
+
+        public void AddImageUrls(int id, string imageUrls)
+        {
+            var motorcycle = this.db.Motorcycles.FirstOrDefault(b => b.Id == id);
+
+            if (motorcycle != null)
+            {
+                motorcycle.ImageUrl = imageUrls;
+                this.db.SaveChanges();
+            }
         }
     }
 }

@@ -8,15 +8,18 @@
     using ClicksAndDrive.Data;
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
+    using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.ViewModels.Bicycles;
 
     public class BicycleService : IBicycleService
     {
         private readonly ApplicationDbContext db;
+        private readonly IImageService imageService;
 
-        public BicycleService(ApplicationDbContext db)
+        public BicycleService(ApplicationDbContext db, IImageService imageService)
         {
             this.db = db;
+            this.imageService = imageService;
         }
 
         public IEnumerable<BicycleViewModel> GetAll(string type)
@@ -35,9 +38,31 @@
                     Type = b.Type,
                     Size = b.Size,
                 })
+                .OrderBy(b => b.PriceForHour)
                 .ToArray();
 
             return bicycles;
+        }
+
+        public int AddBicycle(AddBycicleViewModel input)
+        {
+            var bicycle = new Bicycle()
+            {
+                Type = input.Type,
+                Made = input.Made,
+                Speeds = input.Speeds,
+                Size = input.Size,
+                SizeOfTires = input.SizeOfTires,
+                IsAvailable = true,
+                PriceForHour = input.PriceForHour,
+                Description = input.Description,
+            };
+
+            this.db.Bicycles.Add(bicycle);
+
+            this.db.SaveChanges();
+
+            return bicycle.Id;
         }
 
         public Bicycle Details(int id)
@@ -75,7 +100,7 @@
 
             if (bicycle != null)
             {
-                this.DeleteImage(bicycle.ImageUrl);
+                this.imageService.DeleteImage(bicycle.ImageUrl);
 
                 this.db.Bicycles.Remove(bicycle);
 
@@ -91,35 +116,6 @@
             {
                 bicycle.ImageUrl = imageUrls;
                 this.db.SaveChanges();
-            }
-        }
-
-        public int AddBicycle(AddBycicleViewModel input)
-        {
-            var bicycle = new Bicycle()
-            {
-                Type = input.Type,
-                Made = input.Made,
-                Speeds = input.Speeds,
-                Size = input.Size,
-                SizeOfTires = input.SizeOfTires,
-                IsAvailable = true,
-                PriceForHour = input.PriceForHour,
-                Description = input.Description,
-            };
-
-            this.db.Bicycles.Add(bicycle);
-
-            this.db.SaveChanges();
-
-            return bicycle.Id;
-        }
-
-        private void DeleteImage(string imagePath)
-        {
-            if (imagePath != null)
-            {
-                System.IO.File.Delete(imagePath);
             }
         }
     }

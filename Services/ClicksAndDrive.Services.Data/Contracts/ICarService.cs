@@ -7,9 +7,9 @@
 
     public interface ICarService
     {
-        int AddCar(AddCarViewModel input);
-
         IEnumerable<CarViewModel> GetAll(string type);
+
+        int AddCar(AddCarViewModel input);
 
         Car Details(int id);
 

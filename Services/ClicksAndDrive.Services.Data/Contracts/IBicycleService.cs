@@ -8,9 +8,9 @@
 
     public interface IBicycleService
     {
-        int AddBicycle(AddBycicleViewModel input);
-
         IEnumerable<BicycleViewModel> GetAll(string type);
+
+        int AddBicycle(AddBycicleViewModel input);
 
         Bicycle Details(int id);
 

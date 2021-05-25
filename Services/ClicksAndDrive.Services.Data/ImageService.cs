@@ -15,5 +15,13 @@
                 await formImage.CopyToAsync(stream);
             }
         }
+
+        public void DeleteImage(string imagePath)
+        {
+            if (imagePath != null)
+            {
+                System.IO.File.Delete(imagePath);
+            }
+        }
     }
 }
