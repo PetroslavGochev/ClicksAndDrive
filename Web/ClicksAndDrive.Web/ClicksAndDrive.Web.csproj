@@ -44,5 +44,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\Bicycles\" />
     <Folder Include="wwwroot\images\Cars\" />
+    <Folder Include="wwwroot\images\Motorcycles\" />
+    <Folder Include="wwwroot\images\ElectricScooters\" />
   </ItemGroup>
 </Project>

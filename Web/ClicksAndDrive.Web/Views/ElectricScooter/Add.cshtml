@@ -1,8 +1,11 @@
 ﻿@using ClicksAndDrive.Web.ViewModels.ElectricScooter
 @model AddElectricScooterViewModel
-<h1>Add ElectricScooter!</h1>
+@{
+    ViewData["Title"] = "Добавете нов електрически скутер";
+}
+<h1>Добавете нов електрически скутер</h1>
 
-<form>
+<form method="post" class="col-md-6" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Made">Made *</label>
         <input asp-for="Made" class="form-control" />
@@ -24,9 +27,9 @@
         <span asp-validation-for="PriceForHour" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="ImageUrl">ImageUrl *</label>
-        <input asp-for="ImageUrl" class="form-control" />
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        <label asp-for="Image">Image *</label>
+        <input asp-for="Image" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Description"></label>

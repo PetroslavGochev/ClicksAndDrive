@@ -1,7 +1,11 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.Motorcycles
 {
+    using ClicksAndDrive.Data.Models.Enums;
+
     public class MotorcycleViewModel
     {
+        public MotorcycleType Type { get; set; }
+
         public int Id { get; set; }
 
         public string Made { get; set; }

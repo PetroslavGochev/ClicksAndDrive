@@ -1,24 +1,13 @@
 ﻿@using ClicksAndDrive.Web.ViewModels.Bicycles
 @model IEnumerable<BicycleViewModel>
 @{
-    ViewData["Title"] = "Велосипеди:";
+    ViewData["Title"] = Model.First().Type.ToString() + "Велосипеди";
 }
 
 <img src="https://www.bikecenter.bg/media/catalog/category/planinski-velosipedi_1.jpg" class="center" alt="Responsive image">
 
 <div class="text-center">
     <h1 class="display-4">Велосипеди</h1>
-</div>
-
-<div class="dropdown">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-        Dropdown button
-    </button>
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Link 1</a>
-        <a class="dropdown-item" href="#">Link 2</a>
-        <a class="dropdown-item" href="#">Link 3</a>
-    </div>
 </div>
 
 @foreach (var bicycle in this.Model)

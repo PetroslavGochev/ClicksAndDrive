@@ -32,6 +32,7 @@
 
         [Display(Name = "Разход на гориво")]
         [Required(ErrorMessage = "Това поле е задължително")]
+        [Range(1, 1000, ErrorMessage = "Разходът на гориво трябва да е положително число")]
         public double FuelConsumption { get; set; }
 
         [Display(Name = "Места")]
@@ -40,11 +41,13 @@
 
         [Display(Name = "Цена на час")]
         [Required(ErrorMessage = "Това поле е задължително")]
+        [Range(1, 1000, ErrorMessage = "Цената трябва да е положително число")]
         public decimal PriceForHour { get; set; }
 
         [Display(Name = "Снимка")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         [ImageAttribute]
-        public IFormFile ImageTest { get; set; }
+        public IFormFile Image { get; set; }
 
         [Display(Name = "Описание")]
         [StringLength(250)]

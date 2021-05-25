@@ -1,8 +1,8 @@
 ﻿@using ClicksAndDrive.Data.Models.Enums
-@using ClicksAndDrive.Web.ViewModels.Bicycles
-@model EditBicycleViewModel
+@using ClicksAndDrive.Web.ViewModels.Motorcycles
+@model EditMotorcycleViewModel
 @{
-    ViewData["Title"] = "Редактирайте велосипед: " + Model.Made;
+    ViewData["Title"] = "Редактирайте мотора: " + Model.Made;
 }
 
 <form method="post" enctype="multipart/form-data">
@@ -10,7 +10,7 @@
         <label asp-for="Type" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-5">
             <select asp-for="Type" class="form-control"
-                    asp-items="@Html.GetEnumSelectList<BicycleType>()">
+                    asp-items="@Html.GetEnumSelectList<MotorcycleType>()">
             </select>
             <span asp-validation-for="Type" class="text-danger"></span>
         </div>
@@ -23,26 +23,12 @@
         </div>
     </div>
     <div class="form-group row">
-        <label asp-for="Speeds" class="col-sm-2 col-form-label"></label>
+        <label asp-for="Transmission" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-5">
-            <input asp-for="Speeds" class="form-control" placeholder="Speeds" />
-            <span asp-validation-for="Speeds" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Size" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <select asp-for="Size" class="form-control"
-                    asp-items="@Html.GetEnumSelectList<BicycleSize>()">
+            <select asp-for="Transmission" class="form-control"
+                    asp-items="@Html.GetEnumSelectList<TransmissionType>()">
             </select>
-            <span asp-validation-for="Size" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="SizeOfTires" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <input asp-for="SizeOfTires" class="form-control" placeholder="SizeOfTires" />
-            <span asp-validation-for="SizeOfTires" class="text-danger"></span>
+            <span asp-validation-for="Transmission" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group row">
@@ -56,7 +42,7 @@
         <label asp-for="IsAvailable" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-5">
             <select class="form-control" asp-for="IsAvailable">
-                <option value="True" >Да</option>
+                <option value="True">Да</option>
                 <option value="False">Не</option>
             </select>
             <span asp-validation-for="IsAvailable" class="text-danger"></span>

@@ -11,7 +11,7 @@
     public class BicycleController : Controller
     {
         private const string IMAGE = "Bicycles";
-        private const string ALLPATH = "/Bicycle/All";
+        private const string ALLPATH = "/Bicycle/All?type={0}";
         private const string DETAILSPATH = "/Bicycle/Details/{0}";
 
         private readonly IBicycleService bicycleService;
@@ -21,6 +21,18 @@
         {
             this.bicycleService = bicycleService;
             this.imageService = imageService;
+        }
+
+        public IActionResult All(string type)
+        {
+            var bicycles = this.bicycleService.GetAll(type);
+
+            if (bicycles.ToArray().Length == 0)
+            {
+                return this.View("Information");
+            }
+
+            return this.View(bicycles);
         }
 
         public IActionResult Add()
@@ -45,20 +57,7 @@
                 this.bicycleService.AddImageUrls(bicycleId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, bicycleId));
             }
 
-            return this.Redirect(string.Format(DETAILSPATH,bicycleId));
-        }
-
-
-        public IActionResult All(string type)
-        {
-            var bicycles = this.bicycleService.GetAll(type);
-
-            if (bicycles.ToArray().Length == 0)
-            {
-                return this.View("Information");
-            }
-
-            return this.View(bicycles);
+            return this.Redirect(string.Format(ALLPATH, input.Type));
         }
 
         public IActionResult Details(int id)
@@ -68,7 +67,7 @@
             return this.View(bicycle);
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id, string type)
         {
             var bicycle = this.bicycleService.Edit(id);
 
@@ -90,7 +89,7 @@
                 return this.View(model);
             }
 
-            return this.Redirect(ALLPATH);
+            return this.Redirect(string.Format(ALLPATH, type));
         }
 
         [HttpPost]
@@ -113,11 +112,11 @@
             return this.Redirect(string.Format(DETAILSPATH, input.Id));
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, string type)
         {
             this.bicycleService.Delete(id);
 
-            return this.Redirect(ALLPATH);
+            return this.Redirect(string.Format(ALLPATH, type));
         }
     }
 }

@@ -5,10 +5,12 @@
     using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Http;
 
-    public class AddElectricScooterViewModel
+    public class EditElectricScooterViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Това поле е задължително")]
-        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Марката трябва да започва с главна буква.")]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Name should start with upper letter.")]
         public string Made { get; set; }
 
         [Required(ErrorMessage = "Това поле е задължително")]
@@ -18,6 +20,9 @@
         [Required(ErrorMessage = "Това поле е задължително")]
         [Range(1, 1000, ErrorMessage = "Пробега трябва да е положително число")]
         public int Mileage { get; set; }
+
+        [Required(ErrorMessage = "Това поле е задължително")]
+        public bool IsAvailable { get; set; }
 
         [Display(Name = "Цена на час")]
         [Range(1, 1000, ErrorMessage = "Цената трябва да е положително число")]

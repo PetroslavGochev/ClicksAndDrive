@@ -1,16 +1,37 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
+    using System.Linq;
+
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Web.Common;
     using ClicksAndDrive.Web.ViewModels.ElectricScooter;
     using Microsoft.AspNetCore.Mvc;
 
     public class ElectricScooterController : Controller
     {
-        private readonly IElectricScooterService electricScooterService;
+        private const string IMAGE = "ElectricScooters";
+        private const string ALLPATH = "/ElectricScooter/All";
+        private const string DETAILSPATH = "/ElectricScooter/Details/{0}";
 
-        public ElectricScooterController(IElectricScooterService electricScooterService)
+        private readonly IElectricScooterService elecitrcScooterService;
+        private readonly IImageService imageService;
+
+        public ElectricScooterController(IElectricScooterService elecitrcScooterService, IImageService imageService)
         {
-            this.electricScooterService = electricScooterService;
+            this.elecitrcScooterService = elecitrcScooterService;
+            this.imageService = imageService;
+        }
+
+        public IActionResult All()
+        {
+            var electrcicScooter = this.elecitrcScooterService.GetAll();
+
+            if (electrcicScooter.ToArray().Length == 0)
+            {
+                return this.View("Information");
+            }
+
+            return this.View(electrcicScooter);
         }
 
         public IActionResult Add()
@@ -26,21 +47,73 @@
                 return this.View();
             }
 
-            return this.Redirect("/");
-        }
+            var electricScooterId = this.elecitrcScooterService.AddElectricScooter(input);
 
-        public IActionResult All()
-        {
-            var electricScooters = this.electricScooterService.GetAll();
+            if (input.Image != null)
+            {
+                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, electricScooterId));
 
-            return this.View(electricScooters);
+                this.elecitrcScooterService.AddImageUrls(electricScooterId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, electricScooterId));
+            }
+
+            return this.Redirect(ALLPATH);
         }
 
         public IActionResult Details(int id)
         {
-            var electricScooter = this.electricScooterService.Details(id);
+            var electrciScooter = this.elecitrcScooterService.Details(id);
 
-            return this.View(electricScooter);
+            return this.View(electrciScooter);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var electrciScooter = this.elecitrcScooterService.Edit(id);
+
+            if (electrciScooter != null)
+            {
+                var model = new EditElectricScooterViewModel()
+                {
+                    Id = electrciScooter.Id,
+                    Made = electrciScooter.Made,
+                    MaximumSpeed = electrciScooter.MaximumSpeed,
+                    Mileage = electrciScooter.Mileage,
+                    IsAvailable = electrciScooter.IsAvailable,
+                    PriceForHour = electrciScooter.PriceForHour,
+                    Description = electrciScooter.Description,
+                };
+
+                return this.View(model);
+            }
+
+            return this.Redirect(ALLPATH);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditElectricScooterViewModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            if (input.Image != null)
+            {
+                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+
+                this.elecitrcScooterService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+            }
+
+            this.elecitrcScooterService.DoEdit(input);
+
+            return this.Redirect(string.Format(DETAILSPATH, input.Id));
+        }
+
+        public IActionResult Delete(int id)
+        {
+            this.elecitrcScooterService.Delete(id);
+
+            return this.Redirect(ALLPATH);
         }
     }
 }

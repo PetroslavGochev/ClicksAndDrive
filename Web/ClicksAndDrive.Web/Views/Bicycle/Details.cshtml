@@ -1,6 +1,6 @@
 ﻿@model ClicksAndDrive.Data.Models.Bicycle
 @{
-    ViewData["Title"] = "Велосипед: " + Model.Made;
+    ViewData["Title"] = "Велосипед: " + this.Model.Made;
 }
 
 <div class="bicycle mb-3">
@@ -16,5 +16,5 @@
     </div>
     <a asp-action="" asp-route-id="@this.Model.Id" class="btn btn-primary">Наеми</a>
     <a asp-controller="Bicycle" asp-action="Edit" asp-route-id="@this.Model.Id"  class="btn btn-primary">Редактирай</a>
-    <a asp-action="Delete" asp-route-id="@this.Model.Id" onclick="return DeleteItem('велосипед')" class="btn btn-danger">Изтрий</a>
+    <a asp-action="Delete" asp-route-id="@this.Model.Id" asp-route-type="@this.Model.Type" onclick="return DeleteItem('велосипед')" class="btn btn-danger">Изтрий</a>
 </div>

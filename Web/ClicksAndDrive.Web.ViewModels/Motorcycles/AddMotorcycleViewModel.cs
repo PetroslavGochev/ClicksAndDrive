@@ -3,29 +3,34 @@
     using System.ComponentModel.DataAnnotations;
 
     using ClicksAndDrive.Data.Models.Enums;
+    using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Http;
 
     public class AddMotorcycleViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително")]
         public MotorcycleType Type { get; set; }
 
-        [Required]
-        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Name should start with upper letter.")]
+        [Display(Name = "Марка")]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Марката трябва да започва с главна буква.")]
         public string Made { get; set; }
 
-        [Required]
+        [Display(Name = "Скоростна кутия")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         public TransmissionType Transmission { get; set; }
 
-        public bool IsAvailable { get; set; }
-
-        [Required]
+        [Display(Name = "Цена на час")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         public decimal PriceForHour { get; set; }
 
-        [Required]
-        public IFormFile ImageUrl { get; set; }
+        [Display(Name = "Снимка")]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [ImageAttribute]
+        public IFormFile Image { get; set; }
 
-        [MaxLength(250)]
+        [Display(Name = "Описание")]
+        [StringLength(250)]
         public string Description { get; set; }
     }
 }

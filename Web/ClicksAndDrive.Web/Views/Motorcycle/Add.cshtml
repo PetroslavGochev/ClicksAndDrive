@@ -1,9 +1,12 @@
 ﻿@using ClicksAndDrive.Data.Models.Enums
 @using ClicksAndDrive.Web.ViewModels
 @model AddMotorcycleViewModel
-<h1>Add motorcycle!</h1>
+@{
+    ViewData["Title"] = "Добавете нов мотор";
+}
+<h1>Добавете нов мотор</h1>
 
-<form>
+<form method="post" class="col-md-6" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Type"></label>
         <select asp-for="Type" class="form-control"
@@ -27,9 +30,9 @@
         <span asp-validation-for="PriceForHour" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="ImageUrl">ImageUrl*</label>
-        <input asp-for="ImageUrl" class="form-control" />
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        <label asp-for="Image">Image *</label>
+        <input asp-for="Image" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Description"></label>

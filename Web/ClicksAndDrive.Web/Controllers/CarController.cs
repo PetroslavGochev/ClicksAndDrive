@@ -11,7 +11,7 @@
     public class CarController : Controller
     {
         private const string IMAGE = "Cars";
-        private const string ALLPATH = "/Car/All";
+        private const string ALLPATH = "/Car/All?type={0}";
         private const string DETAILSPATH = "/Car/Details/{0}";
 
         private readonly ICarService carService;
@@ -21,6 +21,18 @@
         {
             this.carService = carService;
             this.imageService = imageService;
+        }
+
+        public IActionResult All(string type)
+        {
+            var cars = this.carService.GetAll(type);
+
+            if (cars.ToArray().Length == 0)
+            {
+                return this.View("Information");
+            }
+
+            return this.View(cars);
         }
 
         public IActionResult Add()
@@ -38,17 +50,24 @@
 
             var carId = this.carService.AddCar(input);
 
-            if (input.ImageTest != null)
+            if (input.Image != null)
             {
-                this.imageService.UploadImage(input.ImageTest, string.Format(GlobalConstants.IMAGEPATH, IMAGE, carId));
+                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, carId));
 
                 this.carService.AddImageUrls(carId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, carId));
             }
 
-            return this.Redirect(ALLPATH);
+            return this.Redirect(string.Format(ALLPATH, input.Category));
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Details(int id)
+        {
+            var car = this.carService.Details(id);
+
+            return this.View(car);
+        }
+
+        public IActionResult Edit(int id, string type)
         {
             var car = this.carService.Edit(id);
 
@@ -72,7 +91,7 @@
                 return this.View(model);
             }
 
-            return this.Redirect(ALLPATH);
+            return this.Redirect(string.Format(ALLPATH, type));
         }
 
         [HttpPost]
@@ -95,30 +114,11 @@
             return this.Redirect(string.Format(DETAILSPATH, input.Id));
         }
 
-        public IActionResult All(string type)
-        {
-            var cars = this.carService.GetAll(type);
-
-            if (cars.ToArray().Length == 0)
-            {
-                return this.View("Information");
-            }
-
-            return this.View(cars);
-        }
-
-        public IActionResult Details(int id)
-        {
-            var car = this.carService.Details(id);
-
-            return this.View(car);
-        }
-
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, string type)
         {
             this.carService.Delete(id);
 
-            return this.Redirect(ALLPATH);
+            return this.Redirect(string.Format(ALLPATH, type));
         }
     }
 }

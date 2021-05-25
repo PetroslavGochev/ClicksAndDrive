@@ -9,43 +9,41 @@
 
     public class AddBycicleViewModel
     {
-        [Required(ErrorMessageResourceName = nameof(Resourse_BG_.REQUIRED), ErrorMessageResourceType = typeof(Resourse_BG_))]
-        [Display(Name = nameof(Resourse_BG_.BicycleType), ResourceType = typeof(Resourse_BG_))]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = "Категория")]
         public BicycleType Type { get; set; }
 
-        [Required(ErrorMessageResourceName = nameof(Resourse_BG_.REQUIRED), ErrorMessageResourceType = typeof(Resourse_BG_))]
-        [Display(Name = nameof(Resourse_BG_.Made), ResourceType = typeof(Resourse_BG_))]
-        [RegularExpression("[A-Z][^_]+", ErrorMessageResourceName = nameof(Resourse_BG_.MADE_UPPER_LETTER), ErrorMessageResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Марка")]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Марката трябва да започва с главна буква.")]
         public string Made { get; set; }
 
-        [Required(ErrorMessageResourceName = nameof(Resourse_BG_.REQUIRED), ErrorMessageResourceType = typeof(Resourse_BG_))]
-        [Display(Name = nameof(Resourse_BG_.Speeds), ResourceType = typeof(Resourse_BG_))]
-        [Range(1, 30, ErrorMessageResourceName = nameof(Resourse_BG_.SPEEDS_RANGE), ErrorMessageResourceType = typeof(Resourse_BG_))]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = "Скорости")]
+        [Range(1, 30, ErrorMessage = "Скоростите трябва да са в интервал от (0 - 30)")]
         public byte Speeds { get; set; }
 
-        [Required(ErrorMessageResourceName = nameof(Resourse_BG_.REQUIRED), ErrorMessageResourceType = typeof(Resourse_BG_))]
-        [Display(Name = nameof(Resourse_BG_.BicycleSize), ResourceType = typeof(Resourse_BG_))]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = "Размер на велосипеда")]
         public BicycleSize Size { get; set; }
 
-        [Required(ErrorMessageResourceName = nameof(Resourse_BG_.REQUIRED), ErrorMessageResourceType = typeof(Resourse_BG_))]
-        [Display(Name = nameof(Resourse_BG_.SizeOfTires), ResourceType = typeof(Resourse_BG_))]
-        [Range(10, 30, ErrorMessageResourceName = nameof(Resourse_BG_.SizeOfTires), ErrorMessageResourceType = typeof(Resourse_BG_))]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = "Размер на гумите")]
+        [Range(10, 30, ErrorMessage = "Размерът на гумите трябва да е число в интервала (10 - 30)")]
         public double SizeOfTires { get; set; }
 
-        public bool IsAvailable { get; set; }
-
-        [Required(ErrorMessageResourceName = nameof(Resourse_BG_.REQUIRED), ErrorMessageResourceType = typeof(Resourse_BG_))]
-        [Display(Name = nameof(Resourse_BG_.PriceForHour), ResourceType = typeof(Resourse_BG_))]
-        [Range(0, 100, ErrorMessageResourceName = nameof(Resourse_BG_.PRICE), ErrorMessageResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Цена на час")]
+        [Required(ErrorMessage = "Това поле е задължително")]
+        [Range(1, 1000, ErrorMessage = "Цената трябва да е положително число")]
         public decimal PriceForHour { get; set; }
 
-        [Required(ErrorMessageResourceName = nameof(Resourse_BG_.REQUIRED), ErrorMessageResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Снимка")]
+        [Required(ErrorMessage = "Това поле е задължително")]
         [ImageAttribute]
-        [Display(Name = nameof(Resourse_BG_.Image), ResourceType = typeof(Resourse_BG_))]
         public IFormFile Image { get; set; }
 
-        [Display(Name = nameof(Resourse_BG_.Description), ResourceType = typeof(Resourse_BG_))]
-        [StringLength(250, ErrorMessageResourceName = nameof(Resourse_BG_.DESCRIPTION_LENGHT), ErrorMessageResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Описание")]
+        [StringLength(250)]
         public string Description { get; set; }
     }
 }

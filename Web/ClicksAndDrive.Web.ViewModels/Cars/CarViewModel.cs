@@ -31,7 +31,5 @@
 
         [Display(Name = "Снимка")]
         public string ImageUrl { get; set; }
-
-        public FilterCarViewModel Filters { get; set; }
     }
 }

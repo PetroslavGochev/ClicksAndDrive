@@ -52,12 +52,12 @@
                                 Мотори
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item">Скутери</a>
-                                <a class="dropdown-item">Кросови</a>
+                                <a class="dropdown-item" asp-controller="Motorcycle" asp-action="All" asp-route-type="@MotorcycleType.Scooter">Скутери</a>
+                                <a class="dropdown-item" asp-controller="Motorcycle" asp-action="All" asp-route-type="@MotorcycleType.Cross">Кросови</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Електрически скутери</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ElectricScooter" asp-action="All">Електрически скутери</a>
                         </li>
                     </ul>
                 </div>

@@ -1,7 +1,11 @@
 ﻿@using ClicksAndDrive.Data.Models.Enums
 @using ClicksAndDrive.Web.ViewModels.Bicycles
 @model AddBycicleViewModel
-<h1>Add Bicycle</h1>
+@{
+    ViewData["Title"] = "Добавете нов велосипед";
+}
+
+<h1>Добавете нов велосипед</h1>
 
 <form method="post" class="col-md-6" enctype="multipart/form-data">
     <div class="form-group">
