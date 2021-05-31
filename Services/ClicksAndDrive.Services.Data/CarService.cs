@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Data;
     using ClicksAndDrive.Data.Models;
@@ -44,7 +45,7 @@
                 .ToArray();
         }
 
-        public int AddCar(AddCarViewModel input)
+        public async Task<int> AddCar(AddCarViewModel input)
         {
             var car = new Car()
             {
@@ -60,9 +61,9 @@
                 Description = input.Description,
             };
 
-            this.db.Cars.Add(car);
+            await this.db.Cars.AddAsync(car);
 
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
 
             return car.Id;
         }
@@ -77,7 +78,7 @@
             return this.db.Cars.FirstOrDefault(c => c.Id == id);
         }
 
-        public void DoEdit(EditCarViewModel input)
+        public async Task DoEdit(EditCarViewModel input)
         {
             var car = this.db.Cars.FirstOrDefault(b => b.Id == input.Id);
 
@@ -94,11 +95,11 @@
                 car.PriceForHour = input.PriceForHour;
                 car.Description = input.Description;
 
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var car = this.db.Cars.FirstOrDefault(b => b.Id == id);
 
@@ -108,19 +109,26 @@
 
                 this.db.Cars.Remove(car);
 
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
         }
 
-        public void AddImageUrls(int id, string imageUrls)
+        public async Task AddImageUrls(int id, string imageUrls)
         {
             var car = this.db.Cars.FirstOrDefault(b => b.Id == id);
 
             if (car != null)
             {
                 car.ImageUrl = imageUrls;
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
+        }
+
+        public decimal GetPrice(int id)
+        {
+            var car = this.db.Cars.FirstOrDefault(c => c.Id == id);
+
+            return car.PriceForHour;
         }
     }
 }

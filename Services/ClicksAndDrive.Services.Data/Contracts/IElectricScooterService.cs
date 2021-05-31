@@ -1,6 +1,7 @@
 ﻿namespace ClicksAndDrive.Services.Data.Contracts
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Web.ViewModels.ElectricScooter;
@@ -9,16 +10,18 @@
     {
         IEnumerable<ElectricScooterViewModel> GetAll();
 
-        int AddElectricScooter(AddElectricScooterViewModel input);
+        Task<int> AddElectricScooter(AddElectricScooterViewModel input);
 
         ElectricScooter Details(int id);
 
         ElectricScooter Edit(int id);
 
-        void DoEdit(EditElectricScooterViewModel input);
+        Task DoEdit(EditElectricScooterViewModel input);
 
-        void Delete(int id);
+        Task Delete(int id);
 
-        void AddImageUrls(int id, string imageUrls);
+        Task AddImageUrls(int id, string imageUrls);
+
+        decimal GetPrice(int id);
     }
 }

@@ -44,7 +44,7 @@
             return bicycles;
         }
 
-        public int AddBicycle(AddBycicleViewModel input)
+        public async Task<int> AddBicycle(AddBycicleViewModel input)
         {
             var bicycle = new Bicycle()
             {
@@ -58,9 +58,9 @@
                 Description = input.Description,
             };
 
-            this.db.Bicycles.Add(bicycle);
+            await this.db.Bicycles.AddAsync(bicycle);
 
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
 
             return bicycle.Id;
         }
@@ -75,7 +75,7 @@
             return this.db.Bicycles.FirstOrDefault(b => b.Id == id);
         }
 
-        public void DoEdit(EditBicycleViewModel input)
+        public async Task DoEdit(EditBicycleViewModel input)
         {
             var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == input.Id);
 
@@ -90,33 +90,43 @@
                 bicycle.SizeOfTires = input.SizeOfTires;
                 bicycle.Description = input.Description;
 
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == id);
 
             if (bicycle != null)
             {
-                this.imageService.DeleteImage(bicycle.ImageUrl);
+                if (bicycle.ImageUrl != null)
+                {
+                    this.imageService.DeleteImage(bicycle.ImageUrl);
+                }
 
                 this.db.Bicycles.Remove(bicycle);
 
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
         }
 
-        public void AddImageUrls(int id, string imageUrls)
+        public async Task AddImageUrls(int id, string imageUrls)
         {
             var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == id);
 
             if (bicycle != null)
             {
                 bicycle.ImageUrl = imageUrls;
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
+        }
+
+        public decimal GetPrice(int id)
+        {
+            var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == id);
+
+            return bicycle.PriceForHour;
         }
     }
 }

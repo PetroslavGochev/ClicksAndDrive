@@ -10,16 +10,18 @@
     {
         IEnumerable<BicycleViewModel> GetAll(string type);
 
-        int AddBicycle(AddBycicleViewModel input);
+        Task<int> AddBicycle(AddBycicleViewModel input);
 
         Bicycle Details(int id);
 
         Bicycle Edit(int id);
 
-        void DoEdit(EditBicycleViewModel input);
+        Task DoEdit(EditBicycleViewModel input);
 
-        void Delete(int id);
+        Task Delete(int id);
 
-        void AddImageUrls(int id, string imageUrls);
+        Task AddImageUrls(int id, string imageUrls);
+
+        decimal GetPrice(int id);
     }
 }

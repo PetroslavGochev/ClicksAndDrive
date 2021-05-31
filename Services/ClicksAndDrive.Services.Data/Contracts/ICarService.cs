@@ -1,7 +1,7 @@
 ﻿namespace ClicksAndDrive.Services.Data
 {
     using System.Collections.Generic;
-
+    using System.Threading.Tasks;
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Web.ViewModels.Cars;
 
@@ -9,16 +9,18 @@
     {
         IEnumerable<CarViewModel> GetAll(string type);
 
-        int AddCar(AddCarViewModel input);
+        Task<int> AddCar(AddCarViewModel input);
 
         Car Details(int id);
 
         Car Edit(int id);
 
-        void DoEdit(EditCarViewModel input);
+        Task DoEdit(EditCarViewModel input);
 
-        void Delete(int id);
+        Task Delete(int id);
 
-        void AddImageUrls(int id, string imageUrls);
+        Task AddImageUrls(int id, string imageUrls);
+
+        decimal GetPrice(int id);
     }
 }

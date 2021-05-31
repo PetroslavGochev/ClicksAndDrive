@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Data;
     using ClicksAndDrive.Data.Models;
@@ -46,7 +47,7 @@
             return this.db.Motorcycles.FirstOrDefault(m => m.Id == id);
         }
 
-        public int AddMotorcycle(AddMotorcycleViewModel input)
+        public async Task<int> AddMotorcycle(AddMotorcycleViewModel input)
         {
             var motorcycle = new Motorcycle()
             {
@@ -58,9 +59,9 @@
                 Description = input.Description,
             };
 
-            this.db.Motorcycles.Add(motorcycle);
+            await this.db.Motorcycles.AddAsync(motorcycle);
 
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
 
             return motorcycle.Id;
         }
@@ -70,7 +71,7 @@
             return this.db.Motorcycles.FirstOrDefault(b => b.Id == id);
         }
 
-        public void DoEdit(EditMotorcycleViewModel input)
+        public async Task DoEdit(EditMotorcycleViewModel input)
         {
             var motorcycle = this.db.Motorcycles.FirstOrDefault(b => b.Id == input.Id);
 
@@ -82,11 +83,11 @@
                 motorcycle.IsAvailable = input.IsAvailable;
                 motorcycle.Description = input.Description;
 
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var motorcycle = this.db.Motorcycles.FirstOrDefault(b => b.Id == id);
 
@@ -96,19 +97,26 @@
 
                 this.db.Motorcycles.Remove(motorcycle);
 
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
         }
 
-        public void AddImageUrls(int id, string imageUrls)
+        public async Task AddImageUrls(int id, string imageUrls)
         {
             var motorcycle = this.db.Motorcycles.FirstOrDefault(b => b.Id == id);
 
             if (motorcycle != null)
             {
                 motorcycle.ImageUrl = imageUrls;
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
+        }
+
+        public decimal GetPrice(int id)
+        {
+            var motorcycle = this.db.Motorcycles.FirstOrDefault(m => m.Id == id);
+
+            return motorcycle.PriceForHour;
         }
     }
 }

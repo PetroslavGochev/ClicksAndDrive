@@ -1,6 +1,7 @@
 ﻿namespace ClicksAndDrive.Services.Data.Contracts
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Web.ViewModels;
@@ -10,16 +11,18 @@
     {
         IEnumerable<MotorcycleViewModel> GetAll(string type);
 
-        int AddMotorcycle(AddMotorcycleViewModel input);
+        Task<int> AddMotorcycle(AddMotorcycleViewModel input);
 
         Motorcycle Details(int id);
 
         Motorcycle Edit(int id);
 
-        void DoEdit(EditMotorcycleViewModel input);
+        Task DoEdit(EditMotorcycleViewModel input);
 
-        void Delete(int id);
+        Task Delete(int id);
 
-        void AddImageUrls(int id, string imageUrls);
+        Task AddImageUrls(int id, string imageUrls);
+
+        decimal GetPrice(int id);
     }
 }

@@ -6,7 +6,7 @@
 
     public interface IImageService
     {
-        void UploadImage(IFormFile formImage, string path);
+        Task UploadImage(IFormFile formImage, string path);
 
         void DeleteImage(string imagePath);
     }

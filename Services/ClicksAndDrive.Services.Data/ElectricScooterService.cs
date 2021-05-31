@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Data;
     using ClicksAndDrive.Data.Models;
@@ -34,7 +35,7 @@
                 .ToArray();
         }
 
-        public int AddElectricScooter(AddElectricScooterViewModel input)
+        public async Task<int> AddElectricScooter(AddElectricScooterViewModel input)
         {
             var electricScooter = new ElectricScooter()
             {
@@ -46,9 +47,9 @@
                 Description = input.Description,
             };
 
-            this.db.ElectricScooters.Add(electricScooter);
+            await this.db.ElectricScooters.AddAsync(electricScooter);
 
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
 
             return electricScooter.Id;
         }
@@ -63,7 +64,7 @@
             return this.db.ElectricScooters.FirstOrDefault(b => b.Id == id);
         }
 
-        public void DoEdit(EditElectricScooterViewModel input)
+        public async Task DoEdit(EditElectricScooterViewModel input)
         {
             var electricScooter = this.db.ElectricScooters.FirstOrDefault(b => b.Id == input.Id);
 
@@ -76,11 +77,11 @@
                 electricScooter.IsAvailable = input.IsAvailable;
                 electricScooter.Description = input.Description;
 
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var electricScooter = this.db.ElectricScooters.FirstOrDefault(b => b.Id == id);
 
@@ -90,19 +91,26 @@
 
                 this.db.ElectricScooters.Remove(electricScooter);
 
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
         }
 
-        public void AddImageUrls(int id, string imageUrls)
+        public async Task AddImageUrls(int id, string imageUrls)
         {
             var electrciScooter = this.db.ElectricScooters.FirstOrDefault(b => b.Id == id);
 
             if (electrciScooter != null)
             {
                 electrciScooter.ImageUrl = imageUrls;
-                this.db.SaveChanges();
+                await this.db.SaveChangesAsync();
             }
+        }
+
+        public decimal GetPrice(int id)
+        {
+            var electricScooter = this.db.ElectricScooters.FirstOrDefault(ec => ec.Id == id);
+
+            return electricScooter.PriceForHour;
         }
     }
 }
