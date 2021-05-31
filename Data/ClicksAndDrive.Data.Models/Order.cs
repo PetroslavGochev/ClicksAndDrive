@@ -14,6 +14,8 @@
 
         public int VehicleId { get; set; }
 
+        public string Address { get; set; }
+
         [Required]
         public decimal PriceForHour { get; set; }
 
