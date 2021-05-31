@@ -8,21 +8,20 @@
     <h1 class="display-4">Мотори</h1>
 </div>
 
-        @foreach (var motorcycle in this.Model)
-        {
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="~/@motorcycle.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="@motorcycle.Made">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">@motorcycle.Made</h5>
-                            <p class="card-text">Price For Hour: @motorcycle.PriceForHour.ToString("0.00")€</p>
-                            <a asp-action="Details" asp-route-id="@motorcycle.Id">Детайли</a>
-                        </div>
-                    </div>
+@foreach (var motorcycle in this.Model)
+{
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="~/@motorcycle.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="@motorcycle.Made">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@motorcycle.Made</h5>
+                    <p class="card-text">Price For Hour: @motorcycle.PriceForHour.ToString("0.00")€</p>
+                    <a asp-action="Details" asp-route-id="@motorcycle.Id">Детайли</a>
                 </div>
             </div>
-        }
-<tr />
+        </div>
+    </div>
+}

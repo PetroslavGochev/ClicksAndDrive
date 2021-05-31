@@ -1,6 +1,7 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.Common;
@@ -40,20 +41,20 @@
         }
 
         [HttpPost]
-        public IActionResult Add(AddElectricScooterViewModel input)
+        public async Task<IActionResult> Add(AddElectricScooterViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            var electricScooterId = this.elecitrcScooterService.AddElectricScooter(input);
+            var electricScooterId = await this.elecitrcScooterService.AddElectricScooter(input);
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, electricScooterId));
+                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, electricScooterId));
 
-                this.elecitrcScooterService.AddImageUrls(electricScooterId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, electricScooterId));
+                await this.elecitrcScooterService.AddImageUrls(electricScooterId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, electricScooterId));
             }
 
             return this.Redirect(ALLPATH);
@@ -90,7 +91,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(EditElectricScooterViewModel input)
+        public async Task<IActionResult> Edit(EditElectricScooterViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -99,19 +100,19 @@
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
 
-                this.elecitrcScooterService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+                await this.elecitrcScooterService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
             }
 
-            this.elecitrcScooterService.DoEdit(input);
+            await this.elecitrcScooterService.DoEdit(input);
 
             return this.Redirect(string.Format(DETAILSPATH, input.Id));
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            this.elecitrcScooterService.Delete(id);
+            await this.elecitrcScooterService.Delete(id);
 
             return this.Redirect(ALLPATH);
         }

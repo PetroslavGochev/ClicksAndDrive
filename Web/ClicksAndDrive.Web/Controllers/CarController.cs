@@ -1,6 +1,7 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Services.Data;
     using ClicksAndDrive.Services.Data.Contracts;
@@ -41,20 +42,20 @@
         }
 
         [HttpPost]
-        public IActionResult Add(AddCarViewModel input)
+        public async Task<IActionResult> Add(AddCarViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            var carId = this.carService.AddCar(input);
+            var carId = await this.carService.AddCar(input);
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, carId));
+                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, carId));
 
-                this.carService.AddImageUrls(carId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, carId));
+                await this.carService.AddImageUrls(carId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, carId));
             }
 
             return this.Redirect(string.Format(ALLPATH, input.Category));
@@ -95,7 +96,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(EditCarViewModel input)
+        public async Task<IActionResult> Edit(EditCarViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -104,19 +105,19 @@
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
 
-                this.carService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+                await this.carService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
             }
 
-            this.carService.DoEdit(input);
+            await this.carService.DoEdit(input);
 
             return this.Redirect(string.Format(DETAILSPATH, input.Id));
         }
 
-        public IActionResult Delete(int id, string type)
+        public async Task<IActionResult> Delete(int id, string type)
         {
-            this.carService.Delete(id);
+            await this.carService.Delete(id);
 
             return this.Redirect(string.Format(ALLPATH, type));
         }

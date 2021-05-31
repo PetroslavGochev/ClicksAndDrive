@@ -15,7 +15,10 @@
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
         <div class="col-md-8">
             <div class="card" style="width: 20rem;">
-                <img src="~/@bicycle.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="@bicycle.Made">
+                @if (bicycle.ImageUrl != null)
+                {
+                    <img src="~/@bicycle.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="@bicycle.Made">
+                }
             </div>
             <div class="col-md-6">
                 <div class="card-body">

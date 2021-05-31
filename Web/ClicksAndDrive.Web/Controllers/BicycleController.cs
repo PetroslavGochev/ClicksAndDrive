@@ -1,11 +1,13 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Services.Data;
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.Common;
     using ClicksAndDrive.Web.ViewModels.Bicycles;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class BicycleController : Controller
@@ -41,20 +43,20 @@
         }
 
         [HttpPost]
-        public IActionResult Add(AddBycicleViewModel input)
+        public async Task<IActionResult> Add(AddBycicleViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            var bicycleId = this.bicycleService.AddBicycle(input);
+            var bicycleId = await this.bicycleService.AddBicycle(input);
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, bicycleId));
+                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, bicycleId));
 
-                this.bicycleService.AddImageUrls(bicycleId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, bicycleId));
+                await this.bicycleService.AddImageUrls(bicycleId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, bicycleId));
             }
 
             return this.Redirect(string.Format(ALLPATH, input.Type));
@@ -93,7 +95,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(EditBicycleViewModel input)
+        public async Task<IActionResult> Edit(EditBicycleViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -102,19 +104,19 @@
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+               await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
 
-                this.bicycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+               await this.bicycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
             }
 
-            this.bicycleService.DoEdit(input);
+            await this.bicycleService.DoEdit(input);
 
             return this.Redirect(string.Format(DETAILSPATH, input.Id));
         }
 
-        public IActionResult Delete(int id, string type)
+        public async Task<IActionResult> Delete(int id, string type)
         {
-            this.bicycleService.Delete(id);
+            await this.bicycleService.Delete(id);
 
             return this.Redirect(string.Format(ALLPATH, type));
         }

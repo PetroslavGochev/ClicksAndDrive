@@ -1,6 +1,7 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.Common;
@@ -41,20 +42,20 @@
         }
 
         [HttpPost]
-        public IActionResult Add(AddMotorcycleViewModel input)
+        public async Task<IActionResult> Add(AddMotorcycleViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            var motorcycleId = this.motorcycleService.AddMotorcycle(input);
+            var motorcycleId = await this.motorcycleService.AddMotorcycle(input);
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, motorcycleId));
+                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, motorcycleId));
 
-                this.motorcycleService.AddImageUrls(motorcycleId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, motorcycleId));
+                await this.motorcycleService.AddImageUrls(motorcycleId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, motorcycleId));
             }
 
             return this.Redirect(string.Format(ALLPATH, input.Type));
@@ -90,7 +91,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(EditMotorcycleViewModel input)
+        public async Task<IActionResult> Edit(EditMotorcycleViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -99,21 +100,21 @@
 
             if (input.Image != null)
             {
-                this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
 
-                this.motorcycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
+                await this.motorcycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
             }
 
-            this.motorcycleService.DoEdit(input);
+            await this.motorcycleService.DoEdit(input);
 
             return this.Redirect(string.Format(DETAILSPATH, input.Id));
         }
 
-        public IActionResult Delete(int id, string type)
+        public async Task<IActionResult> Delete(int id, string type)
         {
-            this.motorcycleService.Delete(id);
+            await this.motorcycleService.Delete(id);
 
-            return this.Redirect(string.Format(ALLPATH,type));
+            return this.Redirect(string.Format(ALLPATH, type));
         }
     }
 }
