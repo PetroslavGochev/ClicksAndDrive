@@ -1,9 +1,9 @@
-﻿using System;
-
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace ClicksAndDrive.Data.Migrations
+﻿namespace ClicksAndDrive.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class CreateEntityModelsInDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,7 +14,7 @@ namespace ClicksAndDrive.Data.Migrations
                 type: "nvarchar(10)",
                 maxLength: 10,
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
@@ -25,7 +25,7 @@ namespace ClicksAndDrive.Data.Migrations
                 type: "nvarchar(256)",
                 maxLength: 256,
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(256)",
                 oldMaxLength: 256,
@@ -36,7 +36,7 @@ namespace ClicksAndDrive.Data.Migrations
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: " ");
 
             migrationBuilder.AddColumn<byte>(
                 name: "Age",
@@ -57,14 +57,14 @@ namespace ClicksAndDrive.Data.Migrations
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: " ");
 
             migrationBuilder.AddColumn<string>(
                 name: "LastName",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: " ");
 
             migrationBuilder.CreateTable(
                 name: "Bicycles",
