@@ -8,7 +8,7 @@
 
     public interface IElectricScooterService
     {
-        IEnumerable<ElectricScooterViewModel> GetAll();
+        IEnumerable<ElectricScooterViewModel> GetAll(bool isAdministrator);
 
         Task<int> AddElectricScooter(AddElectricScooterViewModel input);
 

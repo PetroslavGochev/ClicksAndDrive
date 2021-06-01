@@ -8,7 +8,7 @@
 
     public interface IBicycleService
     {
-        IEnumerable<BicycleViewModel> GetAll(string type);
+        IEnumerable<BicycleViewModel> GetAll(string type, bool isAdministrator);
 
         Task<int> AddBicycle(AddBycicleViewModel input);
 

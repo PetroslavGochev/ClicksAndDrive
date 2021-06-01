@@ -48,6 +48,7 @@
                     Address = input.Address,
                     PriceForHour = this.GetVehiclePrice(vehicle, input.VehicleId),
                     DateFrom = input.DateFrom,
+                    Status = StatusType.Wait,
                     IsCompleted = false,
                 };
 

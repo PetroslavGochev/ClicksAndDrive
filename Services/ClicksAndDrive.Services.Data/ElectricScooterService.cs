@@ -20,10 +20,10 @@
             this.imageService = imageService;
         }
 
-        public IEnumerable<ElectricScooterViewModel> GetAll()
+        public IEnumerable<ElectricScooterViewModel> GetAll(bool isAdministrator)
         {
             return this.db.ElectricScooters
-                .Where(ec => ec.IsAvailable)
+                .Where(ec => (!isAdministrator ? ec.IsAvailable : ec.IsAvailable || !ec.IsAvailable))
                 .Select(ec => new ElectricScooterViewModel()
                 {
                     Id = ec.Id,

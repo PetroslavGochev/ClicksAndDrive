@@ -22,13 +22,13 @@
             this.imageService = imageService;
         }
 
-        public IEnumerable<BicycleViewModel> GetAll(string type)
+        public IEnumerable<BicycleViewModel> GetAll(string type, bool isAdministrator)
         {
             BicycleType bicycleType;
             Enum.TryParse<BicycleType>(type, out bicycleType);
 
             var bicycles = this.db.Bicycles
-                .Where(b => b.IsAvailable && b.Type == bicycleType)
+                .Where(b => (!isAdministrator ? b.IsAvailable : b.IsAvailable || !b.IsAvailable) && b.Type == bicycleType)
                 .Select(b => new BicycleViewModel()
                 {
                     Id = b.Id,

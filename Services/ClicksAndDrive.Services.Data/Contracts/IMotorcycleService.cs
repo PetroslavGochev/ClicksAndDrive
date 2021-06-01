@@ -9,7 +9,7 @@
 
     public interface IMotorcycleService
     {
-        IEnumerable<MotorcycleViewModel> GetAll(string type);
+        IEnumerable<MotorcycleViewModel> GetAll(string type, bool isAdministrator);
 
         Task<int> AddMotorcycle(AddMotorcycleViewModel input);
 

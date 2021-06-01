@@ -2,12 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Web.ViewModels.Cars;
 
     public interface ICarService
     {
-        IEnumerable<CarViewModel> GetAll(string type);
+        IEnumerable<CarViewModel> GetAll(string type, bool isAdministrator);
 
         Task<int> AddCar(AddCarViewModel input);
 
