@@ -26,7 +26,9 @@
 
         public IActionResult All(string type)
         {
-            var motorcycles = this.motorcycleService.GetAll(type);
+            var isAdministrator = this.User.IsInRole("Administrator");
+
+            var motorcycles = this.motorcycleService.GetAll(type, isAdministrator);
 
             if (motorcycles.ToArray().Length == 0)
             {
@@ -36,85 +38,11 @@
             return this.View(motorcycles);
         }
 
-        public IActionResult Add()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(AddMotorcycleViewModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
-
-            var motorcycleId = await this.motorcycleService.AddMotorcycle(input);
-
-            if (input.Image != null)
-            {
-                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, motorcycleId));
-
-                await this.motorcycleService.AddImageUrls(motorcycleId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, motorcycleId));
-            }
-
-            return this.Redirect(string.Format(ALLPATH, input.Type));
-        }
-
         public IActionResult Details(int id)
         {
             var motorcycle = this.motorcycleService.Details(id);
 
             return this.View(motorcycle);
-        }
-
-        public IActionResult Edit(int id)
-        {
-            var bicycle = this.motorcycleService.Edit(id);
-
-            if (bicycle != null)
-            {
-                var model = new EditMotorcycleViewModel()
-                {
-                    Id = bicycle.Id,
-                    Type = bicycle.Type,
-                    Made = bicycle.Made,
-                    IsAvailable = bicycle.IsAvailable,
-                    PriceForHour = bicycle.PriceForHour,
-                    Description = bicycle.Description,
-                };
-
-                return this.View(model);
-            }
-
-            return this.Redirect(ALLPATH);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(EditMotorcycleViewModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(input);
-            }
-
-            if (input.Image != null)
-            {
-                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
-
-                await this.motorcycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
-            }
-
-            await this.motorcycleService.DoEdit(input);
-
-            return this.Redirect(string.Format(DETAILSPATH, input.Id));
-        }
-
-        public async Task<IActionResult> Delete(int id, string type)
-        {
-            await this.motorcycleService.Delete(id);
-
-            return this.Redirect(string.Format(ALLPATH, type));
         }
     }
 }

@@ -1,20 +1,11 @@
 ﻿@using ClicksAndDrive.Data.Models.Enums
-@using ClicksAndDrive.Web.ViewModels.Bicycles
-@model EditBicycleViewModel
+@using ClicksAndDrive.Web.ViewModels.ElectricScooter
+@model EditElectricScooterViewModel
 @{
-    ViewData["Title"] = "Редактирайте велосипед: " + Model.Made;
+    ViewData["Title"] = "Редактирайте електрически скутер: " + Model.Made;
 }
 
 <form method="post" enctype="multipart/form-data">
-    <div class="form-group row">
-        <label asp-for="Type" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <select asp-for="Type" class="form-control"
-                    asp-items="@Html.GetEnumSelectList<BicycleType>()">
-            </select>
-            <span asp-validation-for="Type" class="text-danger"></span>
-        </div>
-    </div>
     <div class="form-group row">
         <label asp-for="Made" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-5">
@@ -23,26 +14,17 @@
         </div>
     </div>
     <div class="form-group row">
-        <label asp-for="Speeds" class="col-sm-2 col-form-label"></label>
+        <label asp-for="MaximumSpeed" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-5">
-            <input asp-for="Speeds" class="form-control" placeholder="Speeds" />
-            <span asp-validation-for="Speeds" class="text-danger"></span>
+            <input asp-for="MaximumSpeed" class="form-control" placeholder="MaximumSpeed" />
+            <span asp-validation-for="MaximumSpeed" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group row">
-        <label asp-for="Size" class="col-sm-2 col-form-label"></label>
+        <label asp-for="Mileage" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-5">
-            <select asp-for="Size" class="form-control"
-                    asp-items="@Html.GetEnumSelectList<BicycleSize>()">
-            </select>
-            <span asp-validation-for="Size" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="SizeOfTires" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <input asp-for="SizeOfTires" class="form-control" placeholder="SizeOfTires" />
-            <span asp-validation-for="SizeOfTires" class="text-danger"></span>
+            <input asp-for="Mileage" class="form-control" placeholder="Mileage" />
+            <span asp-validation-for="Mileage" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group row">
@@ -56,7 +38,7 @@
         <label asp-for="IsAvailable" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-5">
             <select class="form-control" asp-for="IsAvailable">
-                <option value="True" >Да</option>
+                <option value="True">Да</option>
                 <option value="False">Не</option>
             </select>
             <span asp-validation-for="IsAvailable" class="text-danger"></span>
@@ -76,6 +58,6 @@
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
     </div>
-    <a asp-action="Details" asp-route-id="@this.Model.Id" class="btn btn-primary">Назад</a>
-    <button type="submit" asp-route-type="@this.Model.Type" onclick="return EditItem()" class="btn btn-primary">Промени</button>
+    <a asp-area="" asp-action="Details" asp-route-id="@this.Model.Id" class="btn btn-primary">Назад</a>
+    <button type="submit" onclick="return EditItem()" class="btn btn-primary">Промени</button>
 </form>

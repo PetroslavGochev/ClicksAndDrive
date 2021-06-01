@@ -27,7 +27,9 @@
 
         public IActionResult All(string type)
         {
-            var bicycles = this.bicycleService.GetAll(type);
+            var isAdministrator = this.User.IsInRole("Administrator");
+
+            var bicycles = this.bicycleService.GetAll(type, isAdministrator);
 
             if (bicycles.ToArray().Length == 0)
             {
@@ -37,31 +39,6 @@
             return this.View(bicycles);
         }
 
-        public IActionResult Add()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(AddBycicleViewModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
-
-            var bicycleId = await this.bicycleService.AddBicycle(input);
-
-            if (input.Image != null)
-            {
-                await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, bicycleId));
-
-                await this.bicycleService.AddImageUrls(bicycleId, string.Format(GlobalConstants.IMAGEPATH, IMAGE, bicycleId));
-            }
-
-            return this.Redirect(string.Format(ALLPATH, input.Type));
-        }
-
         public IActionResult Details(int id)
         {
             var bicycle = this.bicycleService.Details(id);
@@ -69,56 +46,6 @@
             return this.View(bicycle);
         }
 
-        public IActionResult Edit(int id, string type)
-        {
-            var bicycle = this.bicycleService.Edit(id);
-
-            if (bicycle != null)
-            {
-                var model = new EditBicycleViewModel()
-                {
-                    Id = bicycle.Id,
-                    Type = bicycle.Type,
-                    Made = bicycle.Made,
-                    Speeds = bicycle.Speeds,
-                    Size = bicycle.Size,
-                    IsAvailable = bicycle.IsAvailable,
-                    SizeOfTires = bicycle.SizeOfTires,
-                    PriceForHour = bicycle.PriceForHour,
-                    Description = bicycle.Description,
-                };
-
-                return this.View(model);
-            }
-
-            return this.Redirect(string.Format(ALLPATH, type));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(EditBicycleViewModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(input);
-            }
-
-            if (input.Image != null)
-            {
-               await this.imageService.UploadImage(input.Image, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
-
-               await this.bicycleService.AddImageUrls(input.Id, string.Format(GlobalConstants.IMAGEPATH, IMAGE, input.Id));
-            }
-
-            await this.bicycleService.DoEdit(input);
-
-            return this.Redirect(string.Format(DETAILSPATH, input.Id));
-        }
-
-        public async Task<IActionResult> Delete(int id, string type)
-        {
-            await this.bicycleService.Delete(id);
-
-            return this.Redirect(string.Format(ALLPATH, type));
-        }
+       
     }
 }

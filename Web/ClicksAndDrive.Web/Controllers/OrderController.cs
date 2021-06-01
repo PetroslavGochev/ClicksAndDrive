@@ -1,13 +1,16 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Services.Data;
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.ViewModels.Orders;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderService orderService;
