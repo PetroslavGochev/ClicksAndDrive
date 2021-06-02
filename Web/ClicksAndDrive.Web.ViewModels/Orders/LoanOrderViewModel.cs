@@ -17,7 +17,6 @@
 
         public decimal PriceForHour { get; set; }
 
-        [ValidateDateRange]
         public DateTime DateFrom { get; set; }
 
         public string UserId { get; set; }

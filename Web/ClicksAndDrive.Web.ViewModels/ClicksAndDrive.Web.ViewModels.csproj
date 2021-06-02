@@ -25,8 +25,4 @@
     <ProjectReference Include="..\..\Services\ClicksAndDrive.Services.Mapping\ClicksAndDrive.Services.Mapping.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Administration\Orders\" />
-  </ItemGroup>
-
 </Project>
