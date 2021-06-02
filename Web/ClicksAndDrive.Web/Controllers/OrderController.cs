@@ -1,5 +1,6 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using ClicksAndDrive.Data.Models;
@@ -22,14 +23,17 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> LoanVehicle(int vehicleId, string type)
+        public async Task<IActionResult> LoanVehicle(int vehicleId, string type, decimal priceForHour)
         {
+
             var user = await this.userManager.GetUserAsync(this.User);
 
             var loan = new LoanOrderViewModel()
             {
                 VehicleId = vehicleId,
                 VehicleType = type,
+                PriceForHour = priceForHour,
+                DateFrom = DateTime.UtcNow,
                 Address = user.Address,
                 UserId = user.Id,
             };

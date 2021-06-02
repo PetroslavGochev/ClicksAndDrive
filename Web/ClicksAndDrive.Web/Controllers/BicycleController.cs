@@ -45,7 +45,5 @@
 
             return this.View(bicycle);
         }
-
-       
     }
 }
