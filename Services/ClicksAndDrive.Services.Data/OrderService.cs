@@ -46,7 +46,7 @@
                     VehicleType = vehicle,
                     VehicleId = input.VehicleId,
                     Address = input.Address,
-                    PriceForHour = this.GetVehiclePrice(vehicle, input.VehicleId),
+                    PriceForHour = input.PriceForHour,
                     DateFrom = input.DateFrom,
                     Status = StatusType.Wait,
                     IsCompleted = false,
@@ -57,15 +57,5 @@
                 await this.db.SaveChangesAsync();
             }
         }
-
-        private decimal GetVehiclePrice(VehicleType type, int vehicleId) =>
-            type switch
-            {
-                VehicleType.Bicycle => this.bicycleService.GetPrice(vehicleId),
-                VehicleType.Car => this.carService.GetPrice(vehicleId),
-                VehicleType.ElectricScooter => this.electricScooterService.GetPrice(vehicleId),
-                VehicleType.Motorcycle => this.motorcycleService.GetPrice(vehicleId),
-                _ => throw new InvalidOperationException("Invalid operation!"),
-            };
     }
 }
