@@ -1,10 +1,11 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.Cars
 {
     using System.ComponentModel.DataAnnotations;
-
+    using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
+    using ClicksAndDrive.Services.Mapping;
 
-    public class CarViewModel
+    public class CarViewModel : IMapFrom<Car>
     {
         public int Id { get; set; }
 

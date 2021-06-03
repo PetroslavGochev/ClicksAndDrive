@@ -2,11 +2,13 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Http;
 
-    public class AddCarViewModel
+    public class AddCarViewModel : IMapTo<Car>
     {
         [Display(Name = "Марка")]
         [Required(ErrorMessage = "Това поле е задължително")]

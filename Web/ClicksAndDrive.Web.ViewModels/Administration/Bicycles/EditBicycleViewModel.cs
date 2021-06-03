@@ -3,11 +3,13 @@
     using System.ComponentModel.DataAnnotations;
 
     using ClicksAndDrive.Common;
+    using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Http;
 
-    public class EditBicycleViewModel
+    public class EditBicycleViewModel : IMapFrom<Bicycle>, IMapTo<Bicycle>
     {
         public int Id { get; set; }
 

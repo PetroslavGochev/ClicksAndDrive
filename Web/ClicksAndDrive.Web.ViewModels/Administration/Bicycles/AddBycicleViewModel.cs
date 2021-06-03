@@ -3,11 +3,13 @@
     using System.ComponentModel.DataAnnotations;
 
     using ClicksAndDrive.Common;
+    using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Http;
 
-    public class AddBycicleViewModel
+    public class AddBycicleViewModel : IMapTo<Bicycle>
     {
         [Required(ErrorMessage = "Това поле е задължително")]
         [Display(Name = "Категория")]
