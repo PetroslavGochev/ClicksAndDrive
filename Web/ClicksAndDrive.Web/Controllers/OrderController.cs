@@ -25,7 +25,6 @@
 
         public async Task<IActionResult> LoanVehicle(int vehicleId, string type, decimal priceForHour)
         {
-
             var user = await this.userManager.GetUserAsync(this.User);
 
             var loan = new LoanOrderViewModel()

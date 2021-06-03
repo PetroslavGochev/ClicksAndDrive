@@ -28,7 +28,7 @@
         {
             var isAdministrator = this.User.IsInRole("Administrator");
 
-            var cars = this.carService.GetAll(type, isAdministrator);
+            var cars = this.carService.GetAll<CarViewModel>(type, isAdministrator);
 
             if (cars.ToArray().Length == 0)
             {
@@ -40,7 +40,7 @@
 
         public IActionResult Details(int id)
         {
-            var car = this.carService.Details(id);
+            var car = this.carService.EditDetails<DetailsCarViewModel>(id);
 
             return this.View(car);
         }

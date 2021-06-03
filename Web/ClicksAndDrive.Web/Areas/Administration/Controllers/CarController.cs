@@ -39,7 +39,7 @@
                 return this.View();
             }
 
-            var carId = await this.carService.AddCar(input);
+            var carId = await this.carService.AddVehicle<AddCarViewModel>(input);
 
             if (input.Image != null)
             {
@@ -53,7 +53,7 @@
 
         public IActionResult Edit(int id, string type)
         {
-            var car = this.carService.Edit(id);
+            var car = this.carService.EditDetails<EditCarViewModel>(id);
 
             if (car != null)
             {

@@ -29,7 +29,7 @@
         {
             var isAdministrator = this.User.IsInRole("Administrator");
 
-            var bicycles = this.bicycleService.GetAll(type, isAdministrator);
+            var bicycles = this.bicycleService.GetAll<BicycleViewModel>(type, isAdministrator);
 
             if (bicycles.ToArray().Length == 0)
             {
@@ -41,7 +41,7 @@
 
         public IActionResult Details(int id)
         {
-            var bicycle = this.bicycleService.Details(id);
+            var bicycle = this.bicycleService.EditDetails<DetailsBicycleViewModel>(id);
 
             return this.View(bicycle);
         }

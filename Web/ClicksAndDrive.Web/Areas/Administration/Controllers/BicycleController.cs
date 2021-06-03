@@ -39,7 +39,7 @@
                 return this.View();
             }
 
-            var bicycleId = await this.bicycleService.AddBicycle(input);
+            var bicycleId = await this.bicycleService.AddVehicle<AddBycicleViewModel>(input);
 
             if (input.Image != null)
             {
@@ -53,7 +53,7 @@
 
         public IActionResult Edit(int id, string type)
         {
-            var bicycle = this.bicycleService.Edit(id);
+            var bicycle = this.bicycleService.EditDetails<EditBicycleViewModel>(id);
 
             if (bicycle != null)
             {
