@@ -4,24 +4,15 @@
     using System.Threading.Tasks;
 
     using ClicksAndDrive.Data.Models;
+    using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.ViewModels.Cars;
 
-    public interface ICarService
+    public interface ICarService : IVehicleService
     {
-        IEnumerable<CarViewModel> GetAll(string type, bool isAdministrator);
+        Task<int> AddVehicle<T>(T input)
+              where T : AddCarViewModel;
 
-        Task<int> AddCar(AddCarViewModel input);
-
-        Car Details(int id);
-
-        Car Edit(int id);
-
-        Task DoEdit(EditCarViewModel input);
-
-        Task Delete(int id);
-
-        Task AddImageUrls(int id, string imageUrls);
-
-        decimal GetPrice(int id);
+        Task DoEdit<T>(T input)
+            where T : EditCarViewModel;
     }
 }

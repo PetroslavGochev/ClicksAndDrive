@@ -9,6 +9,7 @@
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.Cars;
 
     public class CarService : ICarService
@@ -22,30 +23,19 @@
             this.imageSerivce = imageService;
         }
 
-        public IEnumerable<CarViewModel> GetAll(string type, bool isAdministrator)
+        public async Task AddImageUrls(int id, string imageUrls)
         {
-            CarCategory carCategory;
-            Enum.TryParse<CarCategory>(type, out carCategory);
+            var car = this.db.Cars.FirstOrDefault(b => b.Id == id);
 
-            return this.db.Cars
-                .Where(c => (!isAdministrator ? c.IsAvailable : c.IsAvailable || !c.IsAvailable) && carCategory == c.Category)
-                .Select(c => new CarViewModel()
-                {
-                    Id = c.Id,
-                    Made = c.Made,
-                    Model = c.Model,
-                    Transmission = c.Transmission,
-                    Category = c.Category,
-                    Places = c.Places,
-                    FuelType = c.FuelType,
-                    PriceForHour = c.PriceForHour,
-                    ImageUrl = c.ImageUrl,
-                })
-                .OrderBy(c => c.PriceForHour)
-                .ToArray();
+            if (car != null)
+            {
+                car.ImageUrl = imageUrls;
+                await this.db.SaveChangesAsync();
+            }
         }
 
-        public async Task<int> AddCar(AddCarViewModel input)
+        public async Task<int> AddVehicle<T>(T input)
+            where T : AddCarViewModel
         {
             var car = new Car()
             {
@@ -68,17 +58,22 @@
             return car.Id;
         }
 
-        public Car Details(int id)
+        public async Task Delete(int id)
         {
-            return this.db.Cars.FirstOrDefault(c => c.Id == id);
+            var car = this.db.Cars.FirstOrDefault(b => b.Id == id);
+
+            if (car != null)
+            {
+                this.imageSerivce.DeleteImage(car.ImageUrl);
+
+                this.db.Cars.Remove(car);
+
+                await this.db.SaveChangesAsync();
+            }
         }
 
-        public Car Edit(int id)
-        {
-            return this.db.Cars.FirstOrDefault(c => c.Id == id);
-        }
-
-        public async Task DoEdit(EditCarViewModel input)
+        public async Task DoEdit<T>(T input)
+            where T : EditCarViewModel
         {
             var car = this.db.Cars.FirstOrDefault(b => b.Id == input.Id);
 
@@ -99,36 +94,26 @@
             }
         }
 
-        public async Task Delete(int id)
+        public T EditDetails<T>(int id)
         {
-            var car = this.db.Cars.FirstOrDefault(b => b.Id == id);
-
-            if (car != null)
-            {
-                this.imageSerivce.DeleteImage(car.ImageUrl);
-
-                this.db.Cars.Remove(car);
-
-                await this.db.SaveChangesAsync();
-            }
+            return this.db.Cars
+               .Where(b => b.Id == id)
+               .To<T>()
+               .First();
         }
 
-        public async Task AddImageUrls(int id, string imageUrls)
+        public IEnumerable<T> GetAll<T>(string type, bool isAdministrator)
         {
-            var car = this.db.Cars.FirstOrDefault(b => b.Id == id);
+            CarCategory carCategory;
+            Enum.TryParse<CarCategory>(type, out carCategory);
 
-            if (car != null)
-            {
-                car.ImageUrl = imageUrls;
-                await this.db.SaveChangesAsync();
-            }
-        }
+            var cars = this.db.Cars
+                .Where(c => (!isAdministrator ? c.IsAvailable : c.IsAvailable || !c.IsAvailable) && c.Category == carCategory)
+                .OrderByDescending(b => b.PriceForHour)
+                .To<T>()
+                .ToArray();
 
-        public decimal GetPrice(int id)
-        {
-            var car = this.db.Cars.FirstOrDefault(c => c.Id == id);
-
-            return car.PriceForHour;
+            return cars;
         }
     }
 }

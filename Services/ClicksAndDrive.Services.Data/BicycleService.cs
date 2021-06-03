@@ -9,6 +9,7 @@
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.Bicycles;
 
     public class BicycleService : IBicycleService
@@ -22,29 +23,22 @@
             this.imageService = imageService;
         }
 
-        public IEnumerable<BicycleViewModel> GetAll(string type, bool isAdministrator)
+        public IEnumerable<T> GetAll<T>(string type, bool isAdministrator)
         {
             BicycleType bicycleType;
             Enum.TryParse<BicycleType>(type, out bicycleType);
 
             var bicycles = this.db.Bicycles
                 .Where(b => (!isAdministrator ? b.IsAvailable : b.IsAvailable || !b.IsAvailable) && b.Type == bicycleType)
-                .Select(b => new BicycleViewModel()
-                {
-                    Id = b.Id,
-                    Made = b.Made,
-                    PriceForHour = b.PriceForHour,
-                    ImageUrl = b.ImageUrl,
-                    Type = b.Type,
-                    Size = b.Size,
-                })
-                .OrderBy(b => b.PriceForHour)
+                .OrderByDescending(b => b.PriceForHour)
+                .To<T>()
                 .ToArray();
 
             return bicycles;
         }
 
-        public async Task<int> AddBicycle(AddBycicleViewModel input)
+        public async Task<int> AddVehicle<T>(T input)
+            where T : AddBycicleViewModel
         {
             var bicycle = new Bicycle()
             {
@@ -65,17 +59,16 @@
             return bicycle.Id;
         }
 
-        public Bicycle Details(int id)
+        public T EditDetails<T>(int id)
         {
-            return this.db.Bicycles.FirstOrDefault(b => b.Id == id);
+            return this.db.Bicycles
+               .Where(b => b.Id == id)
+               .To<T>()
+               .First();
         }
 
-        public Bicycle Edit(int id)
-        {
-            return this.db.Bicycles.FirstOrDefault(b => b.Id == id);
-        }
-
-        public async Task DoEdit(EditBicycleViewModel input)
+        public async Task DoEdit<T>(T input)
+            where T : EditBicycleViewModel
         {
             var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == input.Id);
 
@@ -90,6 +83,17 @@
                 bicycle.SizeOfTires = input.SizeOfTires;
                 bicycle.Description = input.Description;
 
+                await this.db.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddImageUrls(int id, string imageUrls)
+        {
+            var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == id);
+
+            if (bicycle != null)
+            {
+                bicycle.ImageUrl = imageUrls;
                 await this.db.SaveChangesAsync();
             }
         }
@@ -109,24 +113,6 @@
 
                 await this.db.SaveChangesAsync();
             }
-        }
-
-        public async Task AddImageUrls(int id, string imageUrls)
-        {
-            var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == id);
-
-            if (bicycle != null)
-            {
-                bicycle.ImageUrl = imageUrls;
-                await this.db.SaveChangesAsync();
-            }
-        }
-
-        public decimal GetPrice(int id)
-        {
-            var bicycle = this.db.Bicycles.FirstOrDefault(b => b.Id == id);
-
-            return bicycle.PriceForHour;
         }
     }
 }
