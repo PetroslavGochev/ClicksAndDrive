@@ -7,6 +7,7 @@
     using ClicksAndDrive.Data;
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.ElectricScooter;
 
     public class ElectricScooterService : IElectricScooterService
@@ -20,22 +21,8 @@
             this.imageService = imageService;
         }
 
-        public IEnumerable<ElectricScooterViewModel> GetAll(bool isAdministrator)
-        {
-            return this.db.ElectricScooters
-                .Where(ec => (!isAdministrator ? ec.IsAvailable : ec.IsAvailable || !ec.IsAvailable))
-                .Select(ec => new ElectricScooterViewModel()
-                {
-                    Id = ec.Id,
-                    Made = ec.Made,
-                    PriceForHour = ec.PriceForHour,
-                    ImageUrl = ec.ImageUrl,
-                })
-                .OrderBy(ec => ec.PriceForHour)
-                .ToArray();
-        }
-
-        public async Task<int> AddElectricScooter(AddElectricScooterViewModel input)
+        public async Task<int> AddVehicle<T>(T input)
+            where T : AddElectricScooterViewModel
         {
             var electricScooter = new ElectricScooter()
             {
@@ -54,19 +41,29 @@
             return electricScooter.Id;
         }
 
-        public ElectricScooter Details(int id)
+        public T EditDetails<T>(int id)
         {
-            return this.db.ElectricScooters.FirstOrDefault(es => es.Id == id);
+            return this.db.ElectricScooters
+              .Where(b => b.Id == id)
+              .To<T>()
+              .First();
         }
 
-        public ElectricScooter Edit(int id)
+        public IEnumerable<T> GetAll<T>(string type, bool isAdministrator)
         {
-            return this.db.ElectricScooters.FirstOrDefault(b => b.Id == id);
+            var electrciScooter = this.db.ElectricScooters
+                .Where(ec => (!isAdministrator ? ec.IsAvailable : ec.IsAvailable || !ec.IsAvailable))
+                .OrderByDescending(ec => ec.PriceForHour)
+                .To<T>()
+                .ToArray();
+
+            return electrciScooter;
         }
 
-        public async Task DoEdit(EditElectricScooterViewModel input)
+        public async Task DoEdit<T>(T input)
+             where T : EditElectricScooterViewModel
         {
-            var electricScooter = this.db.ElectricScooters.FirstOrDefault(b => b.Id == input.Id);
+            var electricScooter = this.db.ElectricScooters.FirstOrDefault(ec => ec.Id == input.Id);
 
             if (electricScooter != null)
             {
@@ -83,7 +80,7 @@
 
         public async Task Delete(int id)
         {
-            var electricScooter = this.db.ElectricScooters.FirstOrDefault(b => b.Id == id);
+            var electricScooter = this.db.ElectricScooters.FirstOrDefault(ec => ec.Id == id);
 
             if (electricScooter != null)
             {
@@ -97,20 +94,13 @@
 
         public async Task AddImageUrls(int id, string imageUrls)
         {
-            var electrciScooter = this.db.ElectricScooters.FirstOrDefault(b => b.Id == id);
+            var electrciScooter = this.db.ElectricScooters.FirstOrDefault(ec => ec.Id == id);
 
             if (electrciScooter != null)
             {
                 electrciScooter.ImageUrl = imageUrls;
                 await this.db.SaveChangesAsync();
             }
-        }
-
-        public decimal GetPrice(int id)
-        {
-            var electricScooter = this.db.ElectricScooters.FirstOrDefault(ec => ec.Id == id);
-
-            return electricScooter.PriceForHour;
         }
     }
 }

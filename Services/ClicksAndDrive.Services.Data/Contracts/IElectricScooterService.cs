@@ -6,22 +6,12 @@
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Web.ViewModels.ElectricScooter;
 
-    public interface IElectricScooterService
+    public interface IElectricScooterService : IVehicleService
     {
-        IEnumerable<ElectricScooterViewModel> GetAll(bool isAdministrator);
+        Task<int> AddVehicle<T>(T input)
+            where T : AddElectricScooterViewModel;
 
-        Task<int> AddElectricScooter(AddElectricScooterViewModel input);
-
-        ElectricScooter Details(int id);
-
-        ElectricScooter Edit(int id);
-
-        Task DoEdit(EditElectricScooterViewModel input);
-
-        Task Delete(int id);
-
-        Task AddImageUrls(int id, string imageUrls);
-
-        decimal GetPrice(int id);
+        Task DoEdit<T>(T input)
+            where T : EditElectricScooterViewModel;
     }
 }

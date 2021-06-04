@@ -7,22 +7,12 @@
     using ClicksAndDrive.Web.ViewModels;
     using ClicksAndDrive.Web.ViewModels.Motorcycles;
 
-    public interface IMotorcycleService
+    public interface IMotorcycleService : IVehicleService
     {
-        IEnumerable<MotorcycleViewModel> GetAll(string type, bool isAdministrator);
+        Task<int> AddVehicle<T>(T input)
+             where T : AddMotorcycleViewModel;
 
-        Task<int> AddMotorcycle(AddMotorcycleViewModel input);
-
-        Motorcycle Details(int id);
-
-        Motorcycle Edit(int id);
-
-        Task DoEdit(EditMotorcycleViewModel input);
-
-        Task Delete(int id);
-
-        Task AddImageUrls(int id, string imageUrls);
-
-        decimal GetPrice(int id);
+        Task DoEdit<T>(T input)
+            where T : EditMotorcycleViewModel;
     }
 }

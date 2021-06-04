@@ -9,6 +9,7 @@
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels;
     using ClicksAndDrive.Web.ViewModels.Motorcycles;
 
@@ -23,31 +24,8 @@
             this.imageService = imageService;
         }
 
-        public IEnumerable<MotorcycleViewModel> GetAll(string type, bool isAdministrator)
-        {
-            MotorcycleType motorcycleType;
-            Enum.TryParse<MotorcycleType>(type, out motorcycleType);
-
-            return this.db.Motorcycles
-                .Where(m => (!isAdministrator ? m.IsAvailable : m.IsAvailable || !m.IsAvailable) && m.Type == motorcycleType)
-                .Select(m => new MotorcycleViewModel()
-                {
-                    Id = m.Id,
-                    Type = m.Type,
-                    Made = m.Made,
-                    PriceForHour = m.PriceForHour,
-                    ImageUrl = m.ImageUrl,
-                })
-                .OrderBy(m => m.PriceForHour)
-                .ToArray();
-        }
-
-        public Motorcycle Details(int id)
-        {
-            return this.db.Motorcycles.FirstOrDefault(m => m.Id == id);
-        }
-
-        public async Task<int> AddMotorcycle(AddMotorcycleViewModel input)
+        public async Task<int> AddVehicle<T>(T input)
+            where T : AddMotorcycleViewModel
         {
             var motorcycle = new Motorcycle()
             {
@@ -66,12 +44,8 @@
             return motorcycle.Id;
         }
 
-        public Motorcycle Edit(int id)
-        {
-            return this.db.Motorcycles.FirstOrDefault(b => b.Id == id);
-        }
-
-        public async Task DoEdit(EditMotorcycleViewModel input)
+        public async Task DoEdit<T>(T input)
+            where T : EditMotorcycleViewModel
         {
             var motorcycle = this.db.Motorcycles.FirstOrDefault(b => b.Id == input.Id);
 
@@ -85,6 +59,28 @@
 
                 await this.db.SaveChangesAsync();
             }
+        }
+
+        public T EditDetails<T>(int id)
+        {
+            return this.db.Motorcycles
+           .Where(b => b.Id == id)
+           .To<T>()
+           .First();
+        }
+
+        public IEnumerable<T> GetAll<T>(string type, bool isAdministrator)
+        {
+            MotorcycleType motorcycleType;
+            Enum.TryParse<MotorcycleType>(type, out motorcycleType);
+
+            var bicycles = this.db.Motorcycles
+                .Where(m => (!isAdministrator ? m.IsAvailable : m.IsAvailable || !m.IsAvailable) && m.Type == motorcycleType)
+                .OrderByDescending(m => m.PriceForHour)
+                .To<T>()
+                .ToArray();
+
+            return bicycles;
         }
 
         public async Task Delete(int id)
@@ -110,13 +106,6 @@
                 motorcycle.ImageUrl = imageUrls;
                 await this.db.SaveChangesAsync();
             }
-        }
-
-        public decimal GetPrice(int id)
-        {
-            var motorcycle = this.db.Motorcycles.FirstOrDefault(m => m.Id == id);
-
-            return motorcycle.PriceForHour;
         }
     }
 }

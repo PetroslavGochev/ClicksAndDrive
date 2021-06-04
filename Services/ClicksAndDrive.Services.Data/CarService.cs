@@ -25,7 +25,7 @@
 
         public async Task AddImageUrls(int id, string imageUrls)
         {
-            var car = this.db.Cars.FirstOrDefault(b => b.Id == id);
+            var car = this.db.Cars.FirstOrDefault(c => c.Id == id);
 
             if (car != null)
             {
@@ -60,7 +60,7 @@
 
         public async Task Delete(int id)
         {
-            var car = this.db.Cars.FirstOrDefault(b => b.Id == id);
+            var car = this.db.Cars.FirstOrDefault(c => c.Id == id);
 
             if (car != null)
             {
@@ -75,7 +75,7 @@
         public async Task DoEdit<T>(T input)
             where T : EditCarViewModel
         {
-            var car = this.db.Cars.FirstOrDefault(b => b.Id == input.Id);
+            var car = this.db.Cars.FirstOrDefault(c => c.Id == input.Id);
 
             if (car != null)
             {
@@ -109,7 +109,7 @@
 
             var cars = this.db.Cars
                 .Where(c => (!isAdministrator ? c.IsAvailable : c.IsAvailable || !c.IsAvailable) && c.Category == carCategory)
-                .OrderByDescending(b => b.PriceForHour)
+                .OrderByDescending(c => c.PriceForHour)
                 .To<T>()
                 .ToArray();
 
