@@ -10,10 +10,10 @@
         public string Made { get; set; }
 
         [Required]
-        public int MaximumSpeed { get; set; }
+        public byte MaximumSpeed { get; set; }
 
         [Required]
-        public int Mileage { get; set; }
+        public byte Mileage { get; set; }
 
         public bool IsAvailable { get; set; }
 
