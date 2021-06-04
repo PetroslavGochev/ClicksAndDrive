@@ -1,11 +1,8 @@
 ﻿namespace ClicksAndDrive.Web.Controllers
 {
     using System.Linq;
-    using System.Threading.Tasks;
 
     using ClicksAndDrive.Services.Data.Contracts;
-    using ClicksAndDrive.Web.Common;
-    using ClicksAndDrive.Web.ViewModels;
     using ClicksAndDrive.Web.ViewModels.Motorcycles;
     using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +25,7 @@
         {
             var isAdministrator = this.User.IsInRole("Administrator");
 
-            var motorcycles = this.motorcycleService.GetAll(type, isAdministrator);
+            var motorcycles = this.motorcycleService.GetAll<MotorcycleViewModel>(type, isAdministrator);
 
             if (motorcycles.ToArray().Length == 0)
             {
@@ -40,7 +37,7 @@
 
         public IActionResult Details(int id)
         {
-            var motorcycle = this.motorcycleService.Details(id);
+            var motorcycle = this.motorcycleService.EditDetails<DetailsMotorcycleViewModel>(id);
 
             return this.View(motorcycle);
         }

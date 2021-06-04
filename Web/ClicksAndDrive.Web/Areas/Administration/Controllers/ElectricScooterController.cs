@@ -38,7 +38,7 @@
                 return this.View();
             }
 
-            var electricScooterId = await this.elecitrcScooterService.AddElectricScooter(input);
+            var electricScooterId = await this.elecitrcScooterService.AddVehicle<AddElectricScooterViewModel>(input);
 
             if (input.Image != null)
             {
@@ -52,7 +52,7 @@
 
         public IActionResult Edit(int id)
         {
-            var electrciScooter = this.elecitrcScooterService.Edit(id);
+            var electrciScooter = this.elecitrcScooterService.EditDetails<EditElectricScooterViewModel>(id);
 
             if (electrciScooter != null)
             {
