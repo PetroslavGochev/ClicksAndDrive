@@ -2,11 +2,13 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Http;
 
-    public class AddMotorcycleViewModel
+    public class AddMotorcycleViewModel : IMapTo<Motorcycle>
     {
         [Required(ErrorMessage = "Това поле е задължително")]
         public MotorcycleType Type { get; set; }

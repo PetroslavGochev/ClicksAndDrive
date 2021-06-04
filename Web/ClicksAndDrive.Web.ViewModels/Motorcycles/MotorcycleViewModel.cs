@@ -1,8 +1,10 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.Motorcycles
 {
+    using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
+    using ClicksAndDrive.Services.Mapping;
 
-    public class MotorcycleViewModel
+    public class MotorcycleViewModel : IMapFrom<Motorcycle>
     {
         public MotorcycleType Type { get; set; }
 

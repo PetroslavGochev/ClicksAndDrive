@@ -2,10 +2,12 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using ClicksAndDrive.Data.Models;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Http;
 
-    public class AddElectricScooterViewModel
+    public class AddElectricScooterViewModel : IMapTo<ElectricScooter>
     {
         [Required(ErrorMessage = "Това поле е задължително")]
         [RegularExpression("[A-Z][^_]+", ErrorMessage = "Марката трябва да започва с главна буква.")]
@@ -13,11 +15,11 @@
 
         [Required(ErrorMessage = "Това поле е задължително")]
         [Range(1, 50, ErrorMessage = "Скоростта трябва да е в интервал от (1 до 50 км/ч)")]
-        public int MaximumSpeed { get; set; }
+        public byte MaximumSpeed { get; set; }
 
         [Required(ErrorMessage = "Това поле е задължително")]
         [Range(1, 1000, ErrorMessage = "Пробега трябва да е положително число")]
-        public int Mileage { get; set; }
+        public byte Mileage { get; set; }
 
         [Display(Name = "Цена на час")]
         [Range(1, 1000, ErrorMessage = "Цената трябва да е положително число")]
