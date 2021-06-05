@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace ClicksAndDrive.Data.Migrations
+﻿namespace ClicksAndDrive.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class ChangeUserValidationAndAddAddressPropertyInOrdersTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -68,7 +68,7 @@ namespace ClicksAndDrive.Data.Migrations
                 type: "nvarchar(10)",
                 maxLength: 10,
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
@@ -78,7 +78,7 @@ namespace ClicksAndDrive.Data.Migrations
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
@@ -88,7 +88,7 @@ namespace ClicksAndDrive.Data.Migrations
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
@@ -99,7 +99,7 @@ namespace ClicksAndDrive.Data.Migrations
                 type: "nvarchar(256)",
                 maxLength: 256,
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(256)",
                 oldMaxLength: 256,
@@ -110,7 +110,7 @@ namespace ClicksAndDrive.Data.Migrations
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);

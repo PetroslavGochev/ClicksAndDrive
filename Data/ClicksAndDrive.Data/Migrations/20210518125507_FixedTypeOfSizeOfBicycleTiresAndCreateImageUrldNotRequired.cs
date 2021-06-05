@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace ClicksAndDrive.Data.Migrations
+﻿namespace ClicksAndDrive.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class FixedTypeOfSizeOfBicycleTiresAndCreateImageUrldNotRequired : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,7 +54,7 @@ namespace ClicksAndDrive.Data.Migrations
                 table: "Motorcycles",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
@@ -64,7 +64,7 @@ namespace ClicksAndDrive.Data.Migrations
                 table: "ElectricScooters",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
@@ -74,7 +74,7 @@ namespace ClicksAndDrive.Data.Migrations
                 table: "Cars",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
@@ -92,7 +92,7 @@ namespace ClicksAndDrive.Data.Migrations
                 table: "Bicycles",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "",
+                defaultValue: " ",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);

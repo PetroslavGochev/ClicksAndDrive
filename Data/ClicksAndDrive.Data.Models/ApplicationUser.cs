@@ -27,8 +27,6 @@ namespace ClicksAndDrive.Data.Models
 
         public byte Age { get; set; }
 
-        public string Address { get; set; }
-
         public byte Discount { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }

@@ -30,7 +30,6 @@
                     Email = "admin@gmail.com",
                     FirstName = "AdminFirstName",
                     LastName = "AdminLastName",
-                    Address = "Admin",
                     PhoneNumber = "0889636769",
                     Age = 30,
                     Discount = 100,

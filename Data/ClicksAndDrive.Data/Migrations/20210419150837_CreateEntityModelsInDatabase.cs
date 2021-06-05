@@ -80,7 +80,7 @@
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
                     PriceForHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                 },
                 constraints: table =>
                 {
@@ -103,7 +103,7 @@
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
                     PriceForHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                 },
                 constraints: table =>
                 {
@@ -122,7 +122,7 @@
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
                     PriceForHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                 },
                 constraints: table =>
                 {
@@ -136,7 +136,7 @@
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -161,7 +161,7 @@
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
                     PriceForHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                 },
                 constraints: table =>
                 {
@@ -181,7 +181,7 @@
                     DateFrom = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateTo = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsCompleted = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                 },
                 constraints: table =>
                 {

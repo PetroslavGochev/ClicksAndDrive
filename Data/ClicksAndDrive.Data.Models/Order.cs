@@ -25,12 +25,9 @@
         [Required]
         public DateTime DateFrom { get; set; }
 
-        [Required]
-        public DateTime DateTo { get; set; }
+        public DateTime? DateTo { get; set; }
 
         public StatusType Status { get; set; }
-
-        public bool IsCompleted { get; set; }
 
         public string UserId { get; set; }
 
