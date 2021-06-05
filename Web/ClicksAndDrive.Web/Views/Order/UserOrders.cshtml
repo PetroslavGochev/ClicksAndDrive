@@ -1,0 +1,32 @@
+﻿@using ClicksAndDrive.Web.ViewModels.Administration.Orders;
+@model IEnumerable<OrdersViewModel>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Поръчка номер</th>
+            <th scope="col">Статус</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int number = 1;
+            @foreach (var item in this.Model)
+            {
+
+                <tr>
+                    <th scope="row">@number</th>
+                    <td>@item.Id</td>
+                    <td>@item.Status.ToString()</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Детайли</a>
+                    </td>
+                </tr>
+                number++;
+            }
+        }
+    </tbody>
+</table>

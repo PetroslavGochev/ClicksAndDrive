@@ -67,6 +67,17 @@
                                     <a class="dropdown-item" asp-area="Administration" asp-controller="Motorcycle" asp-action="Add">Мотор</a>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-bs-toggle text-dark"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Поръчки
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="Orders" asp-route-type="@StatusType.Wait">Изчакващи</a>
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="Orders" asp-route-type="@StatusType.Accepted">Одобрени</a>
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="Orders" asp-route-type="@StatusType.Finished">Завършени</a>
+                                    <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="Orders" asp-route-type="@StatusType.Rejected">Отхвърлени</a>
+                                </div>
+                            </li>
                         }
                     </ul>
                 </div>

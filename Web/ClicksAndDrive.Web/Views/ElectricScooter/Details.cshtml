@@ -1,4 +1,5 @@
 ﻿@using ClicksAndDrive.Web.ViewModels.ElectricScooter
+@using ClicksAndDrive.Data.Models.Enums
 @model DetailsElectrciScooterViewModel
 @{
     ViewData["Title"] = "Ел.Тротинеткa: " + Model.Made;
@@ -13,7 +14,7 @@
         <p class="bicycle-text">Цена на час: @Model.PriceForHour</p>
         <p class="bicycle-text">Описание: @Model.Description</p>
     </div>
-    <a asp-action="" asp-route-id="@this.Model.Id" class="btn btn-primary">Наеми</a>
+    <a asp-controller="Order" asp-action="LoanVehicle" asp-route-vehicleId="@this.Model.Id" asp-route-type="@VehicleType.ElectricScooter" asp-route-priceForHour="@this.Model.PriceForHour" class="btn btn-primary">Наеми</a>
     @if (this.User.IsInRole("Administrator"))
     {
         <a asp-area="Administration" asp-controller="ElectricScooter" asp-action="Edit" asp-route-id="@this.Model.Id" class="btn btn-primary">Редактирай</a>

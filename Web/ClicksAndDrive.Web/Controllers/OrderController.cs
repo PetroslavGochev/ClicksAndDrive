@@ -6,6 +6,7 @@
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Services.Data;
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Web.ViewModels.Administration.Orders;
     using ClicksAndDrive.Web.ViewModels.Orders;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -33,7 +34,6 @@
                 VehicleType = type,
                 PriceForHour = priceForHour,
                 DateFrom = DateTime.UtcNow,
-                Address = user.Address,
                 UserId = user.Id,
             };
 
@@ -45,7 +45,16 @@
         {
             await this.orderService.LoanVehicle(input);
 
-            return this.View();
+            return this.RedirectToAction(nameof(this.UserOrders));
+        }
+
+        public async Task<IActionResult> UserOrders()
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            var orders = this.orderService.UserOrders<OrdersViewModel>(user.Id);
+
+            return this.View(orders);
         }
     }
 }
