@@ -1,6 +1,7 @@
 ﻿namespace ClicksAndDrive.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.Orders;
 
     public class OrderService : IOrderService
@@ -32,6 +34,13 @@
             this.db = db;
         }
 
+        public IEnumerable<T> GetAll<T>(StatusType statusType)
+        {
+            return this.db.Orders.Where(o => o.Status == statusType)
+                .To<T>()
+                .ToArray();
+        }
+
         public async Task LoanVehicle(LoanOrderViewModel input)
         {
             var user = this.db.Users.FirstOrDefault(u => u.Id == input.UserId);
@@ -49,13 +58,20 @@
                     PriceForHour = input.PriceForHour,
                     DateFrom = input.DateFrom,
                     Status = StatusType.Wait,
-                    IsCompleted = false,
                 };
 
                 user.Orders.Add(orders);
 
                 await this.db.SaveChangesAsync();
             }
+        }
+
+        public IEnumerable<T> UserOrders<T>(string id)
+        {
+            return this.db.Orders.Where(u => u.UserId == id)
+                 .OrderByDescending(u => u.DateFrom)
+                 .To<T>()
+                 .ToArray();
         }
     }
 }
