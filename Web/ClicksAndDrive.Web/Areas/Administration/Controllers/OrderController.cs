@@ -1,5 +1,7 @@
 ﻿namespace ClicksAndDrive.Web.Areas.Administration.Controllers
 {
+    using System.Threading.Tasks;
+
     using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.ViewModels.Administration.Orders;
@@ -19,6 +21,13 @@
             var orders = this.orderService.GetAll<OrdersViewModel>(type);
 
             return this.View(orders);
+        }
+
+        public async Task<IActionResult> LoanEdit(int id, StatusType status)
+        {
+            await this.orderService.EditLoan(id, status);
+
+            return this.Redirect($"/Order/DetailOrders/{id}");
         }
     }
 }

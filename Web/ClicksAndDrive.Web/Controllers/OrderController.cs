@@ -24,17 +24,18 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> LoanVehicle(int vehicleId, string type, decimal priceForHour)
+        public async Task<IActionResult> LoanVehicle(VehicleDataViewModel input)
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
             var loan = new LoanOrderViewModel()
             {
-                VehicleId = vehicleId,
-                VehicleType = type,
-                PriceForHour = priceForHour,
+                VehicleId = input.VehicleId,
+                VehicleType = input.Type.ToString(),
+                PriceForHour = input.PriceForHour,
                 DateFrom = DateTime.UtcNow,
                 UserId = user.Id,
+                ImageUrl = input.ImageUrl,
             };
 
             return this.View(loan);
@@ -55,6 +56,13 @@
             var orders = this.orderService.UserOrders<OrdersViewModel>(user.Id);
 
             return this.View(orders);
+        }
+
+        public IActionResult DetailOrders(int id)
+        {
+            var detailOrder = this.orderService.Details<DetailsOrderViewModel>(id);
+            ;
+            return this.View(detailOrder);
         }
     }
 }

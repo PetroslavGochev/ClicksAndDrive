@@ -4,9 +4,8 @@
 @{
     ViewData["Title"] = "Ел.Тротинеткa: " + Model.Made;
 }
-
 <div class="bicycle mb-3">
-    <img src="" class="bicycle-img-top" alt="">
+    <img src="@this.Model.ImageUrl" class="bicycle-img-top" alt="">
     <div class="bicycle-body">
         <h5 class="bicycle-title text-center">@Model.Made</h5>
         <p class="bicycle-text">Пробег: @Model.Mileage км</p>
@@ -14,7 +13,11 @@
         <p class="bicycle-text">Цена на час: @Model.PriceForHour</p>
         <p class="bicycle-text">Описание: @Model.Description</p>
     </div>
-    <a asp-controller="Order" asp-action="LoanVehicle" asp-route-vehicleId="@this.Model.Id" asp-route-type="@VehicleType.ElectricScooter" asp-route-priceForHour="@this.Model.PriceForHour" class="btn btn-primary">Наеми</a>
+    <a asp-controller="Order" asp-action="LoanVehicle" 
+       asp-route-vehicleId="@this.Model.Id" 
+       asp-route-type="@VehicleType.ElectricScooter" 
+       asp-route-imageUrl="@this.Model.ImageUrl"
+       asp-route-priceForHour="@this.Model.PriceForHour" class="btn btn-primary">Наеми</a>
     @if (this.User.IsInRole("Administrator"))
     {
         <a asp-area="Administration" asp-controller="ElectricScooter" asp-action="Edit" asp-route-id="@this.Model.Id" class="btn btn-primary">Редактирай</a>

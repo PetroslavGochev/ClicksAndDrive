@@ -1,0 +1,45 @@
+﻿@using ClicksAndDrive.Web.ViewModels.Orders
+@using ClicksAndDrive.Data.Models.Enums
+@model DetailsOrderViewModel
+@{
+    ViewData["Title"] = "Поръчка номер: " + this.Model.Id;
+}
+<div class="bicycle mb-3">
+    @if (this.Model.ImageUrl != null)
+    {
+        <img src="~/@Model.ImageUrl.Replace("wwwroot/","")" class="bicycle-img-top" alt="">
+    }
+
+    <div class="bicycle-body">
+        <p class="bicycle-text">Поръчка номер: @this.Model.Id</p>
+        <p class="bicycle-text">Статус: @this.Model.Status</p>
+        <p class="bicycle-text">Цена на час: @this.Model.PriceForHour</p>
+        @if (this.Model.Discount != 0)
+        {
+            <p class="bicycle-text">Отстъпка: @this.Model.Discount %</p>
+        }
+        <p class="bicycle-text">От: @this.Model.DateFrom</p>
+        @if (this.Model.Status == StatusType.Finished)
+        {
+            <p class="bicycle-text">До: @this.Model.DateTo</p>
+            <p class="bicycle-text">ДЪлжима сума: @this.Model.TotalSum</p>
+        }
+        @if (this.User.IsInRole("Administrator"))
+        {
+            <p class="bicycle-text">Потребител: @this.Model.Email</p>
+            <p class="bicycle-text">Телефон: @this.Model.PhoneNumber</p>
+        }
+    </div>
+    @if (this.User.IsInRole("Administrator"))
+    {
+        if (this.Model.Status == StatusType.Wait)
+        {
+            <a asp-area="Administration" asp-controller="Order" asp-action="LoanEdit" asp-route-id="@this.Model.Id" asp-route-status="@StatusType.Accepted" class="btn btn-success">Одобри</a>
+            <a asp-area="Administration" asp-controller="Order" asp-action="LoanEdit" asp-route-id="@this.Model.Id" asp-route-status="@StatusType.Rejected" class="btn btn-danger">Отхвърли</a>
+        }
+        else if (this.Model.Status == StatusType.Accepted)
+        {
+            <a asp-area="Administration" asp-controller="Order" asp-action="LoanEdit" asp-route-id="@this.Model.Id" asp-route-status="@StatusType.Finished" class="btn btn-primary">Приключи</a>
+        }
+    }
+</div>

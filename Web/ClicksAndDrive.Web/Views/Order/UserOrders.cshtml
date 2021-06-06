@@ -7,6 +7,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Поръчка номер</th>
+            <th scope="col">Дата</th>
             <th scope="col">Статус</th>
             <th scope="col"></th>
         </tr>
@@ -22,7 +23,7 @@
                     <td>@item.Id</td>
                     <td>@item.Status.ToString()</td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">Детайли</a>
+                        <a asp-action="DetailOrders" asp-route-id="@item.Id">Детайли</a>
                     </td>
                 </tr>
                 number++;
