@@ -14,5 +14,9 @@
         IEnumerable<T> GetAll<T>(StatusType statusType);
 
         IEnumerable<T> UserOrders<T>(string id);
+
+        T Details<T>(int id);
+
+        Task EditLoan(int id, StatusType status);
     }
 }
