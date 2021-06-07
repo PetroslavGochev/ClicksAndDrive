@@ -43,10 +43,6 @@
                  .ForMember(x => x.PhoneNumber, opt =>
               {
                   opt.MapFrom(x => x.User.PhoneNumber);
-              })
-             .ForMember(x => x.Discount, opt =>
-              {
-                  opt.MapFrom(x => x.User.Discount);
               });
         }
     }

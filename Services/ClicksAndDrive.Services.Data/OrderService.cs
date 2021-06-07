@@ -14,8 +14,6 @@
 
     public class OrderService : IOrderService
     {
-        private const int DISCOUNT = 100;
-
         private readonly IBicycleService bicycleService;
         private readonly ICarService carService;
         private readonly IElectricScooterService electricScooterService;
@@ -64,15 +62,12 @@
 
                     order.TotalSum = order.PriceForHour * (decimal)hours;
 
-                    var user = this.GetUserCurrentUser(order.UserId);
-
                     if (this.GetUserCurrentUser(order.UserId).Discount != 0)
                     {
-                        order.TotalSum -= order.TotalSum * order.User.Discount / DISCOUNT;
+                        order.TotalSum -= order.TotalSum * order.User.Discount;
                     }
 
                     await this.ChangeVehicleAvailable(order.VehicleId, order.VehicleType);
-                    await this.UpdateUserDiscount(user);
                 }
                 else if (status == StatusType.Accepted)
                 {
@@ -86,7 +81,6 @@
         public IEnumerable<T> GetAll<T>(StatusType statusType)
         {
             return this.db.Orders.Where(o => o.Status == statusType)
-                .OrderByDescending(u => u.DateFrom)
                 .To<T>()
                 .ToArray();
         }
@@ -163,17 +157,6 @@
             return this.db.Users
                                 .Where(x => x.Id == id)
                                 .FirstOrDefault();
-        }
-
-        private async Task UpdateUserDiscount(ApplicationUser user)
-        {
-            var discountCount = this.db.Orders.Where(x => x.UserId == user.Id).ToList().Count;
-            if (user.Discount < 50 && discountCount % 5 == 0)
-            {
-                user.Discount = (byte)user.Orders.Count;
-
-                await this.db.SaveChangesAsync();
-            }
         }
     }
 }

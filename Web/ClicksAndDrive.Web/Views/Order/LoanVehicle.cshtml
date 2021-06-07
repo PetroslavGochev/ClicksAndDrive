@@ -8,13 +8,13 @@
 
 <form method="post" class="col-md-6" enctype="multipart/form-data">
     <div class="form-group">
-        <label asp-for="DateFrom" class="label">Pick-up date</label>
-        <input asp-for="DateFrom" type="datetime-local" class="form-control" id="book_pick_date" placeholder="Date">
+        <label asp-for="DateFrom" class="control-label">Дата и час</label>
+        <input asp-for="DateFrom" class="form-control" placeholder="" />
         <span asp-validation-for="DateFrom" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Address"></label>
-        <input asp-for="Address" class="form-control" />
+        <input asp-for="Address" class="form-control" placeholder="Address" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <input asp-for="UserId" class="form-control" placeholder="@this.Model.UserId" type="hidden" />
