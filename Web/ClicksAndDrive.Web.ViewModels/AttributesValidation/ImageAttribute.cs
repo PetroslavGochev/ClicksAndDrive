@@ -1,6 +1,8 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.AttributesValidation
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     using ClicksAndDrive.Common;
     using Microsoft.AspNetCore.Http;
@@ -14,32 +16,39 @@
                 return true;
             }
 
-            IFormFile images = (IFormFile)value;
+            var images = value as IEnumerable<IFormFile>;
 
-            if (images.FileName.EndsWith(".jpg"))
+            foreach (var image in images)
             {
-                return true;
-            }
-            else if (images.FileName.EndsWith(".jpeg"))
-            {
-                return true;
-            }
-            else if (images.FileName.EndsWith(".png"))
-            {
-                return true;
-            }
-            else if (images.FileName.EndsWith(".gif"))
-            {
-                return true;
-            }
-            else if (images.Length > 10 * 1024 * 1024)
-            {
-                this.ErrorMessage = Resourse_BG_.IMAGE_LARGE_FILE;
-                return false;
+                if (image.Length > 10 * 1024 * 1024)
+                {
+                    this.ErrorMessage = Resourse_BG_.IMAGE_LARGE_FILE;
+                    return false;
+                }
+                else if (image.FileName.EndsWith(".jpg"))
+                {
+                    continue;
+                }
+                else if (image.FileName.EndsWith(".jpeg"))
+                {
+                    continue;
+                }
+                else if (image.FileName.EndsWith(".png"))
+                {
+                    continue;
+                }
+                else if (image.FileName.EndsWith(".gif"))
+                {
+                    continue;
+                }
+                else
+                {
+                    this.ErrorMessage = Resourse_BG_.IMAGE_WRONG_FILE_NAME;
+                    return false;
+                }
             }
 
-            this.ErrorMessage = Resourse_BG_.IMAGE_WRONG_FILE_NAME;
-            return false;
+            return true;
         }
     }
 }

@@ -5,14 +5,20 @@
     using System.ComponentModel.DataAnnotations;
     using System.Text;
 
-    public class ValidateDateRange : RangeAttribute
+    public class ValidateDateRange : ValidationAttribute
     {
-        public ValidateDateRange()
-          : base(
-                  typeof(DateTime),
-                  DateTime.Now.ToShortDateString(),
-                  DateTime.Now.AddMonths(5).ToShortDateString())
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            DateTime dateTime = DateTime.Parse(value.ToString());
+            DateTime dateTimeNow = DateTime.Now;
+
+            if (dateTime < dateTimeNow)
+            {
+                var result = new ValidationResult("Please choose the correct date");
+                return result;
+            }
+
+            return null;
         }
     }
 }
