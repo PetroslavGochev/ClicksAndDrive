@@ -15,6 +15,9 @@
     public class OrderService : IOrderService
     {
         private const int DISCOUNT = 100;
+        private const int MAXIMUMDISCOUNT = 50;
+        private const int MULTIPLY = 5;
+        private const int NULL = 0;
 
         private readonly IBicycleService bicycleService;
         private readonly ICarService carService;
@@ -66,7 +69,7 @@
 
                     var user = this.GetUserCurrentUser(order.UserId);
 
-                    if (this.GetUserCurrentUser(order.UserId).Discount != 0)
+                    if (this.GetUserCurrentUser(order.UserId).Discount != NULL)
                     {
                         order.TotalSum -= order.TotalSum * order.User.Discount / DISCOUNT;
                     }
@@ -168,7 +171,8 @@
         private async Task UpdateUserDiscount(ApplicationUser user)
         {
             var discountCount = this.db.Orders.Where(x => x.UserId == user.Id).ToList().Count;
-            if (user.Discount < 50 && discountCount % 5 == 0)
+
+            if (user.Discount < MAXIMUMDISCOUNT && discountCount % MULTIPLY == NULL)
             {
                 user.Discount = (byte)user.Orders.Count;
 
