@@ -8,7 +8,9 @@
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
+    using ClicksAndDrive.Common;
     using ClicksAndDrive.Data.Models;
+    using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.ViewModels.AttributesValidation;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
@@ -27,17 +29,20 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
+        private readonly IImageService imageService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IImageService imageService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.logger = logger;
             this.emailSender = emailSender;
+            this.imageService = imageService;
         }
 
         [BindProperty]
@@ -77,7 +82,6 @@
             public string PhoneNumber { get; set; }
 
             [Required]
-            [Display(Name = "Id card picture")]
             [ImageAttribute]
             public IEnumerable<IFormFile> Images { get; set; }
         }
@@ -94,8 +98,22 @@
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = this.Input.Email, Email = this.Input.Email };
+                var age = YearCalculator.CalculateYear(this.Input.DateOfBirth);
+                var user = new ApplicationUser
+                {
+                    UserName = this.Input.Email,
+                    Email = this.Input.Email,
+                    PhoneNumber = this.Input.PhoneNumber,
+                    Age = age,
+                };
+
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
+
+                if (this.Input.Images.Any())
+                {
+                   await this.imageService.UploadImages(this.Input.Images.ToList(), this.Input.Images.Count(), user.Id);
+                }
+
                 if (result.Succeeded)
                 {
                     this.logger.LogInformation("User created a new account with password.");
