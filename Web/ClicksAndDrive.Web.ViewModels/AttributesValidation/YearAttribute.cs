@@ -5,6 +5,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.Text;
 
+    using ClicksAndDrive.Common;
+
     public class YearAttribute : ValidationAttribute
     {
         private const int MINYEAR = 14;
@@ -12,12 +14,8 @@
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             DateTime birthdayy = DateTime.Parse(value.ToString());
-            DateTime today = DateTime.Today;
-            int age = today.Year - birthdayy.Year;
-            if (birthdayy > today.AddYears(-age))
-            {
-                age--;
-            }
+
+            int age = YearCalculator.CalculateYear(birthdayy);
 
             if (age < MINYEAR)
             {

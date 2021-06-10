@@ -11,6 +11,8 @@
 
     public class ImageService : IImageService
     {
+        public const string IMAGEPATH = "wwwroot/images/CardId/{0}.jpg";
+
         private readonly ApplicationDbContext db;
 
         public ImageService(ApplicationDbContext db)
@@ -42,7 +44,7 @@
             {
                 var urlName = $"Id{id}_{count + i}";
 
-                var imagePath = string.Format("wwwroot/CardId/{0}.jpg", urlName);
+                var imagePath = string.Format(IMAGEPATH, urlName);
 
                 await this.UploadImage(formImages[i], imagePath);
 
@@ -51,6 +53,8 @@
                     ImageUrl = imagePath,
                     UserId = id,
                 };
+
+                this.db.Images.Add(image);
 
                 await this.db.SaveChangesAsync();
             }
