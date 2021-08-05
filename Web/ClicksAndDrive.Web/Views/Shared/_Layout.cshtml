@@ -8,9 +8,34 @@
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico"> 
 </head>
 <body>
+    <div style="background-color: black; width: 100%; height: 30px;">
+        <div style="display: flex; justify-content:space-between">
+            <div style="display: flex; margin-left: 30px; margin-top: 4px;">
+                <div style="color: white; border-right: 1px solid white; padding-right: 15px;  height: 22px;">
+                    <i class="fas fa-phone-square-alt" style="color: white"></i>
+                    <span>0888888821</span>
+                </div>
+
+                <div style="color: white; border-right: 1px solid white; padding-right: 15px;  height: 22px;  margin-left: 15px;">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Stara planina 9</span>
+                </div>
+
+                <div style="color: white; margin-left: 15px;">
+                    <i class="far fa-clock"></i>
+                    <span>From 9AM to 6PM</span>
+                </div>
+            </div>
+
+            <div style="display: flex; margin-right: 30px; margin-top: 5px;">
+                <a href="https://www.facebook.com/petroslav.gochev" target="_blank"><i class="fab fa-facebook" style="color: white; margin-right: 10px;"></i></a>
+                <a href="https://www.facebook.com/petroslav.gochev" target="_blank"><i class="fab fa-instagram" style="color: white"></i></a>
+            </div>
+        </div>
+    </div>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -23,10 +48,10 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-target="#bikes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Велосипеди
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div id="bikes-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-area="" asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Mountain">Планински</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Road">Шосейни</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Bicycle" asp-action="All" asp-route-type="@BicycleType.Trekking">Градски</a>
@@ -34,19 +59,19 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-target="#cars-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Автомобили
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div id="cars-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-area="" asp-controller="Car" asp-action="All" asp-route-type="@CarCategory.Sedan">Седан</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Car" asp-action="All" asp-route-type="@CarCategory.Van">Ван</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" data-target="#motorcycles-dropdown" aria-haspopup="true" aria-expanded="false">
                                 Мотори
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div id="motorcycles-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-area="" asp-controller="Motorcycle" asp-action="All" asp-route-type="@MotorcycleType.Scooter">Скутери</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Motorcycle" asp-action="All" asp-route-type="@MotorcycleType.Cross">Кросови</a>
                             </div>
@@ -68,7 +93,7 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-bs-toggle text-dark"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-bs-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Поръчки
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -99,6 +124,7 @@
         </div>
     </footer>
 
+    <script src="https://kit.fontawesome.com/5fab55b25e.js" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
