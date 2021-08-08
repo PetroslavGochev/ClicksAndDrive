@@ -8,22 +8,15 @@
     <h1 class="display-4">Електрически тротинетки</h1>
 </div>
 
- 
-        @foreach (var scooter in this.Model)
-        {
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="~/@scooter.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">@scooter.Made</h5>
-                            <p class="card-text">Price For Hour: @scooter.PriceForHour.ToString("0.00")€</p>
-                            <a asp-action="Details" asp-route-id="@scooter.Id">Детайли</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-<tr />
+@foreach (var scooter in this.Model)
+{
+<div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px">
+    <img src="~/@scooter.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="...">
+
+    <div class="card-body">
+        <h5 class="card-title">@scooter.Made</h5>
+        <p class="card-text">Price For Hour: @scooter.PriceForHour.ToString("0.00")€</p>
+        <a asp-action="Details" asp-route-id="@scooter.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
+    </div>
+</div>
+}

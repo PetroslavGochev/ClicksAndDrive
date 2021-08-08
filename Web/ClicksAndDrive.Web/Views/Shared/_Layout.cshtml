@@ -118,9 +118,42 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <footer class="border-top custom-footer" style="background-color: black;">
+        <div class="footer-col">
+            <div style="display:flex;">
+                <div style="margin-right: 2rem;">
+                    <p class="footer-paragraphs"><i class="fas fa-map-marker-alt"></i> Адрес: Ул. Атанас Томов 6</p>
+
+                    <p class="footer-paragraphs"><i class="fas fa-phone-square-alt" style="color: white"></i> Телефон: 0700 16 225</p>
+
+                    <div style="display: flex; flex-direction: column;">
+                        <a class="footer-links" href="mailto:lightning@abv.bg"><i class="far fa-envelope"></i> support@lightning.bg</a>
+
+                        <a class="footer-links" href="https://www.facebook.com/petroslav.gochev" target="_blank">
+                            <i class="fab fa-facebook" style="color: white; margin-top: 1rem;"></i> Facebook
+                        </a>
+
+                        <a class="footer-links" href="https://www.facebook.com/petroslav.gochev" target="_blank">
+                            <i class="fab fa-instagram" style="color: white; margin-right:2px; margin-top: 1rem;"></i> Instagram
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <p class="footer-paragraphs"> <i class="far fa-clock"></i> Работно време:</p>
+                    <p class="footer-paragraphs">Пон-Петък: 9:30 до 18:30</p>
+                    <p class="footer-paragraphs">Събота: 8:30 до 13:00</p>
+                    <p class="footer-paragraphs">Неделя: Почивен ден</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-col">
+            <div style="display:grid;">
+                <a class="footer-links" asp-area="" asp-controller="Home" asp-action="Privacy">Условия за ползване</a>
+                <a class="footer-links" asp-area="" asp-controller="Home" asp-action="AboutUs">За нас</a>
+            </div>
+
+            <p class="footer-paragraphs">&copy; 2020 - Lightning</p>
         </div>
     </footer>
 

@@ -4,23 +4,58 @@
 @{
     ViewData["Title"] = "Ел.Тротинеткa: " + Model.Made;
 }
-<div class="bicycle mb-3">
-    <img src="@this.Model.ImageUrl" class="bicycle-img-top" alt="">
-    <div class="bicycle-body">
-        <h5 class="bicycle-title text-center">@Model.Made</h5>
-        <p class="bicycle-text">Пробег: @Model.Mileage км</p>
-        <p class="bicycle-text">Максимална мощност: @Model.MaximumSpeed км/ч</p>
-        <p class="bicycle-text">Цена на час: @Model.PriceForHour</p>
-        <p class="bicycle-text">Описание: @Model.Description</p>
+
+<div style="margin-left: 30px; margin-right: 30px; margin-top: 30px; display: flex;">
+    <div>
+        @if (Model.ImageUrl != null)
+        {
+            <img src="~/@Model.ImageUrl.Replace("wwwroot/","")" class="details-card-img" alt="">
+        }
     </div>
-    <a asp-controller="Order" asp-action="LoanVehicle" 
-       asp-route-vehicleId="@this.Model.Id" 
-       asp-route-type="@VehicleType.ElectricScooter" 
-       asp-route-imageUrl="@this.Model.ImageUrl"
-       asp-route-priceForHour="@this.Model.PriceForHour" class="btn btn-primary">Наеми</a>
-    @if (this.User.IsInRole("Administrator"))
-    {
-        <a asp-area="Administration" asp-controller="ElectricScooter" asp-action="Edit" asp-route-id="@this.Model.Id" class="btn btn-primary">Редактирай</a>
-        <a asp-area="Administration" asp-action="Delete" asp-route-id="@this.Model.Id" onclick="return DeleteItem('електрически скутер')" class="btn btn-danger">Изтрий</a>
-    }
+
+    <div style="margin-left: 100px; margin-top: 80px; margin-bottom: 150px;">
+        <div class="bicycle-body">
+            <h3 class="bicycle-title">@Model.Made</h3>
+
+            <div style="display: flex;">
+                <h4><i class="fas fa-digital-tachograph"></i> Пробег:</h4>
+
+                <h5 style="margin-left: 10px; margin-top: 3.5px;"> @Model.Mileage км</h5>
+            </div>
+
+            <div style="display: flex;">
+                <h4><i class="fas fa-tachometer-alt" style="margin-right: 3px;"></i> Максимална мощност:</h4>
+
+                <h5 style="margin-left: 10px; margin-top: 3.5px;"> @Model.MaximumSpeed км/ч</h5>
+            </div>
+
+            <div style="display: flex;">
+                <h4><i class="fas fa-tag" style="margin-right: 7px;"></i> Цена на час:</h4>
+
+                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.PriceForHour</h5>
+            </div>
+
+            <div style="display: flex;">
+                <h4><i class="far fa-list-alt" style="margin-right: 7px;"></i> Описание:</h4>
+
+                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Description</h5>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+
+            <a asp-controller="Order" asp-action="LoanVehicle"
+               asp-route-vehicleId="@this.Model.Id"
+               asp-route-type="@VehicleType.ElectricScooter"
+               asp-route-imageUrl="@this.Model.ImageUrl"
+               asp-route-priceForHour="@this.Model.PriceForHour"class="btn" style="background-color: #ED1C24; color: white;">Наеми</a>
+           
+            @if (this.User.IsInRole("Administrator"))
+            {
+                <a asp-area="Administration" asp-controller="ElectricScooter" asp-action="Edit" asp-route-id="@this.Model.Id"class="btn" style="background-color: #ED1C24; color: white;">Редактирай</a>
+                
+                <a asp-area="Administration" asp-action="Delete" asp-route-id="@this.Model.Id" onclick="return DeleteItem('електрически скутер')"class="btn" style="background-color: gray; color: white;">Изтрий</a>
+            }
+        </div>
+    </div>
 </div>

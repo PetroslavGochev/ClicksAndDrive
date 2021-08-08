@@ -9,18 +9,12 @@
 
 @foreach (var car in this.Model)
 {
-    <div class="card mb-3" style="max-width: 540px;" id="bicycle">
-        <div class="row">
-            <div class="col-md-5">
-                <img src="~/@car.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@car.Made">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">@car.Made</h5>
-                    <p class="card-text">Цена на час: @car.PriceForHour.ToString("0.00") BGN.</p>
-                    <a asp-action="Details" asp-route-id="@car.Id" class="btn btn-info">Детайли</a>
-                </div>
-            </div>
+    <div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px">
+        <img src="~/@car.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@car.Made">
+        <div class="card-body">
+            <h5 class="card-title">@car.Made</h5>
+            <p class="card-text">Цена на час: @car.PriceForHour.ToString("0.00") BGN.</p>
+            <a asp-action="Details" asp-route-id="@car.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
         </div>
     </div>
 }
