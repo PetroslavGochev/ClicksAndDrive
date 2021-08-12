@@ -29,7 +29,10 @@
         {
             var isAdministrator = this.User.IsInRole("Administrator");
 
-            var bicycles = this.bicycleService.GetAll<BicycleViewModel>(type, isAdministrator);
+            var bicycles =
+                type != null
+                ? this.bicycleService.GetAllByType<BicycleViewModel>(type, isAdministrator)
+                : this.bicycleService.GetAll<BicycleViewModel>(isAdministrator);
 
             if (bicycles.ToArray().Length == 0)
             {

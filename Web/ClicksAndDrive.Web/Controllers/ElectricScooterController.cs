@@ -27,7 +27,7 @@
         {
             var isAdministrator = this.User.IsInRole("Administrator");
 
-            var electrcicScooter = this.elecitrcScooterService.GetAll<ElectricScooterViewModel>(null, isAdministrator);
+            var electrcicScooter = this.elecitrcScooterService.GetAllByType<ElectricScooterViewModel>(null, isAdministrator);
 
             if (electrcicScooter.ToArray().Length == 0)
             {

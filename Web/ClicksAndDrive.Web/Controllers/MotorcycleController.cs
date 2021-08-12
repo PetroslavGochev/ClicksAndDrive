@@ -25,7 +25,10 @@
         {
             var isAdministrator = this.User.IsInRole("Administrator");
 
-            var motorcycles = this.motorcycleService.GetAll<MotorcycleViewModel>(type, isAdministrator);
+            var motorcycles =
+                type != null
+                ? this.motorcycleService.GetAllByType<MotorcycleViewModel>(type, isAdministrator)
+                : this.motorcycleService.GetAll<MotorcycleViewModel>(isAdministrator);
 
             if (motorcycles.ToArray().Length == 0)
             {
