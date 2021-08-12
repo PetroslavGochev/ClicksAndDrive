@@ -19,23 +19,11 @@
         private const int MULTIPLY = 5;
         private const int NULL = 0;
 
-        private readonly IBicycleService bicycleService;
-        private readonly ICarService carService;
-        private readonly IElectricScooterService electricScooterService;
-        private readonly IMotorcycleService motorcycleService;
         private readonly ApplicationDbContext db;
 
         public OrderService(
-                               IBicycleService bicycleService,
-                               ICarService carService,
-                               IElectricScooterService electricScooterService,
-                               IMotorcycleService motorcycleService,
                                ApplicationDbContext db)
         {
-            this.bicycleService = bicycleService;
-            this.carService = carService;
-            this.electricScooterService = electricScooterService;
-            this.motorcycleService = motorcycleService;
             this.db = db;
         }
 

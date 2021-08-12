@@ -49,7 +49,7 @@
               .First();
         }
 
-        public IEnumerable<T> GetAll<T>(string type, bool isAdministrator)
+        public IEnumerable<T> GetAllByType<T>(string type, bool isAdministrator)
         {
             var electrciScooter = this.db.ElectricScooters
                 .Where(ec => (!isAdministrator ? ec.IsAvailable : ec.IsAvailable || !ec.IsAvailable))
@@ -101,6 +101,17 @@
                 electrciScooter.ImageUrl = imageUrls;
                 await this.db.SaveChangesAsync();
             }
+        }
+
+        public IEnumerable<T> GetAll<T>(bool isAdministrator)
+        {
+            var electrciScooter = this.db.ElectricScooters
+                .Where(ec => (!isAdministrator ? ec.IsAvailable : ec.IsAvailable || !ec.IsAvailable))
+                .OrderByDescending(ec => ec.PriceForHour)
+                .To<T>()
+                .ToArray();
+
+            return electrciScooter;
         }
     }
 }

@@ -23,13 +23,24 @@
             this.imageService = imageService;
         }
 
-        public IEnumerable<T> GetAll<T>(string type, bool isAdministrator)
+        public IEnumerable<T> GetAllByType<T>(string type, bool isAdministrator)
         {
             BicycleType bicycleType;
             Enum.TryParse<BicycleType>(type, out bicycleType);
 
             var bicycles = this.db.Bicycles
                 .Where(b => (!isAdministrator ? b.IsAvailable : b.IsAvailable || !b.IsAvailable) && b.Type == bicycleType)
+                .OrderByDescending(b => b.PriceForHour)
+                .To<T>()
+                .ToArray();
+
+            return bicycles;
+        }
+
+        public IEnumerable<T> GetAll<T>(bool isAdministrator)
+        {
+            var bicycles = this.db.Bicycles
+                .Where(b => !isAdministrator ? b.IsAvailable : b.IsAvailable || !b.IsAvailable)
                 .OrderByDescending(b => b.PriceForHour)
                 .To<T>()
                 .ToArray();

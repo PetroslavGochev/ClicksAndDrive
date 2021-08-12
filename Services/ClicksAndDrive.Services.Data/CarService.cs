@@ -102,7 +102,18 @@
                .First();
         }
 
-        public IEnumerable<T> GetAll<T>(string type, bool isAdministrator)
+        public IEnumerable<T> GetAll<T>(bool isAdministrator)
+        {
+            var cars = this.db.Cars
+                .Where(c => !isAdministrator ? c.IsAvailable : c.IsAvailable || !c.IsAvailable)
+                .OrderByDescending(c => c.PriceForHour)
+                .To<T>()
+                .ToArray();
+
+            return cars;
+        }
+
+        public IEnumerable<T> GetAllByType<T>(string type, bool isAdministrator)
         {
             CarCategory carCategory;
             Enum.TryParse<CarCategory>(type, out carCategory);

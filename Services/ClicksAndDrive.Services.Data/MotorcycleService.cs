@@ -69,7 +69,7 @@
            .First();
         }
 
-        public IEnumerable<T> GetAll<T>(string type, bool isAdministrator)
+        public IEnumerable<T> GetAllByType<T>(string type, bool isAdministrator)
         {
             MotorcycleType motorcycleType;
             Enum.TryParse<MotorcycleType>(type, out motorcycleType);
@@ -106,6 +106,17 @@
                 motorcycle.ImageUrl = imageUrls;
                 await this.db.SaveChangesAsync();
             }
+        }
+
+        public IEnumerable<T> GetAll<T>(bool isAdministrator)
+        {
+            var bicycles = this.db.Motorcycles
+                .Where(m => !isAdministrator ? m.IsAvailable : m.IsAvailable || !m.IsAvailable)
+                .OrderByDescending(m => m.PriceForHour)
+                .To<T>()
+                .ToArray();
+
+            return bicycles;
         }
     }
 }
