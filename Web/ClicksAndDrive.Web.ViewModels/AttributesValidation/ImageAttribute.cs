@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
 
     using ClicksAndDrive.Common;
     using Microsoft.AspNetCore.Http;
@@ -16,7 +15,8 @@
                 return true;
             }
 
-            var images = value as IEnumerable<IFormFile>;
+            List<IFormFile> images = new List<IFormFile>();
+            images.Add((IFormFile)value);
 
             foreach (var image in images)
             {
