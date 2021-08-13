@@ -7,9 +7,10 @@
     <h1 class="display-4">Автомобили</h1>
 </div>
 
-@foreach (var car in this.Model)
-{
-    <div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px">
+<div class="bike-cards-container">
+    @foreach (var car in this.Model)
+    {
+    <div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px; margin-right: 20px;">
         <img src="~/@car.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@car.Made">
         <div class="card-body">
             <h5 class="card-title">@car.Made</h5>
@@ -17,4 +18,6 @@
             <a asp-action="Details" asp-route-id="@car.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
         </div>
     </div>
-}
+
+    }
+</div>
