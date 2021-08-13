@@ -33,9 +33,12 @@
                 VehicleId = input.VehicleId,
                 VehicleType = input.Type.ToString(),
                 PriceForHour = input.PriceForHour,
-                DateFrom = DateTime.UtcNow,
+                DateFrom = DateTime.Now,
                 UserId = user.Id,
                 ImageUrl = input.ImageUrl,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
             };
 
             return this.View(loan);
