@@ -20,11 +20,14 @@
         private const int NULL = 0;
 
         private readonly ApplicationDbContext db;
+        private readonly IUserService userService;
 
         public OrderService(
-                               ApplicationDbContext db)
+                               ApplicationDbContext db,
+                               IUserService userService)
         {
             this.db = db;
+            this.userService = userService;
         }
 
         public T Details<T>(int id)
@@ -55,15 +58,15 @@
 
                     order.TotalSum = order.PriceForHour * (decimal)hours;
 
-                    var user = this.GetUserCurrentUser(order.UserId);
+                    var user = this.userService.GetCurrentUsers(order.UserId);
 
-                    if (this.GetUserCurrentUser(order.UserId).Discount != NULL)
+                    if (this.userService.GetCurrentUsers(order.UserId).Discount != NULL)
                     {
                         order.TotalSum -= order.TotalSum * order.User.Discount / DISCOUNT;
                     }
 
                     await this.ChangeVehicleAvailable(order.VehicleId, order.VehicleType);
-                    await this.UpdateUserDiscount(user);
+                    await this.userService.UpdateUserDiscount(user.Id);
                 }
                 else if (status == StatusType.Accepted)
                 {
@@ -84,7 +87,7 @@
 
         public async Task LoanVehicle(LoanOrderViewModel input)
         {
-            var user = this.db.Users.FirstOrDefault(u => u.Id == input.UserId);
+            var user = this.userService.GetCurrentUsers(input.UserId);
 
             if (user != null)
             {
@@ -102,7 +105,7 @@
                     DateFrom = input.DateFrom,
                     Status = StatusType.Wait,
                     ImageUrl = input.ImageUrl,
-                    User = this.GetUserCurrentUser(input.UserId),
+                    User = this.userService.GetCurrentUsers(input.UserId),
                 };
 
                 user.Orders.Add(orders);
@@ -147,25 +150,6 @@
             }
 
             await this.db.SaveChangesAsync();
-        }
-
-        private ApplicationUser GetUserCurrentUser(string id)
-        {
-            return this.db.Users
-                                .Where(x => x.Id == id)
-                                .FirstOrDefault();
-        }
-
-        private async Task UpdateUserDiscount(ApplicationUser user)
-        {
-            var discountCount = this.db.Orders.Where(x => x.UserId == user.Id).ToList().Count;
-
-            if (user.Discount < MAXIMUMDISCOUNT && discountCount % MULTIPLY == NULL)
-            {
-                user.Discount = (byte)user.Orders.Count;
-
-                await this.db.SaveChangesAsync();
-            }
         }
     }
 }
