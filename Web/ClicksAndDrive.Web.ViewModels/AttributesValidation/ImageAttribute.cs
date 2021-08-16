@@ -1,5 +1,6 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.AttributesValidation
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -16,6 +17,7 @@
             }
 
             List<IFormFile> images = new List<IFormFile>();
+
             images.Add((IFormFile)value);
 
             foreach (var image in images)

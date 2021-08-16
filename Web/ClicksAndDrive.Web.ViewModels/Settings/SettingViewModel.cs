@@ -1,9 +1,8 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using ClicksAndDrive.Common;
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Services.Mapping;
@@ -10,29 +11,30 @@
 
     public class AddMotorcycleViewModel : IMapTo<Motorcycle>
     {
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public MotorcycleType Type { get; set; }
 
-        [Display(Name = "Марка")]
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Марката трябва да започва с главна буква.")]
+        [Display(Name = GlobalConstants.Make)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = GlobalConstants.CapitalLetter)]
         public string Made { get; set; }
 
-        [Display(Name = "Скоростна кутия")]
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = GlobalConstants.Transsmission)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public TransmissionType Transmission { get; set; }
 
-        [Display(Name = "Цена на час")]
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = GlobalConstants.PriceForHour)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(GlobalConstants.One, GlobalConstants.OneHundred, ErrorMessage = GlobalConstants.PositiveNumber)]
         public decimal PriceForHour { get; set; }
 
-        [Display(Name = "Снимка")]
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = GlobalConstants.Images)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         [ImageAttribute]
         public IFormFile Image { get; set; }
 
-        [Display(Name = "Описание")]
-        [StringLength(250)]
+        [Display(Name = GlobalConstants.Description)]
+        [StringLength(GlobalConstants.DescriptionLegnth)]
         public string Description { get; set; }
     }
 }

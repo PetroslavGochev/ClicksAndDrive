@@ -11,16 +11,16 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = nameof(Resourse_BG_.Made), ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = GlobalConstants.Make)]
         public string Made { get; set; }
 
-        [Display(Name = nameof(Resourse_BG_.PriceForHour), ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = GlobalConstants.PriceForHour)]
         public decimal PriceForHour { get; set; }
 
-        [Display(Name = nameof(Resourse_BG_.Image), ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = GlobalConstants.Images)]
         public string ImageUrl { get; set; }
 
-        [Display(Name = nameof(Resourse_BG_.BicycleType), ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = GlobalConstants.Type)]
         public BicycleType Type { get; set; }
     }
 }

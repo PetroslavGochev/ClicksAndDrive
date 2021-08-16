@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using ClicksAndDrive.Common;
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Services.Mapping;
@@ -12,52 +13,52 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Марка")]
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Марката трябва да започва с главна буква.")]
+        [Display(Name = GlobalConstants.Make)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = GlobalConstants.CapitalLetter)]
         public string Made { get; set; }
 
-        [Display(Name = "Модел")]
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Моделът трябва да започва с главна буква.")]
+        [Display(Name = GlobalConstants.Model)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = GlobalConstants.CapitalLetter)]
         public string Model { get; set; }
 
-        [Display(Name = "Двигател")]
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = GlobalConstants.FuelType)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public FuelType FuelType { get; set; }
 
-        [Display(Name = "Категоия")]
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = GlobalConstants.Category)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public CarCategory Category { get; set; }
 
-        [Display(Name = "Скоростна кутия")]
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = GlobalConstants.Transsmission)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public TransmissionType Transmission { get; set; }
 
-        [Display(Name = "Разход на гориво")]
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [Range(1, 1000, ErrorMessage = "Разходът на гориво трябва да е положително число")]
+        [Display(Name = GlobalConstants.FuelConsumption)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(GlobalConstants.One, GlobalConstants.Ten, ErrorMessage = GlobalConstants.FuelConsumptionPositiveNumber)]
         public double FuelConsumption { get; set; }
 
-        [Display(Name = "Места")]
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = GlobalConstants.Places)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public CarPlaces Places { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително.")]
-        [Display(Name = "Наличност")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.IsAvailable)]
         public bool IsAvailable { get; set; }
 
-        [Display(Name = "Цена на час")]
-        [Range(1, 1000, ErrorMessage = "Цената трябва да е положително число")]
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = GlobalConstants.PriceForHour)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(GlobalConstants.One, GlobalConstants.OneHundred, ErrorMessage = GlobalConstants.PositiveNumber)]
         public decimal PriceForHour { get; set; }
 
-        [Display(Name = "Снимка")]
+        [Display(Name = GlobalConstants.Images)]
         [ImageAttribute]
         public IFormFile Image { get; set; }
 
-        [Display(Name = "Описание")]
-        [StringLength(250)]
+        [Display(Name = GlobalConstants.Description)]
+        [StringLength(GlobalConstants.DescriptionLegnth)]
         public string Description { get; set; }
     }
 }

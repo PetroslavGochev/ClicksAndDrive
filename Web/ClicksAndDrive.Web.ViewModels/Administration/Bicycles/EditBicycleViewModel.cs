@@ -13,44 +13,44 @@
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [Display(Name = "Категория")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.Type)]
         public BicycleType Type { get; set; }
 
-        [Display(Name = "Марка")]
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Марката трябва да започва с главна буква.")]
+        [Display(Name = GlobalConstants.Make)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = GlobalConstants.CapitalLetter)]
         public string Made { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [Display(Name = "Скорости")]
-        [Range(1, 30, ErrorMessage = "Скоростите трябва да са в интервал от (0 - 30)")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.Speeds)]
+        [Range(GlobalConstants.One, GlobalConstants.Thirty, ErrorMessage = GlobalConstants.InvalidSpeeds)]
         public byte Speeds { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [Display(Name = "Размер на велосипеда")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.Size)]
         public BicycleSize Size { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [Display(Name = "Размер на гумите")]
-        [Range(10, 30, ErrorMessage = "Размерът на гумите трябва да е число в интервала (10 - 30)")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.SizeOfTires)]
+        [Range(GlobalConstants.Ten, GlobalConstants.Thirty, ErrorMessage = GlobalConstants.InvalidSizeOfTires)]
         public double SizeOfTires { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително.")]
-        [Display(Name = "Наличност")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.IsAvailable)]
         public bool IsAvailable { get; set; }
 
-        [Display(Name = "Цена на час")]
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [Range(1, 1000, ErrorMessage = "Цената трябва да е положително число")]
+        [Display(Name = GlobalConstants.PriceForHour)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(GlobalConstants.One, GlobalConstants.OneHundred, ErrorMessage = GlobalConstants.PositiveNumber)]
         public decimal PriceForHour { get; set; }
 
-        [Display(Name = "Снимка")]
+        [Display(Name = GlobalConstants.Images)]
         [ImageAttribute]
         public IFormFile Image { get; set; }
 
-        [Display(Name = "Описание")]
-        [StringLength(250)]
+        [Display(Name = GlobalConstants.Description)]
+        [StringLength(GlobalConstants.DescriptionLegnth)]
         public string Description { get; set; }
     }
 }

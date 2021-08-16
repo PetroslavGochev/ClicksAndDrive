@@ -10,6 +10,7 @@
     public class YearAttribute : ValidationAttribute
     {
         private const int MINYEAR = 14;
+        private const string YEARSOLD = "Нямате навършени 14 години.";
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
@@ -19,7 +20,7 @@
 
             if (age < MINYEAR)
             {
-                var result = new ValidationResult("Sorry you are not old enough");
+                var result = new ValidationResult(YEARSOLD);
                 return result;
             }
 

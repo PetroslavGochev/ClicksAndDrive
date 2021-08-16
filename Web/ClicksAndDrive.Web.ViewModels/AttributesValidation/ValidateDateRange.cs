@@ -7,6 +7,8 @@
 
     public class ValidateDateRange : ValidationAttribute
     {
+        private const string INVALIDDATE = "Моля изберете, правилна дата";
+
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             DateTime dateTime = DateTime.Parse(value.ToString());
@@ -14,7 +16,7 @@
 
             if (dateTime < dateTimeNow)
             {
-                var result = new ValidationResult("Please choose the correct date");
+                var result = new ValidationResult(INVALIDDATE);
                 return result;
             }
 

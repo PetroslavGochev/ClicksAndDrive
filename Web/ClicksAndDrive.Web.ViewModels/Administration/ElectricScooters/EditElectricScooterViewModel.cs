@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using ClicksAndDrive.Common;
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Services.Mapping;
     using ClicksAndDrive.Web.ViewModels.AttributesValidation;
@@ -11,32 +12,32 @@
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [RegularExpression("[A-Z][^_]+", ErrorMessage = "Name should start with upper letter.")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [RegularExpression("[A-Z][^_]+", ErrorMessage = GlobalConstants.CapitalLetter)]
         public string Made { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [Range(1, 50, ErrorMessage = "Скоростта трябва да е в интервал от (1 до 50 км/ч)")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(GlobalConstants.One, GlobalConstants.Fifty, ErrorMessage = GlobalConstants.SpeedsLimit)]
         public byte MaximumSpeed { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително")]
-        [Range(1, 1000, ErrorMessage = "Пробега трябва да е положително число")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(GlobalConstants.One, GlobalConstants.OneHundred, ErrorMessage = GlobalConstants.PositiveNumber)]
         public byte Mileage { get; set; }
 
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Required(ErrorMessage = GlobalConstants.IsAvailable)]
         public bool IsAvailable { get; set; }
 
-        [Display(Name = "Цена на час")]
-        [Range(1, 1000, ErrorMessage = "Цената трябва да е положително число")]
-        [Required(ErrorMessage = "Това поле е задължително")]
+        [Display(Name = GlobalConstants.PriceForHour)]
+        [Range(GlobalConstants.One, GlobalConstants.OneHundred, ErrorMessage = GlobalConstants.PositiveNumber)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public decimal PriceForHour { get; set; }
 
-        [Display(Name = "Снимка")]
+        [Display(Name = GlobalConstants.Images)]
         [ImageAttribute]
         public IFormFile Image { get; set; }
 
-        [Display(Name = "Описание")]
-        [StringLength(250)]
+        [Display(Name = GlobalConstants.Description)]
+        [StringLength(GlobalConstants.DescriptionLegnth)]
         public string Description { get; set; }
     }
 }

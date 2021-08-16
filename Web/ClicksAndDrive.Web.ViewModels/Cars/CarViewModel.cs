@@ -1,6 +1,8 @@
 ﻿namespace ClicksAndDrive.Web.ViewModels.Cars
 {
     using System.ComponentModel.DataAnnotations;
+
+    using ClicksAndDrive.Common;
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
     using ClicksAndDrive.Services.Mapping;
@@ -9,28 +11,28 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Марка")]
+        [Display(Name = GlobalConstants.Make)]
         public string Made { get; set; }
 
-        [Display(Name = "Модел")]
+        [Display(Name = GlobalConstants.Model)]
         public string Model { get; set; }
 
-        [Display(Name = "Категория")]
+        [Display(Name = GlobalConstants.Category)]
         public CarCategory Category { get; set; }
 
-        [Display(Name = "Скоростна кутия")]
+        [Display(Name = GlobalConstants.Transsmission)]
         public TransmissionType Transmission { get; set; }
 
-        [Display(Name = "Места")]
+        [Display(Name = GlobalConstants.Places)]
         public CarPlaces Places { get; set; }
 
-        [Display(Name = "Двигател")]
+        [Display(Name = GlobalConstants.FuelType)]
         public FuelType FuelType { get; set; }
 
-        [Display(Name = "Цена на час")]
+        [Display(Name = GlobalConstants.PriceForHour)]
         public decimal PriceForHour { get; set; }
 
-        [Display(Name = "Снимка")]
+        [Display(Name = GlobalConstants.Images)]
         public string ImageUrl { get; set; }
     }
 }
