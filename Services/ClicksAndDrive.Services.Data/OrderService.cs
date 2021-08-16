@@ -15,8 +15,6 @@
     public class OrderService : IOrderService
     {
         private const int DISCOUNT = 100;
-        private const int MAXIMUMDISCOUNT = 50;
-        private const int MULTIPLY = 5;
         private const int NULL = 0;
 
         private readonly ApplicationDbContext db;
@@ -95,6 +93,7 @@
                 Enum.TryParse<VehicleType>(input.VehicleType, out vehicle);
 
                 await this.ChangeVehicleAvailable(input.VehicleId, vehicle);
+                await this.userService.UpdateUserFirstAndLastName(input.UserId, input.FirstName, input.LastName);
 
                 var orders = new Order()
                 {
@@ -104,7 +103,7 @@
                     PriceForHour = input.PriceForHour,
                     DateFrom = input.DateFrom,
                     Status = StatusType.Wait,
-                    ImageUrl = input.ImageUrl,
+                    ImageUrl = this.GetVehicleImage(input.VehicleId, vehicle),
                     User = this.userService.GetCurrentUsers(input.UserId),
                 };
 
@@ -150,6 +149,42 @@
             }
 
             await this.db.SaveChangesAsync();
+        }
+
+        private string GetVehicleImage(int id, VehicleType vehicleType)
+        {
+            string imagePath = string.Empty;
+
+            if (vehicleType == VehicleType.Bicycle)
+            {
+                var bicycle = this.db.Bicycles
+                    .FirstOrDefault(b => b.Id == id);
+
+                imagePath = bicycle.ImageUrl;
+            }
+            else if (vehicleType == VehicleType.Car)
+            {
+                var car = this.db.Cars
+                    .FirstOrDefault(b => b.Id == id);
+
+                imagePath = car.ImageUrl;
+            }
+            else if (vehicleType == VehicleType.ElectricScooter)
+            {
+                var escooter = this.db.ElectricScooters
+                   .FirstOrDefault(b => b.Id == id);
+
+                imagePath = escooter.ImageUrl;
+            }
+            else
+            {
+                var motorcycle = this.db.Motorcycles
+                   .FirstOrDefault(b => b.Id == id);
+
+                imagePath = motorcycle.ImageUrl;
+            }
+
+            return imagePath;
         }
     }
 }

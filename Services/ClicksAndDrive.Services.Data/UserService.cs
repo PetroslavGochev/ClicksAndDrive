@@ -1,5 +1,6 @@
 ﻿namespace ClicksAndDrive.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -53,6 +54,26 @@
 
                 await this.db.SaveChangesAsync();
             }
+        }
+
+        public IEnumerable<string> LicenseImages(string id)
+        {
+            var userImages = this.db.Images
+                .Where(i => i.UserId == id)
+                .Select(i => new
+                {
+                    ImagesPath = i.ImageUrl,
+                })
+                .ToArray();
+
+            var images = new List<string>();
+
+            foreach (var image in userImages)
+            {
+                images.Add(image.ImagesPath);
+            }
+
+            return images;
         }
     }
 }
