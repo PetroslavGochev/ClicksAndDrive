@@ -9,6 +9,8 @@
 
     public class OrderController : AdministrationController
     {
+        private const string DETAILORDERS = "/Order/DetailOrders/{0}";
+
         private readonly IOrderService orderService;
 
         public OrderController(IOrderService orderService)
@@ -27,7 +29,7 @@
         {
             await this.orderService.EditLoan(id, status);
 
-            return this.Redirect($"/Order/DetailOrders/{id}");
+            return this.Redirect(string.Format(DETAILORDERS, id));
         }
     }
 }

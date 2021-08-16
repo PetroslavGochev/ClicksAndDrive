@@ -82,7 +82,6 @@
             public string PhoneNumber { get; set; }
 
             [Required]
-            [ImageAttribute]
             public IEnumerable<IFormFile> Images { get; set; }
         }
 
@@ -96,6 +95,11 @@
         {
             returnUrl ??= this.Url.Content("~/");
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (!this.IsImageValid(this.Input.Images))
+            {
+                this.ModelState.AddModelError("Images", "Invalid Images");
+            }
+
             if (this.ModelState.IsValid)
             {
                 var age = YearCalculator.CalculateYear(this.Input.DateOfBirth);
@@ -150,6 +154,39 @@
 
             // If we got this far, something failed, redisplay form
             return this.Page();
+        }
+
+        private bool IsImageValid(IEnumerable<IFormFile> images)
+        {
+            foreach (var image in images)
+            {
+                if (image.Length > 10 * 1024 * 1024)
+                {
+                    return false;
+                }
+                else if (image.FileName.EndsWith(".jpg"))
+                {
+                    continue;
+                }
+                else if (image.FileName.EndsWith(".jpeg"))
+                {
+                    continue;
+                }
+                else if (image.FileName.EndsWith(".png"))
+                {
+                    continue;
+                }
+                else if (image.FileName.EndsWith(".gif"))
+                {
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

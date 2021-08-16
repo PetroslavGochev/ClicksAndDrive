@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
 
     using ClicksAndDrive.Data.Models;
-    using ClicksAndDrive.Services.Data;
     using ClicksAndDrive.Services.Data.Contracts;
     using ClicksAndDrive.Web.ViewModels.Administration.Orders;
     using ClicksAndDrive.Web.ViewModels.Orders;
@@ -16,11 +15,16 @@
     public class OrderController : Controller
     {
         private readonly IOrderService orderService;
+        private readonly IUserService userService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public OrderController(IOrderService orderService, UserManager<ApplicationUser> userManager)
+        public OrderController(
+            IOrderService orderService,
+            IUserService userService,
+            UserManager<ApplicationUser> userManager)
         {
             this.orderService = orderService;
+            this.userService = userService;
             this.userManager = userManager;
         }
 
@@ -64,7 +68,9 @@
         public IActionResult DetailOrders(int id)
         {
             var detailOrder = this.orderService.Details<DetailsOrderViewModel>(id);
-            ;
+
+            detailOrder.Images = this.userService.LicenseImages(detailOrder.UserId);
+
             return this.View(detailOrder);
         }
     }
