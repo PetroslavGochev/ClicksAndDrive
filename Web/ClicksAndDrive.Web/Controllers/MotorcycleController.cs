@@ -3,15 +3,12 @@
     using System.Linq;
 
     using ClicksAndDrive.Services.Data.Contracts;
+    using ClicksAndDrive.Web.Common;
     using ClicksAndDrive.Web.ViewModels.Motorcycles;
     using Microsoft.AspNetCore.Mvc;
 
     public class MotorcycleController : Controller
     {
-        private const string IMAGE = "Motorcycles";
-        private const string ALLPATH = "/Motorcycle/All?type={0}";
-        private const string DETAILSPATH = "/Motorcycle/Details/{0}";
-
         private readonly IMotorcycleService motorcycleService;
         private readonly IImageService imageService;
 
@@ -23,7 +20,7 @@
 
         public IActionResult All(string type)
         {
-            var isAdministrator = this.User.IsInRole("Administrator");
+            var isAdministrator = this.User.IsInRole(GlobalConstants.ADMINISTRATOR);
 
             var motorcycles =
                 type != null
@@ -32,7 +29,7 @@
 
             if (motorcycles.ToArray().Length == 0)
             {
-                return this.View("Information");
+                return this.View(GlobalConstants.INFORMATION);
             }
 
             return this.View(motorcycles);

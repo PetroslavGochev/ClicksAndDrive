@@ -12,6 +12,7 @@
     public class AddMotorcycleViewModel : IMapTo<Motorcycle>
     {
         [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.Type)]
         public MotorcycleType Type { get; set; }
 
         [Display(Name = GlobalConstants.Make)]

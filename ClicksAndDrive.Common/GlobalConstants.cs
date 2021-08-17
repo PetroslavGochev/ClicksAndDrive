@@ -82,12 +82,18 @@
 
         public const string SpeedsLimit = "Скоростта трябва да е в интервал от (1 до 50 км/ч)";
 
-        public const string FuelConsumption = "Скоростта трябва да е в интервал от (1 до 50 км/ч)";
+        public const string FuelConsumption = "Разход на гориво";
 
         public const string InvalidSizeOfTires = "Размерът на гумите трябва да е число в интервала (10 - 30)";
 
         public const string InvalidSpeeds = "Скоростите трябва да са в интервал от(0 - 30)";
 
         public const string FuelConsumptionPositiveNumber = "Разходът на гориво трябва да е положително число";
+
+        public const string InvalidEmail = "Моля въведете валиден Емайл адрес.";
+
+        public const string PasswordDoesntMatch = "Паролите не съвпадат.";
+
+        public const string InvalidPassword = "Паролата трябва да съдържа поне 6 символа";
     }
 }

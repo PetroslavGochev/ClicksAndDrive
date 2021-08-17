@@ -13,18 +13,22 @@
         public int Id { get; set; }
 
         [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.Make)]
         [RegularExpression("[A-Z][^_]+", ErrorMessage = GlobalConstants.CapitalLetter)]
         public string Made { get; set; }
 
         [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.MaximumSpeeds)]
         [Range(GlobalConstants.One, GlobalConstants.Fifty, ErrorMessage = GlobalConstants.SpeedsLimit)]
         public byte MaximumSpeed { get; set; }
 
         [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.Mileage)]
         [Range(GlobalConstants.One, GlobalConstants.OneHundred, ErrorMessage = GlobalConstants.PositiveNumber)]
         public byte Mileage { get; set; }
 
         [Required(ErrorMessage = GlobalConstants.IsAvailable)]
+        [Display(Name = GlobalConstants.IsAvailable)]
         public bool IsAvailable { get; set; }
 
         [Display(Name = GlobalConstants.PriceForHour)]

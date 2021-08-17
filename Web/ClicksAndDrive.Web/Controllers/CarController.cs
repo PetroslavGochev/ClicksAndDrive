@@ -11,10 +11,6 @@
 
     public class CarController : Controller
     {
-        private const string IMAGE = "Cars";
-        private const string ALLPATH = "/Car/All?type={0}";
-        private const string DETAILSPATH = "/Car/Details/{0}";
-
         private readonly ICarService carService;
         private readonly IImageService imageService;
 
@@ -26,7 +22,7 @@
 
         public IActionResult All(string type)
         {
-            var isAdministrator = this.User.IsInRole("Administrator");
+            var isAdministrator = this.User.IsInRole(GlobalConstants.ADMINISTRATOR);
 
             var cars =
                 type != null
@@ -35,7 +31,7 @@
 
             if (cars.ToArray().Length == 0)
             {
-                return this.View("Information");
+                return this.View(GlobalConstants.INFORMATION);
             }
 
             return this.View(cars);

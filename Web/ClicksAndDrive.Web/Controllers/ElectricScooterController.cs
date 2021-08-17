@@ -10,10 +10,6 @@
 
     public class ElectricScooterController : Controller
     {
-        private const string IMAGE = "ElectricScooters";
-        private const string ALLPATH = "/ElectricScooter/All";
-        private const string DETAILSPATH = "/ElectricScooter/Details/{0}";
-
         private readonly IElectricScooterService elecitrcScooterService;
         private readonly IImageService imageService;
 
@@ -25,13 +21,13 @@
 
         public IActionResult All()
         {
-            var isAdministrator = this.User.IsInRole("Administrator");
+            var isAdministrator = this.User.IsInRole(GlobalConstants.ADMINISTRATOR);
 
             var electrcicScooter = this.elecitrcScooterService.GetAllByType<ElectricScooterViewModel>(null, isAdministrator);
 
             if (electrcicScooter.ToArray().Length == 0)
             {
-                return this.View("Information");
+                return this.View(GlobalConstants.INFORMATION);
             }
 
             return this.View(electrcicScooter);

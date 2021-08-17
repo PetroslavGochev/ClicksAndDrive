@@ -12,10 +12,6 @@
 
     public class BicycleController : Controller
     {
-        private const string IMAGE = "Bicycles";
-        private const string ALLPATH = "/Bicycle/All?type={0}";
-        private const string DETAILSPATH = "/Bicycle/Details/{0}";
-
         private readonly IBicycleService bicycleService;
         private readonly IImageService imageService;
 
@@ -27,7 +23,7 @@
 
         public IActionResult All(string type)
         {
-            var isAdministrator = this.User.IsInRole("Administrator");
+            var isAdministrator = this.User.IsInRole(GlobalConstants.ADMINISTRATOR);
 
             var bicycles =
                 type != null
@@ -36,7 +32,7 @@
 
             if (bicycles.ToArray().Length == 0)
             {
-                return this.View("Information");
+                return this.View(GlobalConstants.INFORMATION);
             }
 
             return this.View(bicycles);

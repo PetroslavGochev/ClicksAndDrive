@@ -12,13 +12,16 @@
     {
         [Required(ErrorMessage = GlobalConstants.Required)]
         [RegularExpression("[A-Z][^_]+", ErrorMessage = GlobalConstants.CapitalLetter)]
+        [Display(Name = GlobalConstants.Make)]
         public string Made { get; set; }
 
         [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.MaximumSpeeds)]
         [Range(GlobalConstants.One, GlobalConstants.Fifty, ErrorMessage = GlobalConstants.SpeedsLimit)]
         public byte MaximumSpeed { get; set; }
 
         [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.Mileage)]
         [Range(GlobalConstants.One, GlobalConstants.OneHundred, ErrorMessage = GlobalConstants.PositiveNumber)]
         public byte Mileage { get; set; }
 
