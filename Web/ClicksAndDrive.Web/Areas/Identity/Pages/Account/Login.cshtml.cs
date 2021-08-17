@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
-
+    using ClicksAndDrive.Common;
     using ClicksAndDrive.Data.Models;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
@@ -47,10 +47,12 @@
         {
             [Required]
             [EmailAddress]
+            [BindProperty]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [BindProperty]
             public string Password { get; set; }
 
             [Display(Name = "Remember me?")]
@@ -101,11 +103,11 @@
                     this._logger.LogWarning("User account locked out.");
                     return this.RedirectToPage("./Lockout");
                 }
-                else
-                {
-                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return this.Page();
-                }
+            }
+            else
+            {
+                this.ModelState.AddModelError("Password", "Invalid login attempt.");
+                return this.Page();
             }
 
             // If we got this far, something failed, redisplay form

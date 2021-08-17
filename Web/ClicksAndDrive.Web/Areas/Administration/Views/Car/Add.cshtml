@@ -6,66 +6,66 @@
 }
 
 
-<h1>Добавете нов автомобил</h1>
+<h1 class="title-of-form">Добавете нов автомобил</h1>
 
-<form method="post" class="col-md-6" enctype="multipart/form-data">
+<form method="post" class="col-md-6 center" enctype="multipart/form-data">
     <div class="form-group">
-        <label asp-for="Made"></label>
+        <label asp-for="Made" class="label-position"></label>
         <input asp-for="Made" class="form-control" />
         <span asp-validation-for="Made" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Model"></label>
+        <label asp-for="Model" class="label-position"></label>
         <input asp-for="Model" class="form-control" />
         <span asp-validation-for="Model" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="FuelType"></label>
-        <select asp-for="FuelType" class="form-control"
+        <label asp-for="FuelType" class="label-position"></label>
+        <select asp-for="FuelType" class="dropdown-container"
                 asp-items="@Html.GetEnumSelectList<FuelType>()">
         </select>
         <span asp-validation-for="FuelType" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Category"></label>
-        <select asp-for="Category" class="form-control"
+        <label asp-for="Category" class="label-position"></label>
+        <select asp-for="Category" class="dropdown-container"
                 asp-items="@Html.GetEnumSelectList<CarCategory>()">
         </select>
         <span asp-validation-for="FuelType" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Transmission"></label>
-        <select asp-for="Transmission" class="form-control"
+        <label asp-for="Transmission" class="label-position"></label>
+        <select asp-for="Transmission" class="dropdown-container"
                 asp-items="@Html.GetEnumSelectList<TransmissionType>()">
         </select>
         <span asp-validation-for="FuelType" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Places"></label>
-        <select asp-for="Places" class="form-control"
+        <label asp-for="Places" class="label-position"></label>
+        <select asp-for="Places" class="dropdown-container"
                 asp-items="@Html.GetEnumSelectList<CarPlaces>()">
         </select>
         <span asp-validation-for="FuelType" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="FuelConsumption"></label>
+        <label asp-for="FuelConsumption" class="label-position"></label>
         <input asp-for="FuelConsumption" class="form-control" />
         <span asp-validation-for="FuelConsumption" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="PriceForHour"></label>
+        <label asp-for="PriceForHour" class="label-position"></label>
         <input asp-for="PriceForHour" class="form-control" />
         <span asp-validation-for="PriceForHour" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Image"></label>
-        <input asp-for="Image" class="form-control" />
+        <label asp-for="Image" class="label-position"></label>
+        <input asp-for="Image" class="img-uploader" />
         <span asp-validation-for="Image" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea cols="10" asp-for="Description" class="form-control"></textarea>
+        <label asp-for="Description" class="label-position"></label>
+        <textarea cols="10" asp-for="Description" class="form-background"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-    <input type="submit" class="btn-primary" />
+    <button type="submit" class="formBtn">Добави</button>
 </form>

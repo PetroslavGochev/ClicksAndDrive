@@ -3,39 +3,38 @@
 @{
     ViewData["Title"] = "Добавете нов електрически скутер";
 }
-<h1>Добавете нов електрически скутер</h1>
+<h1 class="title-of-form">Добавете нов Е-Скутер</h1>
 
-<form method="post" class="col-md-6" enctype="multipart/form-data">
+<form method="post" class="col-md-6 center" enctype="multipart/form-data">
     <div class="form-group">
-        <label asp-for="Made">Made *</label>
-        <input asp-for="Made" class="form-control" />
+        <label asp-for="Made" class="label-position"></label>
+        <input asp-for="Made" placeholder="Марка" class="form-control" />
         <span asp-validation-for="Made" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="MaximumSpeed">MaximumSpeed *</label>
-        <input asp-for="MaximumSpeed" class="form-control" />
+        <label asp-for="MaximumSpeed" class="label-position"></label>
+        <input asp-for="MaximumSpeed" placeholder="Максимална скорост" class="form-control" />
         <span asp-validation-for="MaximumSpeed" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Mileage">Mileage *</label>
-        <input asp-for="Mileage" class="form-control" />
+        <label asp-for="Mileage" class="label-position"></label>
+        <input asp-for="Mileage" placeholder="Пробег" class="form-control" />
         <span asp-validation-for="Mileage" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="PriceForHour">PriceForHour *</label>
-        <input asp-for="PriceForHour" class="form-control" />
+        <label asp-for="PriceForHour" class="label-position"></label>
+        <input asp-for="PriceForHour" placeholder="Цена на час" class="form-control" />
         <span asp-validation-for="PriceForHour" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Image">Image *</label>
-        <input asp-for="Image" class="form-control" />
+        <label asp-for="Image" class="label-position"></label>
+        <input asp-for="Image" class="img-uploader" />
         <span asp-validation-for="Image" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea cols="10" asp-for="Description" class="form-control"></textarea>
+        <label asp-for="Description" class="label-position"></label>
+        <textarea cols="10" asp-for="Description"  placeholder="Описание" class="form-background"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-    <p>* - fields are required</p>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="formBtn">Добави</button>
 </form>

@@ -54,34 +54,35 @@
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = GlobalConstants.Required)]
+            [EmailAddress(ErrorMessage = GlobalConstants.InvalidEmail)]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = GlobalConstants.Required)]
+            [StringLength(100, ErrorMessage = GlobalConstants.InvalidPassword, MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = GlobalConstants.PasswordDoesntMatch)]
             public string ConfirmPassword { get; set; }
 
             [Required]
             [DataType(DataType.Date)]
-            [Display(Name = "Date of birth")]
+            [Display(Name = "Рождена дата")]
             [YearAttribute]
             public DateTime DateOfBirth { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = GlobalConstants.Required)]
             [DataType(DataType.PhoneNumber)]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Телефонен номер")]
             public string PhoneNumber { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = GlobalConstants.Required)]
+            [Display(Name = "Документ за самоличност")]
             public IEnumerable<IFormFile> Images { get; set; }
         }
 

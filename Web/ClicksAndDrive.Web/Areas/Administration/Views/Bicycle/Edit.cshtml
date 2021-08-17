@@ -5,77 +5,62 @@
     ViewData["Title"] = "Редактирайте велосипед: " + Model.Made;
 }
 
-<form method="post" enctype="multipart/form-data">
-    <div class="form-group row">
-        <label asp-for="Type" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <select asp-for="Type" class="form-control"
-                    asp-items="@Html.GetEnumSelectList<BicycleType>()">
-            </select>
-            <span asp-validation-for="Type" class="text-danger"></span>
-        </div>
+<h1 class="title-of-form">Редактирайте велосипед</h1>
+
+<form method="post" class="col-md-6 center" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Type" class="label-position"></label>
+        <select asp-for="Type" class="dropdown-container"
+                asp-items="@Html.GetEnumSelectList<BicycleType>()">
+        </select>
+        <span asp-validation-for="Type" class="text-danger"></span>
     </div>
-    <div class="form-group row">
-        <label asp-for="Made" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <input asp-for="Made" class="form-control" placeholder="Made" />
-            <span asp-validation-for="Made" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="Made" class="label-position"></label>
+
+        <input asp-for="Made" class="form-control" placeholder="Made" />
+        <span asp-validation-for="Made" class="text-danger"></span>
     </div>
-    <div class="form-group row">
-        <label asp-for="Speeds" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <input asp-for="Speeds" class="form-control" placeholder="Speeds" />
-            <span asp-validation-for="Speeds" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="Speeds" class="label-position"></label>
+        <input asp-for="Speeds" class="form-control" placeholder="Speeds" />
+        <span asp-validation-for="Speeds" class="text-danger"></span>
     </div>
-    <div class="form-group row">
-        <label asp-for="Size" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <select asp-for="Size" class="form-control"
-                    asp-items="@Html.GetEnumSelectList<BicycleSize>()">
-            </select>
-            <span asp-validation-for="Size" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="Size" class="label-position"></label>
+        <select asp-for="Size" class="dropdown-container"
+                asp-items="@Html.GetEnumSelectList<BicycleSize>()">
+        </select>
+        <span asp-validation-for="Size" class="text-danger"></span>
     </div>
-    <div class="form-group row">
-        <label asp-for="SizeOfTires" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <input asp-for="SizeOfTires" class="form-control" placeholder="SizeOfTires" />
-            <span asp-validation-for="SizeOfTires" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="SizeOfTires" class="label-position"></label>
+        <input asp-for="SizeOfTires" class="form-control" placeholder="SizeOfTires" />
+        <span asp-validation-for="SizeOfTires" class="text-danger"></span>
     </div>
-    <div class="form-group row">
-        <label asp-for="PriceForHour" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <input asp-for="PriceForHour" class="form-control" placeholder="PriceForHour" />
-            <span asp-validation-for="PriceForHour" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="PriceForHour" class="label-position"></label>
+        <input asp-for="PriceForHour" class="form-control" placeholder="PriceForHour" />
+        <span asp-validation-for="PriceForHour" class="text-danger"></span>
     </div>
-    <div class="form-group row">
-        <label asp-for="IsAvailable" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <select class="form-control" asp-for="IsAvailable">
-                <option value="True" >Да</option>
-                <option value="False">Не</option>
-            </select>
-            <span asp-validation-for="IsAvailable" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="IsAvailable" class="label-position"></label>
+        <select class="dropdown-container" asp-for="IsAvailable">
+            <option value="True">Да</option>
+            <option value="False">Не</option>
+        </select>
+        <span asp-validation-for="IsAvailable" class="text-danger"></span>
     </div>
-    <div class="form-group row">
-        <label asp-for="Image" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <input asp-for="Image" class="form-control" placeholder="Image" />
-            <span asp-validation-for="Image" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="Image" class="label-position"></label>
+        <input asp-for="Image" class="img-uploader" placeholder="Image" />
+        <span asp-validation-for="Image" class="text-danger"></span>
     </div>
-    <div class="form-group row">
-        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <textarea cols="10" asp-for="Description" class="form-control" placeholder="Description"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label asp-for="Description" class="label-position"></label>
+        <textarea cols="10" asp-for="Description" class="form-background" placeholder="Description"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-    <a asp-area="" asp-action="Details" asp-route-id="@this.Model.Id" class="btn btn-primary">Назад</a>
-    <button type="submit" asp-route-type="@this.Model.Type" onclick="return EditItem()" class="btn btn-primary">Промени</button>
+    <a asp-area="" asp-action="Details" asp-route-id="@this.Model.Id"  class="formBtn">Назад</a>
+    <button type="submit" asp-route-type="@this.Model.Type" onclick="return EditItem()"  class="formBtn">Промени</button>
 </form>
