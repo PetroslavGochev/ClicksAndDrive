@@ -7,8 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico"> 
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/preLoader.css" />
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico">
+    <style>
+        /* styles unrelated to zoom */
+        .imageItem {
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* these styles are for the demo, but are not required for the plugin */
+        .zoom {
+            display: inline-block;
+            position: relative;
+        }
+
+            /* magnifying glass icon */
+            .zoom:after {
+                content: '';
+                display: block;
+                width: 33px;
+                height: 33px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: url(images/icon.png);
+            }
+
+            .zoom img {
+                display: block;
+            }
+
+                .zoom img::selection {
+                    background-color: transparent;
+                }
+    </style>
 </head>
 <body>
     <div style="background-color: black; width: 100%; height: 30px;">
@@ -21,12 +57,12 @@
 
                 <div style="color: white; border-right: 1px solid white; padding-right: 15px;  height: 22px;  margin-left: 15px;">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Stara planina 9</span>
+                    <span>"Стара планина 9"</span>
                 </div>
 
                 <div style="color: white; margin-left: 15px;">
                     <i class="far fa-clock"></i>
-                    <span>From 9AM to 6PM</span>
+                    <span>От 09:30 до 18:30</span>
                 </div>
             </div>
 
@@ -44,7 +80,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                                <img src="~/images/ClickAndDrive_PNG_Color.png" title="core" alt="" width="150" height="40" />
+                                <img src="~/images/logo_200x70.svg" title="core" alt="" />
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -77,15 +113,15 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ElectricScooter" asp-action="All">Електрически скутери</a>
+                            <a class="nav-link text-dark" asp-area=""  id="navbarNoDropdown" asp-controller="ElectricScooter" asp-action="All">Електрически скутери</a>
                         </li>
                         @if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-bs-toggle text-dark" href="#" id="navbarDropdown" data-target="#admin-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Добави
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div id="admin-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" asp-area="Administration" asp-controller="Bicycle" asp-action="Add">Велосипед</a>
                                     <a class="dropdown-item" asp-area="Administration" asp-controller="Car" asp-action="Add">Автомобил</a>
                                     <a class="dropdown-item" asp-area="Administration" asp-controller="ElectricScooter" asp-action="Add">Електрически скутер</a>
@@ -93,10 +129,10 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-bs-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-bs-toggle text-dark" id="navbarDropdown" role="button" data-target="#orders-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Поръчки
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div id="orders-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="Orders" asp-route-type="@StatusType.Wait">Изчакващи</a>
                                     <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="Orders" asp-route-type="@StatusType.Accepted">Одобрени</a>
                                     <a class="dropdown-item" asp-area="Administration" asp-controller="Order" asp-action="Orders" asp-route-type="@StatusType.Finished">Завършени</a>
@@ -111,24 +147,22 @@
     </header>
 
 
-    <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
-    </div>
 
 
     <footer class="border-top custom-footer" style="background-color: black;">
         <div class="footer-col">
             <div style="display:flex;">
                 <div style="margin-right: 2rem;">
-                    <p class="footer-paragraphs"><i class="fas fa-map-marker-alt"></i> Адрес: Ул. Атанас Томов 6</p>
+                    <p class="footer-paragraphs"><i class="fas fa-map-marker-alt"></i> Адрес: ул."Стара планина 9"</p>
 
-                    <p class="footer-paragraphs"><i class="fas fa-phone-square-alt" style="color: white"></i> Телефон: 0700 16 225</p>
+                    <p class="footer-paragraphs"><i class="fas fa-phone-square-alt" style="color: white"></i> Телефон:+359 888 888 8888</p>
 
                     <div style="display: flex; flex-direction: column;">
-                        <a class="footer-links" href="mailto:lightning@abv.bg"><i class="far fa-envelope"></i> support@lightning.bg</a>
+                        <a class="footer-links" href="mailto:lightning@abv.bg"><i class="far fa-envelope"></i> support@clickanddrive.bg</a>
 
                         <a class="footer-links" href="https://www.facebook.com/petroslav.gochev" target="_blank">
                             <i class="fab fa-facebook" style="color: white; margin-top: 1rem;"></i> Facebook
@@ -141,16 +175,16 @@
                 </div>
                 <div>
                     <p class="footer-paragraphs"> <i class="far fa-clock"></i> Работно време:</p>
-                    <p class="footer-paragraphs">Пон-Петък: 9:30 до 18:30</p>
-                    <p class="footer-paragraphs">Събота: 8:30 до 13:00</p>
-                    <p class="footer-paragraphs">Неделя: Почивен ден</p>
+                    <p class="footer-paragraphs">Понеделник до Петък: 09:30 до 18:30</p>
+                    <p class="footer-paragraphs">Събота и Неделя: 09:30 до 13:00</p>
                 </div>
             </div>
         </div>
         <div class="footer-col">
             <div style="display:grid;">
-                <a class="footer-links" asp-area="" asp-controller="Home" asp-action="Privacy">Условия за ползване</a>
-                <a class="footer-links" asp-area="" asp-controller="Home" asp-action="AboutUs">За нас</a>
+                <a class="footer-links" asp-controller="Home" asp-action="Privacy">Условия за ползване</a>
+                <a class="footer-links" asp-controller="Home" asp-action="AboutUs">За нас</a>
+                <a class="footer-links" asp-controller="Home" asp-action="Contact">Контакти</a>
             </div>
 
             <p class="footer-paragraphs">&copy; 2021 - ClickAndDrive</p>
@@ -162,9 +196,19 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-1.11.2.min.js"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <script src="/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src='/js/preLoader.js'></script>
+    <script src='/js/jquery.zoom.js'></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ex1').zoom();
+        });
+    </script>
+
     <script type="text/javascript">
         function DeleteItem(text) {
             if (confirm(`Сигурни ли сте, че искате да изтриете този ${text}?`)) {

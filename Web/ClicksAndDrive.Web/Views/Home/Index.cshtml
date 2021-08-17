@@ -13,31 +13,27 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" style="width: 1000px; height:600px; margin: 0 auto" src="https://wilier.com/sites/default/files/website_home_ogi_6.png" alt="First slide">
+                <img class="d-block w-100" margin: 0 auto" src="~/images/slider_1.jpg" alt="First slide">
                 <div class="carousel-caption">
                     <h1 class="display-2">Шосейни Велосипеди</h1>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" tyle="width: 1000px; height:600px; margin: 0 auto" src="https://www.bikecenter.bg/media/catalog/category/gradski.jpg" alt="Second slide">
+                <img class="d-block w-100"margin: 0 auto" src="~/images/slider_2.jpg" alt="Second slide">
                 <div class="carousel-caption">
                     <h1 class="display-2">Градски Велосипеди</h1>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="https://m.netinfo.bg/media/images/39318/39318609/991-ratio-elektricheska-trotinetka.jpg" alt="Third slide">
+                <img class="d-block w-100" src="~/images/slider_3.jpg" alt="Third slide">
                 <div class="carousel-caption">
                     <h1 class="display-2">Електрически скутери</h1>
-                    <h3>Изберете вашия електрически скутер</h3>
-                    <button type="button" class="btn btn-outline-light btn-lg">Детайли</button>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="https://wilier.com/sites/default/files/website_home_ogi_6.png" alt="Fourth slide">
+                <img class="d-block w-100" src="~/images/slider_4.jpg" alt="Fourth slide">
                 <div class="carousel-caption">
                     <h1 class="display-2">Мотори</h1>
-                    <h3>Изберете вашия мотор</h3>
-                    <button type="button" class="btn btn-outline-light btn-lg">Детайли</button>
                 </div>
             </div>
         </div>
@@ -51,42 +47,33 @@
         </a>
     </div>
 
-    <h1 style="text-align: center; margin-top: 20px; margin-bottom: 30px;">FEEL FREE IN SOZOPOL</h1>
+    <h1 style="text-align: center; margin-top: 20px; margin-bottom: 30px;">Усети свободата на Созопол!</h1>
 
     <hr style="width: 500px" />
 
     <h3 style="text-align: center;">
-        Take up the adventure and explore the best Black Sea city.
+        Грабнете момента и се насладете на малкото курортно градче.
     </h3>
-
-    <div style="display: flex; flex-wrap: wrap; margin-top: 30px;">
-        <div class="hover-card-container">
-            <img src="https://i5.walmartimages.com/asr/7dfa7020-455e-4ed3-b841-0f2f019a571b_1.1b5f07fcf4130781dedd223ceeb7556b.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff" alt="Avatar" class="image" style="width:500px; height: 400px;">
-            <div class="middle" style="left: 45%;">
-                <a class="text"  asp-area="" asp-controller="Bicycle" asp-action="All" style="background-color: #ED1C24; color: white;">Bikes</a>
+    <div class="container">
+        <div style="display: flex; flex-wrap: wrap; margin-top: 30px;">
+            <div class="hover-card-container">
+                <img src="images/item1.jpg" alt="Avatar" class="image ">
+                <div class="middle" style="left: 45%;"> <a class="text" style="background-color: #ED1C24; color: white;" href="/Bicycle/All">Велосипеди</a> </div>
             </div>
-        </div>
-
-        <div class="hover-card-container">
-            <img src="https://m.media-amazon.com/images/I/71javkDgGjL._UY560_.jpg" alt="Avatar" class="image" style="width:500px; height: 400px; margin-left: 50px;">
-            <div class="middle" style="left: 55%;">
-                <a class="text" asp-area="" asp-controller="Car" asp-action="All" style="background-color: #ED1C24; color: white;">Cars</a>
+            <div class="hover-card-container">
+                <img src="images/item3.jpg" alt="Avatar" class="image" style="margin-left: 50px;">
+                <div class="middle" style="left: 55%;"> <a class="text" style="background-color: #ED1C24; color: white;" href="/Car/All">Автомобили</a> </div>
             </div>
-        </div>
-
-        <div class="hover-card-container" style="margin-top: 15px">
-            <img src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_956,h_537/v1570191252/assets/7e/dacd44-dae2-4b53-8cbd-575e6d661ad6/original/generic-scooter.png" alt="Avatar" class="image" style="width:500px; height: 400px;">
-            <div class="middle" style="left: 45%;">
-                <a class="text" asp-area="" asp-controller="ElectricScooter" asp-action="All" style="background-color: #ED1C24; color: white;">E-Scooter</a>
+            <div class="hover-card-container" style="margin-top: 15px">
+                <img src="images/item2.jpg" alt="Avatar" class="image">
+                <div class="middle" style="left: 45%;"> <a class="text" style="background-color: #ED1C24; color: white;" href="/ElectricScooter/All">Е-Скутери</a> </div>
             </div>
-        </div>
-
-        <div class="hover-card-container" style="margin-top: 15px;">
-            <img src="https://kartsareus2.com/wp-content/uploads/2019/02/VIP.jpg" alt="Avatar" class="image" style="width:500px; height: 400px; margin-left: 50px;">
-            <div class="middle" style="left: 55%;">
-                <a class="text" asp-area="" asp-controller="Motorcycle" asp-action="All" style="background-color: #ED1C24; color: white;">Motopeds</a>
+            <div class="hover-card-container" style="margin-top: 15px;">
+                <img src="images/item4.jpg" alt="Avatar" class="image" style="margin-left: 50px;">
+                <div class="middle" style="left: 55%;"> <a class="text" style="background-color: #ED1C24; color: white;" href="/Motorcycle/All">Скутери</a> </div>
+            </div>
+   
             </div>
         </div>
     </div>
-</div>
 

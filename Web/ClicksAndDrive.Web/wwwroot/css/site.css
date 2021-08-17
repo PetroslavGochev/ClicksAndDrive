@@ -11,6 +11,49 @@ a {
     color: #0366d6;
 }
 
+.dropdown-container {
+    background-color: #f1f1f1;
+    height: 37px;
+    border-radius: 4px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.form-background {
+    background-color: #f1f1f1;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.img-uploader {
+    background-color: #f1f1f1;
+    width: 100%;
+    height: 37px;
+    border-radius: 4px;
+}
+
+.form-control {
+    width: 100% !important;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-of-form {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.label-position {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
@@ -157,8 +200,7 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
+    height: 2.5rem;
 }
 
 .center {
@@ -192,4 +234,131 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+/* Add padding to containers */
+
+.container {
+    background-color: white;
+    /*padding: 10px;*/
+    text-align: center;
+}
+
+.details-page-container {
+    display: flex;
+    background-color: white;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+/* Full-width input fields */
+
+input[type=text], input[type=email], input[type=number], input[type=password], textarea {
+    width: 50%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+    input[type=text]:focus, input[type=email]:focus, input[type=number]:focus, input[type=password]:focus, textarea:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+/* Set a style for the submit/register button */
+
+.registerbtn {
+    color: white;
+    padding: 10px 10px;
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    background-color:#ff0000;
+    font-size:1.3em;
+    margin-top:20px !important;
+}
+
+.formBtn {
+    color: white;
+    padding: 10px 10px;
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    background-color:#ff0000;
+    font-size:1.3em;
+    margin-top:20px !important;
+}
+
+    .registerbtn:hover {
+        opacity: 1;
+    }
+
+/* Add a blue text color to links */
+
+a {
+    color: #ff1e33;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+#details {
+    margin-bottom: 30px;
+}
+
+#edit-meme > form > div > p:nth-child(2) {
+    border-bottom: 3px solid lightgrey;
+    margin: auto;
+    margin-bottom: 34px;
+    padding: 23px;
+    width: 60%;
+    font-weight: bold;
+    font-size: 50px;
+    text-decoration: none;
+    color: black;
+}
+
+#create-meme > form > div > h1 {
+    border-bottom: 3px solid lightgrey;
+    margin: auto;
+    margin-bottom: 34px;
+    padding: 23px;
+    width: 60%;
+    font-weight: bold;
+    font-size: 50px;
+    text-decoration: none;
+    color: black;
+}
+
+.gender label:first-of-type {
+    margin-right: 60px;
+}
+
+.container > label {
+    display: block;
+}
+
+.loginLink{
+    color:#ff0000 !important;
+}
+
+#navbarDropdown{
+    padding-top:2rem;
+    margin-right:0.7rem;
+    border-bottom:1px solid #ff0000;
+}
+#navbarNoDropdown {
+    padding-top: 2rem;
+    margin-right: 0.7rem;
+    border-bottom: 1px solid #ff0000;
 }

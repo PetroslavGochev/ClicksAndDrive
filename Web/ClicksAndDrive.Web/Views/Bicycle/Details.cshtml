@@ -3,76 +3,90 @@
 @using ClicksAndDrive.Data.Models.Enums;
 @model DetailsBicycleViewModel
 @{
-    ViewData["Title"] = Resourse_BG_.Bicycle + " " + this.Model.Made;
+    ViewData["Title"] =  "Велосипед" + this.Model.Made;
 }
+<div class="details-page-container">
+    <div style="margin-left: 30px; margin-right: 30px; margin-top: 30px; display: flex;">
 
-<div style="margin-left: 30px; margin-right: 30px; margin-top: 30px; display: flex;">
-    <div>
-        @if (Model.ImageUrl != null)
-        {
-            <img src="~/@Model.ImageUrl.Replace("wwwroot/","")" style="width:650px; height:400px;" class="details-card-img" alt="">
-        }
-    </div>
-
-    <div style="margin-left: 100px; margin-top: 80px; margin-bottom: 150px;">
-        <div class="bicycle-body">
-            <h3 class="bicycle-title">@Model.Made</h3>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-bicycle"></i> Тип:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Type</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-chart-bar" style="margin-right: 6px;"></i> Размер:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Size</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fab fa-first-order-alt" style="margin-right: 7px;"></i> Размер на гумите:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.SizeOfTires</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-cog" style="margin-right: 7px;"></i> Скорости:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Speeds</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-tag" style="margin-right: 7px;"></i> Цена на час:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.PriceForHour</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="far fa-list-alt" style="margin-right: 7px;"></i> Описание:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Description</h5>
-            </div>
+        <div class="imageItem">
+            <span class='zoom' id='ex1'>
+                <img src='~/@Model.ImageUrl.Replace("wwwroot/","")' width="600" height="483" />
+            </span>
         </div>
 
-        <div style="margin-top: 30px;">
-            <a 
-               asp-controller="Order"
-               asp-action="LoanVehicle"
-               asp-route-vehicleId="@this.Model.Id"
-               asp-route-type="@VehicleType.Bicycle"
-               asp-route-priceForHour="@this.Model.PriceForHour"
-               class="btn" 
-               style="background-color: #ED1C24; color: white;"
-            >
-                Наеми
-            </a>
+        <div style="margin-left: 100px; margin-top: 80px; margin-bottom: 150px;">
+            <div class="bicycle-body">
+                <h3 class="bicycle-title">@Model.Made</h3>
 
-            @if (this.User.IsInRole("Administrator"))
-            {
-                <a asp-area="Administration" asp-controller="Bicycle" asp-action="Edit" asp-route-id="@this.Model.Id" class="btn" style="background-color: #ED1C24; color: white;">Редактирай</a>
-                <a asp-area="Administration" asp-action="Delete" asp-route-id="@this.Model.Id" asp-route-type="@this.Model.Type" onclick="return DeleteItem('велосипед')" class="btn" style="background-color: gray; color: white;">Изтрий</a>
-            }
+                <div style="display: flex;">
+                    <h4><i class="fas fa-bicycle"></i> Тип:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Type</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-chart-bar" style="margin-right: 6px;"></i> Размер:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Size</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fab fa-first-order-alt" style="margin-right: 7px;"></i> Размер на гумите:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.SizeOfTires</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-cog" style="margin-right: 7px;"></i> Скорости:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Speeds</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-tag" style="margin-right: 7px;"></i> Цена на час:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.PriceForHour</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="far fa-list-alt" style="margin-right: 7px;"></i> Описание:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Description</h5>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <a asp-controller="Order"
+                   asp-action="LoanVehicle"
+                   asp-route-vehicleId="@this.Model.Id"
+                   asp-route-type="@VehicleType.Bicycle"
+                   asp-route-priceForHour="@this.Model.PriceForHour"
+                   class="btn"
+                   style="background-color: #ED1C24; color: white;">
+                    Наеми
+                </a>
+
+                @if (this.User.IsInRole("Administrator"))
+                {
+                    <a asp-area="Administration" 
+                       asp-controller="Bicycle" 
+                       asp-action="Edit" 
+                       asp-route-id="@this.Model.Id" 
+                       class="btn" 
+                       style="background-color: #ED1C24; color: white;">
+                    Редактирай
+                    </a>
+                    <a asp-area="Administration"
+                       asp-action="Delete"
+                       asp-route-id="@this.Model.Id"
+                       asp-route-type="@this.Model.Type" 
+                       onclick="return DeleteItem('велосипед')"
+                       class="btn" 
+                       style="background-color: gray; color: white;">
+                    Изтрий
+                    </a>
+                }
+            </div>
         </div>
     </div>
 </div>

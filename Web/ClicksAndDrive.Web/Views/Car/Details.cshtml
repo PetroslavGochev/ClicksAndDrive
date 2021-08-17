@@ -5,75 +5,75 @@
     ViewData["Title"] = "Автомобил: " + Model.Made;
 }
 
-<div style="margin-left: 30px; margin-right: 30px; margin-top: 30px; display: flex;">
-    <div>
-        @if (Model.ImageUrl != null)
-        {
-            <img src="~/@Model.ImageUrl.Replace("wwwroot/","")" class="details-card-img" alt="">
-        }
-    </div>
-
-    <div style="margin-left: 100px; margin-top: 80px; margin-bottom: 150px;">
-        <div class="bicycle-body">
-            <h3 class="bicycle-title">@Model.Made</h3>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-car-side"></i> Модел:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Model</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-users"></i> Места:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Places</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-oil-can"></i> Разход на гориво:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.FuelConsumption</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-gas-pump" style="margin-right: 5px"></i> Двигател:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.FuelType</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-cogs"></i> Скоростна кутия:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Transmission</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-align-justify" style="margin-right: 8px;"></i> Категория:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Category</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="fas fa-tag" style="margin-right: 7px;"></i> Цена на час:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.PriceForHour</h5>
-            </div>
-
-            <div style="display: flex;">
-                <h4><i class="far fa-list-alt" style="margin-right: 7px;"></i> Описание:</h4>
-
-                <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Description</h5>
-            </div>
+<div class="details-page-container"> 
+    <div style="margin-left: 30px; margin-right: 30px; margin-top: 30px; display: flex;">
+        <div class="imageItem">
+            <span class='zoom' id='ex1'>
+                <img src='~/@Model.ImageUrl.Replace("wwwroot/","")' width="600" height="483" />
+            </span>
         </div>
+        <div style="margin-left: 100px; margin-top: 80px; margin-bottom: 150px;">
+            <div class="bicycle-body">
+                <h3 class="bicycle-title">@Model.Made</h3>
 
-        <div style="margin-top: 30px;">
+                <div style="display: flex;">
+                    <h4><i class="fas fa-car-side"></i> Модел:</h4>
 
-            <a asp-controller="Order" asp-action="LoanVehicle" asp-route-vehicleId="@this.Model.Id" asp-route-type="@VehicleType.Car" asp-route-priceForHour="@this.Model.PriceForHour" class="btn" style="background-color: #ED1C24; color: white;">Наеми</a>
-            @if (this.User.IsInRole("Administrator"))
-            {
-                <a asp-area="Administration" asp-controller="Car" asp-action="Edit" asp-route-id="@this.Model.Id" class="btn" style="background-color: #ED1C24; color: white;">Редактирай</a>
-                <a asp-area="Administration" asp-action="Delete" asp-route-id="@this.Model.Id" asp-route-type="@this.Model.Category" onclick="return DeleteItem('автомобил')" class="btn" style="background-color: gray; color: white;">Изтрий</a>
-            }
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Model</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-users"></i> Места:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Places</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-oil-can"></i> Разход на гориво:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.FuelConsumption</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-gas-pump" style="margin-right: 5px"></i> Двигател:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.FuelType</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-cogs"></i> Скоростна кутия:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Transmission</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-align-justify" style="margin-right: 8px;"></i> Категория:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Category</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-tag" style="margin-right: 7px;"></i> Цена на час:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.PriceForHour</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="far fa-list-alt" style="margin-right: 7px;"></i> Описание:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@Model.Description</h5>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+
+                <a asp-controller="Order" asp-action="LoanVehicle" asp-route-vehicleId="@this.Model.Id" asp-route-type="@VehicleType.Car" asp-route-priceForHour="@this.Model.PriceForHour" class="btn" style="background-color: #ED1C24; color: white;">Наеми</a>
+                @if (this.User.IsInRole("Administrator"))
+                {
+                    <a asp-area="Administration" asp-controller="Car" asp-action="Edit" asp-route-id="@this.Model.Id" class="btn" style="background-color: #ED1C24; color: white;">Редактирай</a>
+                    <a asp-area="Administration" asp-action="Delete" asp-route-id="@this.Model.Id" asp-route-type="@this.Model.Category" onclick="return DeleteItem('автомобил')" class="btn" style="background-color: gray; color: white;">Изтрий</a>
+                }
+            </div>
         </div>
     </div>
 </div>

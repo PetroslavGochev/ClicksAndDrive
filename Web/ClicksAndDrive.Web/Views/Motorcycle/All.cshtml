@@ -4,21 +4,25 @@
     ViewData["Title"] = "Мотори";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Мотори</h1>
-</div>
-
-@foreach (var motorcycle in this.Model)
-{
-    <div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px">
-        <img src="~/@motorcycle.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="@motorcycle.Made">
-        
-        <div class="card-body">
-            <h5 class="card-title">@motorcycle.Made</h5>
-            
-            <p class="card-text">Price For Hour: @motorcycle.PriceForHour.ToString("0.00")€</p>
-            
-            <a asp-action="Details" asp-route-id="@motorcycle.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
-        </div>
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Мотори</h1>
     </div>
-}
+
+    <div class="bike-cards-container">
+        @foreach (var motorcycle in this.Model)
+        {
+            <div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px; margin-right: 20px;">
+                <img src="~/@motorcycle.ImageUrl.Replace("wwwroot/","")" class="card-img-top" alt="@motorcycle.Made">
+
+                <div class="card-body">
+                    <h5 class="card-title">@motorcycle.Made</h5>
+
+                    <p class="card-text">Price For Hour: @motorcycle.PriceForHour.ToString("0.00")€</p>
+
+                    <a asp-action="Details" asp-route-id="@motorcycle.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

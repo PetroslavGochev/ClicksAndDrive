@@ -5,12 +5,11 @@
     ViewData["Title"] = "Ел.Тротинеткa: " + Model.Made;
 }
 
-<div style="margin-left: 30px; margin-right: 30px; margin-top: 30px; display: flex;">
-    <div>
-        @if (Model.ImageUrl != null)
-        {
-            <img src="~/@Model.ImageUrl.Replace("wwwroot/","")" class="details-card-img" alt="">
-        }
+<div class="details-page-container">
+    <div class="imageItem">
+        <span class='zoom' id='ex1'>
+            <img src='~/@Model.ImageUrl.Replace("wwwroot/","")' width="600" height="483" />
+        </span>
     </div>
 
     <div style="margin-left: 100px; margin-top: 80px; margin-bottom: 150px;">
@@ -48,14 +47,15 @@
                asp-route-vehicleId="@this.Model.Id"
                asp-route-type="@VehicleType.ElectricScooter"
                asp-route-imageUrl="@this.Model.ImageUrl"
-               asp-route-priceForHour="@this.Model.PriceForHour"class="btn" style="background-color: #ED1C24; color: white;">Наеми</a>
-           
+               asp-route-priceForHour="@this.Model.PriceForHour" class="btn" style="background-color: #ED1C24; color: white;">Наеми</a>
+
             @if (this.User.IsInRole("Administrator"))
             {
-                <a asp-area="Administration" asp-controller="ElectricScooter" asp-action="Edit" asp-route-id="@this.Model.Id"class="btn" style="background-color: #ED1C24; color: white;">Редактирай</a>
-                
-                <a asp-area="Administration" asp-action="Delete" asp-route-id="@this.Model.Id" onclick="return DeleteItem('електрически скутер')"class="btn" style="background-color: gray; color: white;">Изтрий</a>
+                <a asp-area="Administration" asp-controller="ElectricScooter" asp-action="Edit" asp-route-id="@this.Model.Id" class="btn" style="background-color: #ED1C24; color: white;">Редактирай</a>
+
+                <a asp-area="Administration" asp-action="Delete" asp-route-id="@this.Model.Id" onclick="return DeleteItem('електрически скутер')" class="btn" style="background-color: gray; color: white;">Изтрий</a>
             }
         </div>
     </div>
+</div>
 </div>
