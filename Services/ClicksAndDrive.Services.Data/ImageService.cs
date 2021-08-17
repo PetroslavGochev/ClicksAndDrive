@@ -22,6 +22,7 @@
 
         public async Task UploadImage(IFormFile formImage, string path)
         {
+            this.DeleteImage(path);
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await formImage.CopyToAsync(stream);
