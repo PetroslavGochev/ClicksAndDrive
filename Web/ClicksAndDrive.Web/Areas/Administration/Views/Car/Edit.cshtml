@@ -9,87 +9,87 @@
 <form method="post" class="col-md-6 center" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Made" class="label-position"></label>
-            <input asp-for="Made" class="form-control" placeholder="Made" />
-            <span asp-validation-for="Made" class="text-danger"></span>
+        <input asp-for="Made" class="form-control" placeholder="Made" />
+        <span asp-validation-for="Made" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Model" class="label-position"></label>
-            <input asp-for="Model" class="form-control" placeholder="Model" />
-            <span asp-validation-for="Model" class="text-danger"></span>
+        <input asp-for="Model" class="form-control" placeholder="Model" />
+        <span asp-validation-for="Model" class="text-danger"></span>
 
     </div>
     <div class="form-group">
         <label asp-for="FuelType" class="label-position"></label>
-            <select asp-for="FuelType" class="dropdown-container"
-                    asp-items="@Html.GetEnumSelectList<FuelType>()">
-            </select>
-            <span asp-validation-for="FuelType" class="text-danger"></span>
+        <select asp-for="FuelType" class="dropdown-container"
+                asp-items="@Html.GetEnumSelectList<FuelType>()">
+        </select>
+        <span asp-validation-for="FuelType" class="text-danger"></span>
     </div>
     <div class="form-group ">
         <label asp-for="Category" class="label-position"></label>
 
-            <select asp-for="Category" class="dropdown-container"
-                    asp-items="@Html.GetEnumSelectList<CarCategory>()">
-            </select>
-            <span asp-validation-for="Category" class="text-danger"></span>
+        <select asp-for="Category" class="dropdown-container"
+                asp-items="@Html.GetEnumSelectList<CarCategory>()">
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
 
     </div>
     <div class="form-group">
         <label asp-for="Transmission" class="label-position"></label>
-       
-            <select asp-for="Transmission"class="dropdown-container"
-                    asp-items="@Html.GetEnumSelectList<TransmissionType>()">
-            </select>
-            <span asp-validation-for="Transmission" class="text-danger"></span>
-   
+
+        <select asp-for="Transmission" class="dropdown-container"
+                asp-items="@Html.GetEnumSelectList<TransmissionType>()">
+        </select>
+        <span asp-validation-for="Transmission" class="text-danger"></span>
+
     </div>
     <div class="form-group">
         <label asp-for="Places" class="label-position"></label>
-  
-            <select asp-for="Places" class="dropdown-container"
-                    asp-items="@Html.GetEnumSelectList<CarPlaces>()">
-            </select>
-            <span asp-validation-for="Places" class="text-danger"></span>
+
+        <select asp-for="Places" class="dropdown-container"
+                asp-items="@Html.GetEnumSelectList<CarPlaces>()">
+        </select>
+        <span asp-validation-for="Places" class="text-danger"></span>
 
     </div>
     <div class="form-group ">
         <label asp-for="FuelConsumption" class="label-position"></label>
 
-            <input asp-for="FuelConsumption" class="form-control" placeholder="FuelConsumption" />
-            <span asp-validation-for="FuelConsumption" class="text-danger"></span>
+        <input asp-for="FuelConsumption" class="form-control" placeholder="FuelConsumption" />
+        <span asp-validation-for="FuelConsumption" class="text-danger"></span>
 
     </div>
     <div class="form-group">
         <label asp-for="PriceForHour" class="label-position"></label>
 
-            <input asp-for="PriceForHour" class="form-control" placeholder="PriceForHour" />
-            <span asp-validation-for="PriceForHour" class="text-danger"></span>
+        <input asp-for="PriceForHour" class="form-control" placeholder="PriceForHour" />
+        <span asp-validation-for="PriceForHour" class="text-danger"></span>
 
     </div>
     <div class="form-group">
         <label asp-for="IsAvailable" class="label-position"></label>
 
-            <select class="dropdown-container" asp-for="IsAvailable">
-                <option value="True">Да</option>
-                <option value="False">Не</option>
-            </select>
-            <span asp-validation-for="IsAvailable" class="text-danger"></span>
+        <select class="dropdown-container" asp-for="IsAvailable">
+            <option value="True">Да</option>
+            <option value="False">Не</option>
+        </select>
+        <span asp-validation-for="IsAvailable" class="text-danger"></span>
 
     </div>
     <div class="form-group ">
         <label asp-for="Image" class="label-position"></label>
 
-            <input asp-for="Image"  class="img-uploader" placeholder="Image" />
-            <span asp-validation-for="Image" class="text-danger"></span>
-        </div>
+        <input asp-for="Image" class="img-uploader" placeholder="Image" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
 
     <div class="form-group ">
-        <label asp-for="Description"class="label-position"></label>
+        <label asp-for="Description" class="label-position"></label>
 
-            <textarea cols="10" asp-for="Description"  class="form-background" placeholder="Description"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+        <textarea cols="10" asp-for="Description" class="form-background" placeholder="Description"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
 
-    <a asp-area="" asp-action="Details" asp-route-id="@this.Model.Id" class="btn btn-primary">Назад</a>
-    <button type="submit" onclick="return EditItem()" class="btn btn-primary">Промени</button>
+    <button asp-area="" asp-action="Details" asp-route-id="@this.Model.Id" class="btn" style="background-color: #ED1C24; color: white;">Назад</button>
+    <button type="submit" onclick="return EditItem()" class="btn" style="background-color: #ED1C24; color: white;">Промени</button>
 </form>

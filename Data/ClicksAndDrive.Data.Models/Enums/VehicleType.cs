@@ -6,13 +6,13 @@
 
     public enum VehicleType
     {
-        [Display(Name = "Car", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Car")]
         Car = 1,
-        [Display(Name = "Motorcycle", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Motorcycle")]
         Motorcycle = 2,
-        [Display(Name = "Bicycle", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Bicycle")]
         Bicycle = 3,
-        [Display(Name = "ElectricScooter", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "ElectricScooter")]
         ElectricScooter = 4,
     }
 }

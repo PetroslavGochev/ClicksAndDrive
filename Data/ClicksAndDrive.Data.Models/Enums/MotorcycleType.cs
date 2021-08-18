@@ -6,9 +6,9 @@
 
     public enum MotorcycleType
     {
-        [Display(Name = "Scooter", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Скутер")]
         Scooter = 1,
-        [Display(Name = "Cross", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "Кросов")]
         Cross = 2,
     }
 }

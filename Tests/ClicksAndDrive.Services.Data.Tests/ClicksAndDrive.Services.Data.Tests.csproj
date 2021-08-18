@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ClicksAndDrive.Data\ClicksAndDrive.Data.csproj" />
     <ProjectReference Include="..\..\Services\ClicksAndDrive.Services.Data\ClicksAndDrive.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Web\ClicksAndDrive.Web\ClicksAndDrive.Web.csproj" />
   </ItemGroup>
 
 </Project>

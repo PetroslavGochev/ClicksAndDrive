@@ -62,6 +62,6 @@
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
-    <a asp-area="" asp-action="Details" asp-route-id="@this.Model.Id" class="formBtn">Назад</a>
-    <button type="submit" asp-route-type="@this.Model.Type" onclick="return EditItem()" class="formBtn">Промени</button>
+    <button asp-area="" asp-action="Details" asp-route-id="@this.Model.Id" class="btn" style="background-color: #ED1C24; color: white;" >Назад</button>
+    <button class="btn" style="background-color: #ED1C24; color: white;" type="submit" asp-route-type="@this.Model.Type" onclick="return EditItem()">Промени</button>
 </form>

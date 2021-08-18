@@ -6,15 +6,15 @@
 
     public enum BicycleSize
     {
-        [Display(Name = "XS",ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "XS")]
         XS = 1,
-        [Display(Name = "S", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "S")]
         S = 2,
-        [Display(Name = "M", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "M")]
         M = 3,
-        [Display(Name = "L", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "L")]
         L = 4,
-        [Display(Name = "XL", ResourceType = typeof(Resourse_BG_))]
+        [Display(Name = "XL")]
         XL = 5,
     }
 }
