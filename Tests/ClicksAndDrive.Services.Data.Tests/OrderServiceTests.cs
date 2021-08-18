@@ -77,38 +77,6 @@
             Assert.Empty(user.Orders);
         }
 
-        //[Fact]
-        //public async Task EditLoan()
-        //{
-        //    var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("Database_For_Tests").Options;
-        //    var dbContext = new ApplicationDbContext(options);
-        //    var userService = new UserService(dbContext);
-        //    var orderService = new OrderService(dbContext, userService);
-        //    AutoMapperConfig.RegisterMappings(typeof(OrdersViewModel).Assembly, typeof(Order).Assembly);
-        //    AutoMapperConfig.RegisterMappings(typeof(DetailsOrderViewModel).Assembly, typeof(Order).Assembly);
-
-        //    var order = new Order()
-        //    {
-        //        Id = 1,
-        //        UserId = "1",
-        //        VehicleId = 2,
-        //        Address = "Stara Planina",
-        //        Status = StatusType.Wait,
-        //        DateFrom = DateTime.Now,
-        //        ImageUrl = "Test",
-        //        PriceForHour = 2.00M,
-        //        VehicleType = VehicleType.Motorcycle,
-        //    };
-        //    dbContext.Add<Order>(order);
-
-        //    await orderService.EditLoan(1, StatusType.Accepted);
-        //    await orderService.EditLoan(1, StatusType.Finished);
-        //    await orderService.EditLoan(1, StatusType.Rejected);
-
-        //    var test = orderService.Details<DetailsOrderViewModel>(1);
-        //    Assert.NotNull(test);
-        //}
-
         [Fact]
         public void GetAllOrders()
         {
