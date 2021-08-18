@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using AutoMapper;
     using ClicksAndDrive.Common;
     using ClicksAndDrive.Data.Models;
     using ClicksAndDrive.Data.Models.Enums;
