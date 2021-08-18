@@ -68,22 +68,22 @@
 
                 @if (this.User.IsInRole("Administrator"))
                 {
-                    <a asp-area="Administration" 
-                       asp-controller="Bicycle" 
-                       asp-action="Edit" 
-                       asp-route-id="@this.Model.Id" 
-                       class="btn" 
+                    <a asp-area="Administration"
+                       asp-controller="Bicycle"
+                       asp-action="Edit"
+                       asp-route-id="@this.Model.Id"
+                       class="btn"
                        style="background-color: #ED1C24; color: white;">
-                    Редактирай
+                        Редактирай
                     </a>
                     <a asp-area="Administration"
                        asp-action="Delete"
                        asp-route-id="@this.Model.Id"
-                       asp-route-type="@this.Model.Type" 
+                       asp-route-type="@this.Model.Type"
                        onclick="return DeleteItem('велосипед')"
-                       class="btn" 
+                       class="btn"
                        style="background-color: gray; color: white;">
-                    Изтрий
+                        Изтрий
                     </a>
                 }
             </div>

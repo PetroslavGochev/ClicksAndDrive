@@ -6,23 +6,25 @@
 
 <img src="~/images/slider_1.jpg" class="center" alt="Responsive image">
 
-<div class="text-center">
-    <h1 class="display-4">Велосипеди</h1>
-</div>
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Велосипеди</h1>
+    </div>
 
-<div class="bike-cards-container">
-    @foreach (var bicycle in this.Model)
-    {
-        <div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px; margin-right: 20px;">
-            @if (bicycle.ImageUrl != null)
-            {
-                <img src="~/@bicycle.ImageUrl.Replace("wwwroot/","")" class="img-thumbnail" style="width:300px; height:150px;" alt="@bicycle.Made">
-            }
-            <div class="card-body">
-                <h5 class="card-title">@bicycle.Made</h5>
-                <p class="card-text">Цена на час: @bicycle.PriceForHour.ToString("0.00") BGN.</p>
-                <a asp-action="Details" asp-route-id="@bicycle.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
+    <div class="bike-cards-container">
+        @foreach (var bicycle in this.Model)
+        {
+            <div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px; margin-right: 20px;">
+                @if (bicycle.ImageUrl != null)
+                {
+                    <img src="~/@bicycle.ImageUrl.Replace("wwwroot/","")" class="img-thumbnail" style="width:300px; height:150px;" alt="@bicycle.Made">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@bicycle.Made</h5>
+                    <p class="card-text">Цена на час: @bicycle.PriceForHour.ToString("0.00") BGN.</p>
+                    <a asp-action="Details" asp-route-id="@bicycle.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
+                </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+</div>  

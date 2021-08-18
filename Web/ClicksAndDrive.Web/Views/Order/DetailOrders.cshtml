@@ -4,42 +4,268 @@
 @{
     ViewData["Title"] = "Поръчка номер: " + this.Model.Id;
 }
-<div class="bicycle mb-3">
+<div class="" details-page-container">
     @if (this.Model.ImageUrl != null)
     {
-        <img src="~/@Model.ImageUrl.Replace("wwwroot/","")" class="bicycle-img-top" alt="">
+        <div style="margin-left: 30px; margin-right: 30px; margin-top: 30px; display: flex; justify-content: center;">
+            <div class="imageItem">
+                <span class='zoom' id='ex1'>
+                    <img src="~/@Model.ImageUrl.Replace("wwwroot/", "")" width="600" height="483" alt="">
+                </span>
+            </div>
+
+            <div style="margin-left: 100px; margin-top: 80px; margin-bottom: 150px;">
+                <div class="bicycle-body">
+                    <h3 class="bicycle-title">Справка за поръчка</h3>
+
+                    <div style="display: flex;">
+                        <h4><i class="fas fa-list-ol"></i> Поръчка номер:</h4>
+
+                        <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.Id</h5>
+                    </div>
+
+                    <div style="display: flex;">
+                        <h4><i class="far fa-check-square"></i> Статус:</h4>
+
+                        <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.Status</h5>
+                    </div>
+
+                    <div style="display: flex;">
+                        <h4><i class="fas fa-tag"></i>  Цена на час:</h4>
+
+                        <h5 style="margin-left: 10px; margin-top: 3.5px;">@this.Model.PriceForHour</h5>
+                    </div>
+
+                    <div style="display: flex;">
+
+                        @if (this.Model.Discount != 0)
+                        {
+                            <h4><i class="fas fa-percent"></i> Отстъпка:</h4>
+
+                            <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.Discount %</h5>
+                        }
+                    </div>
+
+                    <div style="display: flex;">
+                        <h4><i class="far fa-calendar-alt"></i> От:</h4>
+
+                        <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.DateFrom</h5>
+                    </div>
+
+                    <div style="display: flex;">
+
+                        @if (this.Model.Status == StatusType.Finished)
+                        {
+                            <h4><i class="far fa-calendar-alt"></i> До:</h4>
+
+                            <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.DateTo</h5>
+                        }
+                    </div>
+                    <div style="display: flex;">
+
+                        @if (this.Model.Status == StatusType.Finished)
+                        {
+                            <h4><i class="fas fa-tag"></i> Дължима сума:</h4>
+
+                            <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.TotalSum</h5>
+                        }
+                    </div>
+                    <div style="display: flex;">
+
+                        @if (this.User.IsInRole("Administrator"))
+                        {
+                            <h4><i class="fas fa-user"></i> Потребител:</h4>
+
+                            <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.Email</h5>
+                        }
+                    </div>
+                    <div style="display: flex;">
+
+                        @if (this.User.IsInRole("Administrator"))
+                        {
+                            <h4><i class="fas fa-phone-square-alt"></i> Телефон:</h4>
+
+                            <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.PhoneNumber</h5>
+                        }
+                    </div>
+                    <div>
+
+                        @if (this.User.IsInRole("Administrator"))
+                        {
+                            <h4><i class="fas fa-phone-square-alt"></i> Документи:</h4>
+
+                            <div style="display: flex; margin-left: 16px;">
+                                @foreach (var image in this.Model.Images)
+                                {
+
+                                    <img class="custom-img" src="~/@image.Replace("wwwroot/", "")" width="100" height="100" style="margin-left: 10px;" alt="">
+
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        @if (this.Model.Status == StatusType.Wait)
+                        {
+                            <a asp-area="Administration"
+                               asp-controller="Order"
+                               asp-action="LoanEdit"
+                               asp-route-id="@this.Model.Id"
+                               asp-route-status="@StatusType.Accepted"
+                               class="btn"
+                               style="background-color: #ED1C24; color: white;">
+                                Одобри
+                            </a>
+
+                            <a asp-area="Administration"
+                               asp-controller="Order"
+                               asp-action="LoanEdit"
+                               asp-route-id="@this.Model.Id"
+                               asp-route-status="@StatusType.Rejected"
+                               class="btn"
+                               style="background-color: #ED1C24; color: white;">
+                                Отхвърли
+                            </a>
+                        }
+                        else if (this.Model.Status == StatusType.Accepted)
+                        {
+                            <a asp-area="Administration"
+                               asp-controller="Order"
+                               asp-action="LoanEdit"
+                               asp-route-id="@this.Model.Id"
+                               asp-route-status="@StatusType.Finished"
+                               class="btn"
+                               style="background-color: #ED1C24; color: white;">
+                                Приключи
+                            </a>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
     }
-   
-    <div class="bicycle-body">
-        <p class="bicycle-text">Поръчка номер: @this.Model.Id</p>
-        <p class="bicycle-text">Статус: @this.Model.Status</p>
-        <p class="bicycle-text">Цена на час: @this.Model.PriceForHour</p>
-        @if (this.Model.Discount != 0)
-        {
-            <p class="bicycle-text">Отстъпка: @this.Model.Discount %</p>
-        }
-        <p class="bicycle-text">От: @this.Model.DateFrom</p>
-        @if (this.Model.Status == StatusType.Finished)
-        {
-            <p class="bicycle-text">До: @this.Model.DateTo</p>
-            <p class="bicycle-text">ДЪлжима сума: @this.Model.TotalSum</p>
-        }
-        @if (this.User.IsInRole("Administrator"))
-        {
-            <p class="bicycle-text">Потребител: @this.Model.Email</p>
-            <p class="bicycle-text">Телефон: @this.Model.PhoneNumber</p>
-        }
-    </div>
-    @if (this.User.IsInRole("Administrator"))
+    else
     {
-        if (this.Model.Status == StatusType.Wait)
-        {
-            <a asp-area="Administration" asp-controller="Order" asp-action="LoanEdit" asp-route-id="@this.Model.Id" asp-route-status="@StatusType.Accepted" class="btn btn-success">Одобри</a>
-            <a asp-area="Administration" asp-controller="Order" asp-action="LoanEdit" asp-route-id="@this.Model.Id" asp-route-status="@StatusType.Rejected" class="btn btn-danger">Отхвърли</a>
-        }
-        else if (this.Model.Status == StatusType.Accepted)
-        {
-            <a asp-area="Administration" asp-controller="Order" asp-action="LoanEdit" asp-route-id="@this.Model.Id" asp-route-status="@StatusType.Finished" class="btn btn-primary">Приключи</a>
-        }
+        <div style="margin-top: 100px; margin-bottom: 150px; position: relative; left: 41%;">
+            <div class="bicycle-body">
+                <h3 style="margin-top: 20px; margin-bottom: 40px; font-weight: bold">Справка за поръчка</h3>
+                <hr style="width: 32%; position: relative; border: 1px solid #cccccc; right: 41.5%; margin-bottom: 30px;" />
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-list-ol"></i> Поръчка номер:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.Id</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="far fa-check-square"></i> Статус:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.Status</h5>
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="fas fa-tag"></i>  Цена на час:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;">@this.Model.PriceForHour</h5>
+                </div>
+
+                <div style="display: flex;">
+
+                    @if (this.Model.Discount != 0)
+                    {
+                        <h4><i class="fas fa-percent"></i> Отстъпка:</h4>
+
+                        <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.Discount %</h5>
+                    }
+                </div>
+
+                <div style="display: flex;">
+                    <h4><i class="far fa-calendar-alt"></i> От:</h4>
+
+                    <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.DateFrom</h5>
+                </div>
+
+                <div style="display: flex;">
+
+                    @if (this.Model.Status == StatusType.Finished)
+                    {
+                        <h4><i class="far fa-calendar-alt"></i> До:</h4>
+
+                        <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.DateTo</h5>
+                    }
+                </div>
+                <div style="display: flex;">
+
+                    @if (this.Model.Status == StatusType.Finished)
+                    {
+                        <h4><i class="fas fa-tag"></i> Дължима сума:</h4>
+
+                        <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.TotalSum</h5>
+                    }
+                </div>
+                <div style="display: flex;">
+
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <h4><i class="fas fa-user"></i> Потребител:</h4>
+
+                        <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.Email</h5>
+                    }
+                </div>
+                <div style="display: flex;">
+
+                    @if (this.User.IsInRole("Administrator"))
+                    {
+                        <h4><i class="fas fa-phone-square-alt"></i> Телефон:</h4>
+
+                        <h5 style="margin-left: 10px; margin-top: 3.5px;"> @this.Model.PhoneNumber</h5>
+                    }
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+
+                @if (this.Model.Status == StatusType.Wait)
+                {
+                    <a asp-area="Administration"
+                       asp-controller="Order"
+                       asp-action="LoanEdit"
+                       asp-route-id="@this.Model.Id"
+                       asp-route-status="@StatusType.Accepted"
+                       class="btn"
+                       style="background-color: #ED1C24; color: white;">
+                        Одобри
+                    </a>
+
+                    <a asp-area="Administration"
+                       asp-controller="Order"
+                       asp-action="LoanEdit"
+                       asp-route-id="@this.Model.Id"
+                       asp-route-status="@StatusType.Rejected"
+                       class="btn"
+                       style="background-color: #ED1C24; color: white;">
+                        Отхвърли
+                    </a>
+                }
+                else if (this.Model.Status == StatusType.Accepted)
+                {
+                    <a asp-area="Administration"
+                       asp-controller="Order"
+                       asp-action="LoanEdit"
+                       asp-route-id="@this.Model.Id"
+                       asp-route-status="@StatusType.Finished"
+                       class="btn"
+                       style="background-color: #ED1C24; color: white;">
+                        Приключи
+                    </a>
+                }
+            </div>
+        </div>
     }
 </div>

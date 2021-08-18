@@ -13,7 +13,7 @@
             return this.View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult AboutUs()
         {
             return this.View();
         }

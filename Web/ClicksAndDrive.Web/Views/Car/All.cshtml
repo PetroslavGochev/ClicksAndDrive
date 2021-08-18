@@ -3,21 +3,26 @@
 @{
     ViewData["Title"] = "Автомобили";
 }
-<div class="text-center">
-    <h1 class="display-4">Автомобили</h1>
-</div>
 
-<div class="bike-cards-container">
-    @foreach (var car in this.Model)
-    {
-    <div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px; margin-right: 20px;">
-        <img src="~/@car.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@car.Made">
-        <div class="card-body">
-            <h5 class="card-title">@car.Made</h5>
-            <p class="card-text">Цена на час: @car.PriceForHour.ToString("0.00") BGN.</p>
-            <a asp-action="Details" asp-route-id="@car.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
-        </div>
+<img src="~/images/car.jpg" class="center" alt="Responsive image">
+
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Автомобили</h1>
     </div>
 
-    }
+    <div class="bike-cards-container">
+        @foreach (var car in this.Model)
+        {
+            <div class="card" style="width: 18rem; margin-top: 30px; margin-bottom: 20px; margin-right: 20px;">
+                <img src="~/@car.ImageUrl.Replace("wwwroot/","")" class="card-img" alt="@car.Made">
+                <div class="card-body">
+                    <h5 class="card-title">@car.Made</h5>
+                    <p class="card-text">Цена на час: @car.PriceForHour.ToString("0.00") BGN.</p>
+                    <a asp-action="Details" asp-route-id="@car.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
+                </div>
+            </div>
+
+        }
+    </div>
 </div>

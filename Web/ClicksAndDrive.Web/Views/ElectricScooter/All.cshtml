@@ -4,6 +4,8 @@
     ViewData["Title"] = "Ел.Тротинетки";
 }
 
+<img src="~/images/slider_3.jpg" class="center" alt="Responsive image">
+
 <div class="container">
     <div class="text-center">
         <h1 class="display-4">Електрически тротинетки</h1>
@@ -17,7 +19,7 @@
 
                 <div class="card-body">
                     <h5 class="card-title">@scooter.Made</h5>
-                    <p class="card-text">Price For Hour: @scooter.PriceForHour.ToString("0.00")€</p>
+                    <p class="card-text">Price For Hour: @scooter.PriceForHour.ToString("0.00") BGN.</p>
                     <a asp-action="Details" asp-route-id="@scooter.Id" class="btn" style="background-color: #ED1C24; color: white;">Детайли</a>
                 </div>
             </div>

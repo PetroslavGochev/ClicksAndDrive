@@ -2,28 +2,23 @@
 @model IEnumerable<OrdersViewModel>
 
 
-<table class="table">
-    <thead>
+<div class="table-container">
+    <table id="customers">
         <tr>
-            <th scope="col">#</th>
-            
-            <th scope="col">Поръчка номер</th>
-            
-            <th scope="col">Статус</th>
-            
-            <th scope="col">Потребител</th>
-            
-            <th scope="col"></th>
+            <th>#</th>
+            <th>Поръчка номер</th>
+            <th>Статус</th>
+            <th>Потребител</th>
+            <th>Детайли</th>
         </tr>
-    </thead>
-    <tbody>
+
         @{
             int number = 1;
             @foreach (var item in this.Model)
             {
 
                 <tr>
-                    <th scope="row">@number</th>
+                    <td>@number</td>
                     <td>@item.Id</td>
                     <td>@item.Status.ToString()</td>
                     <td>@item.Email</td>
@@ -34,5 +29,5 @@
                 number++;
             }
         }
-    </tbody>
-</table>
+    </table>
+</div>
