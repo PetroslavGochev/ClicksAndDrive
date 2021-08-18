@@ -33,7 +33,7 @@
             return this.db.Orders
                  .Where(x => x.Id == id)
                  .To<T>()
-                 .First();
+                 .FirstOrDefault();
         }
 
         public async Task EditLoan(int id, StatusType status)
