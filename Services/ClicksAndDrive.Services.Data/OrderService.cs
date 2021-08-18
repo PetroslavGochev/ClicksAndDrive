@@ -50,7 +50,7 @@
                 else if (status == StatusType.Finished)
                 {
                     order.Status = StatusType.Finished;
-                    order.DateTo = DateTime.UtcNow;
+                    order.DateTo = DateTime.Now;
 
                     var hours = Math.Ceiling(((DateTime)order.DateTo - order.DateFrom).TotalHours);
 
