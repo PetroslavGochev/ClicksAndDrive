@@ -11,6 +11,35 @@ a {
     color: #0366d6;
 }
 
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    height: 10%;
+    border-radius: 30px;
+}
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #ff0000;
+        color: white;
+    }
+
 .dropdown-container {
     background-color: #f1f1f1;
     height: 37px;
@@ -121,7 +150,7 @@ html {
 .hover-card-container {
     position: relative;
     width: 50%;
-    text-decoration:none;
+    text-decoration: none;
     color: white;
 }
 
@@ -161,9 +190,9 @@ html {
 
 @media (max-width: 1199,98px) {
     html {
-        
     }
 }
+
 @media (max-width: 767,98px) {
     html {
     }
@@ -238,10 +267,21 @@ body {
 
 /* Add padding to containers */
 
+.details-container {
+    height: 500px;
+    margin-top: 50px;
+}
+
 .container {
     background-color: white;
-    /*padding: 10px;*/
     text-align: center;
+}
+
+.table-container {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    min-height: 500px;
 }
 
 .details-page-container {
@@ -277,9 +317,9 @@ input[type=text], input[type=email], input[type=number], input[type=password], t
     cursor: pointer;
     width: 50%;
     opacity: 0.9;
-    background-color:#ff0000;
-    font-size:1.3em;
-    margin-top:20px !important;
+    background-color: #ff0000;
+    font-size: 1.3em;
+    margin-top: 20px !important;
 }
 
 .formBtn {
@@ -290,14 +330,14 @@ input[type=text], input[type=email], input[type=number], input[type=password], t
     cursor: pointer;
     width: 100%;
     opacity: 0.9;
-    background-color:#ff0000;
-    font-size:1.3em;
-    margin-top:20px !important;
+    background-color: #ff0000;
+    font-size: 1.3em;
+    margin-top: 20px !important;
 }
 
-    .registerbtn:hover {
-        opacity: 1;
-    }
+.registerbtn:hover {
+    opacity: 1;
+}
 
 /* Add a blue text color to links */
 
@@ -348,17 +388,32 @@ a {
     display: block;
 }
 
-.loginLink{
-    color:#ff0000 !important;
+.loginLink {
+    color: #ff0000 !important;
 }
 
-#navbarDropdown{
-    padding-top:2rem;
-    margin-right:0.7rem;
-    border-bottom:1px solid #ff0000;
+#navbarDropdown {
+    padding-top: 2rem;
+    margin-right: 0.7rem;
+    border-bottom: 1px solid #ff0000;
 }
+
 #navbarNoDropdown {
     padding-top: 2rem;
     margin-right: 0.7rem;
     border-bottom: 1px solid #ff0000;
+}
+
+.custom-img {
+    transition: transform 0.25s ease;
+}
+
+.custom-img:hover {
+        -webkit-transform: scale(5); /* or some other value */
+        transform: scale(5);
+}
+
+.no-quantity {
+    display: flex;
+    justify-content: center
 }
